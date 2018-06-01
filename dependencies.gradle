@@ -1,0 +1,55 @@
+ext.buildConfig = [
+        'compileSdk': 27,
+        'minSdk': 18,
+        'targetSdk': 27,
+
+        'version': [
+                'major': 0,
+                'minor': 1,
+                'patch': 0,
+                'build': 0,
+        ]
+]
+
+ext.buildConfig.version['name'] =
+        "${buildConfig.version.major}.${buildConfig.version.minor}.${buildConfig.version.patch}"
+ext.buildConfig.version['code'] =
+        buildConfig.version.major * 1000000 + buildConfig.version.minor * 10000 +
+                buildConfig.version.patch * 100 + buildConfig.version.build
+
+ext.versions = [
+
+        'androidGradlePluginVersion': '3.1.2',
+        'androidSDKVersion': '27.1.1',
+        'constraintLayoutVersion': '1.1.0',
+        'espressoVersion': '3.0.2',
+        'junitVersion': '4.12',
+        'kotlinVersion': '1.2.30',
+        'spotifyAuthVersion': '1.1.0',
+        'testRunnerVersion': '1.0.2'
+]
+
+ext.deps = [
+        'android': [
+                'support': [
+                        'appCompat': "com.android.support:appcompat-v7:${versions.androidSDKVersion}",
+                        'constraintLayout': "com.android.support.constraint:constraint-layout:${versions.constraintLayoutVersion}"
+                ],
+                'test': [
+                        'espresso': "com.android.support.test.espresso:espresso-core:${versions.espressoVersion}",
+                        'runner': "com.android.support.test:runner:${versions.testRunnerVersion}"
+                ]
+        ],
+        'kotlin': [
+                'stdlib': [
+                        'jre': "org.jetbrains.kotlin:kotlin-stdlib-jre7:${versions.kotlinVersion}"
+                ],
+                'test': [
+                        'jdk': "org.jetbrains.kotlin:kotlin-test-junit:${versions.kotlinVersion}"
+                ]
+        ],
+        'spotify': [
+                'auth': "com.spotify.android:auth:${versions.spotifyAuthVersion}",
+                'player': "com.spotify.sdk:spotify-player-24-noconnect-2.20b@aar"
+        ]
+]

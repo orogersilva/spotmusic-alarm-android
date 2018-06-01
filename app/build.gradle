@@ -1,30 +1,20 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
-repositories {
-
-    jcenter()
-
-    flatDir {
-        dirs 'libs'
-    }
-}
 
 android {
 
-    compileSdkVersion 27
+    compileSdkVersion buildConfig.compileSdk
 
     defaultConfig {
 
         applicationId "com.orogersilva.spotmusicalarm"
 
-        minSdkVersion 18
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+
+        versionCode buildConfig.version.code
+        versionName buildConfig.version.name
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -81,9 +71,9 @@ android {
         release {
 
             buildConfigField "String", "SPOTIFY_CLIENT_ID",
-                    ""
+                    "\"${envOrEmpty('SPOTIFY_CLIENT_ID')}\""
             buildConfigField "String", "SPOTIFY_REDIRECT_URI",
-                    ""
+                    "\"${envOrEmpty('SPOTIFY_REDIRECT_URI')}\""
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -91,22 +81,39 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
+    sourceSets.androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    sourceSets.main.java.srcDirs += 'src/main/kotlin'
+    sourceSets.test.java.srcDirs += 'src/test/kotlin'
 }
 
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation deps.android.support.appCompat
+    implementation deps.android.support.constraintLayout
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation deps.kotlin.stdlib.jre
 
-    implementation 'com.spotify.android:auth:1.1.0'
-    implementation 'com.spotify.sdk:spotify-player-24-noconnect-2.20b@aar'
+    implementation deps.spotify.auth
+    implementation deps.spotify.player
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation deps.kotlin.test.jdk
 
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation deps.android.test.espresso
+    androidTestImplementation deps.android.test.runner
+}
+
+repositories {
+
+    jcenter()
+
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+def envOrEmpty(String name) {
+    return System.getenv(name) ? getProperty(name) : ''
 }
