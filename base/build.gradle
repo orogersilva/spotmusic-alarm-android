@@ -47,6 +47,8 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    application project(':installed')
+
     implementation deps.android.support.appCompat
 
     implementation deps.kotlin.stdlib.jdk
