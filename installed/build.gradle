@@ -60,20 +60,10 @@ android {
 
         debug {
 
-            buildConfigField "String", "SPOTIFY_CLIENT_ID",
-                    "\"ff63264c74f94c07852357c4d4977473\""
-            buildConfigField "String", "SPOTIFY_REDIRECT_URI",
-                    "\"http://www.orogersilva.com/callback/\""
-
             signingConfig signingConfigs.debug
         }
 
         release {
-
-            buildConfigField "String", "SPOTIFY_CLIENT_ID",
-                    "\"${envOrEmpty('SPOTIFY_CLIENT_ID')}\""
-            buildConfigField "String", "SPOTIFY_REDIRECT_URI",
-                    "\"${envOrEmpty('SPOTIFY_REDIRECT_URI')}\""
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -98,24 +88,8 @@ dependencies {
 
     implementation deps.kotlin.stdlib.jdk
 
-    implementation deps.spotify.auth
-    implementation deps.spotify.player
-
     testImplementation deps.kotlin.test.jdk
 
     androidTestImplementation deps.android.test.espresso
     androidTestImplementation deps.android.test.runner
-}
-
-repositories {
-
-    jcenter()
-
-    flatDir {
-        dirs 'libs'
-    }
-}
-
-def envOrEmpty(String name) {
-    return System.getenv(name) ? getProperty(name) : ''
 }

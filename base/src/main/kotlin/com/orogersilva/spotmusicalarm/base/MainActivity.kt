@@ -1,4 +1,4 @@
-package com.orogersilva.spotmusicalarm
+package com.orogersilva.spotmusicalarm.base
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
