@@ -42,7 +42,7 @@ ext.deps = [
         ],
         'kotlin': [
                 'stdlib': [
-                        'jre': "org.jetbrains.kotlin:kotlin-stdlib-jre7:${versions.kotlinVersion}"
+                        'jdk': "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlinVersion}"
                 ],
                 'test': [
                         'jdk': "org.jetbrains.kotlin:kotlin-test-junit:${versions.kotlinVersion}"

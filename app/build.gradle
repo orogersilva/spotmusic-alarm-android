@@ -91,10 +91,12 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(':base')
+
     implementation deps.android.support.appCompat
     implementation deps.android.support.constraintLayout
 
-    implementation deps.kotlin.stdlib.jre
+    implementation deps.kotlin.stdlib.jdk
 
     implementation deps.spotify.auth
     implementation deps.spotify.player
