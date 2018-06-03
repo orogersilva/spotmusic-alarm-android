@@ -1,4 +1,4 @@
-package com.orogersilva.base
+package com.orogersilva.spotmusicalarm.base
 
 import android.app.Application
 
