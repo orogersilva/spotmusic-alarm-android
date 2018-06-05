@@ -16,7 +16,7 @@
         <!-- ACTIVITIES - BEGIN -->
 
         <activity
-            android:name=".MainActivity">
+            android:name=".DashboardActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

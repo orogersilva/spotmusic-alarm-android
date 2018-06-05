@@ -22,18 +22,28 @@ ext.versions = [
         'androidGradlePluginVersion': '3.1.2',
         'androidSDKVersion': '27.1.1',
         'constraintLayoutVersion': '1.1.0',
+        'databindingVersion': '3.1.2',
         'espressoVersion': '3.0.2',
         'junitVersion': '4.12',
-        'kotlinVersion': '1.2.30',
+        'kotlinVersion': '1.2.41',
+        'lifecycleVersion': '1.1.0',
         'spotifyAuthVersion': '1.1.0',
         'testRunnerVersion': '1.0.2'
 ]
 
 ext.deps = [
         'android': [
+                'arch': [
+                        'extensions': "android.arch.lifecycle:extensions:${versions.lifecycleVersion}",
+                        'viewmodel': "android.arch.lifecycle:viewmodel:${versions.lifecycleVersion}"
+                ],
+                'databinding': [
+                        'compiler': "com.android.databinding:compiler:${versions.databindingVersion}"
+                ],
                 'support': [
                         'appCompat': "com.android.support:appcompat-v7:${versions.androidSDKVersion}",
-                        'constraintLayout': "com.android.support.constraint:constraint-layout:${versions.constraintLayoutVersion}"
+                        'constraintLayout': "com.android.support.constraint:constraint-layout:${versions.constraintLayoutVersion}",
+                        'design': "com.android.support:design:${versions.androidSDKVersion}"
                 ],
                 'test': [
                         'espresso': "com.android.support.test.espresso:espresso-core:${versions.espressoVersion}",

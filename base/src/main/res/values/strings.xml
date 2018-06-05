@@ -1,3 +1,8 @@
 <resources>
+
     <string name="app_name">Spotmusic Alarm</string>
+
+    <!-- DASHBOARD SCREEN -->
+    <string name="no_alarms">No alarms</string>
+
 </resources>

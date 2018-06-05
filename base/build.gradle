@@ -1,5 +1,6 @@
 apply plugin: 'com.android.feature'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
 
@@ -38,6 +39,10 @@ android {
         }
     }
 
+    dataBinding {
+        enabled = true
+    }
+
     sourceSets.androidTest.java.srcDirs += 'src/androidTest/kotlin'
     sourceSets.main.java.srcDirs += 'src/main/kotlin'
     sourceSets.test.java.srcDirs += 'src/test/kotlin'
@@ -49,7 +54,12 @@ dependencies {
 
     application project(':installed')
 
+    implementation deps.android.arch.extensions
+    implementation deps.android.arch.viewmodel
+    kapt deps.android.databinding.compiler
     implementation deps.android.support.appCompat
+    implementation deps.android.support.constraintLayout
+    implementation deps.android.support.design
 
     implementation deps.kotlin.stdlib.jdk
 
