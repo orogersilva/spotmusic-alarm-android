@@ -3,8 +3,10 @@ package com.orogersilva.spotmusicalarm.base
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
+import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.orogersilva.spotmusicalarm.base.databinding.ActivityDashboardBinding
 import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 import com.spotify.sdk.android.authentication.AuthenticationResponse
@@ -30,7 +32,9 @@ class DashboardActivity : AppCompatActivity(), Player.NotificationCallback, Conn
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard)
+
+        val dashboardBinding = DataBindingUtil.setContentView<ActivityDashboardBinding>(
+                this, R.layout.activity_dashboard)
 
         val dashboardViewModelFactory = DashboardViewModelFactory()
 
@@ -43,6 +47,9 @@ class DashboardActivity : AppCompatActivity(), Player.NotificationCallback, Conn
                 redirectToCreateClockAlarmScreen()
             })
         }
+        
+        dashboardBinding.setLifecycleOwner(this)
+        dashboardBinding.dashboardViewModel = dashboardViewModel
 
         val spotifyAuthRequest = AuthenticationRequest
                 .Builder(SPOTIFY_CLIENT_ID, AuthenticationResponse.Type.TOKEN, SPOTIFY_REDIRECT_URI)
