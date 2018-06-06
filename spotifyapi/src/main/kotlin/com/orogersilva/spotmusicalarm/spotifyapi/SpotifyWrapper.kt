@@ -1,4 +1,4 @@
-package com.orogersilva.spotmusicalarm.base
+package com.orogersilva.spotmusicalarm.spotifyapi
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -12,8 +12,6 @@ import com.spotify.sdk.android.player.SpotifyPlayer
 class SpotifyWrapper {
 
     // region PUBLIC METHODS
-
-    // AuthenticationClient.openLoginActivity(activity, requestCode, spotifyAuthRequest)
 
     fun openLoginActivity(activity: AppCompatActivity, requestCode: Int, spotifyAuthenticationRequest: AuthenticationRequest) {
 

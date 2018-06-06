@@ -1,1 +1,1 @@
-include ':installed', ':base', ':instant'
+include ':installed', ':base', ':instant', ':spotifyapi', ':core'

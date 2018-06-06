@@ -1,4 +1,4 @@
-package com.orogersilva.spotmusicalarm.base
+package com.orogersilva.spotmusicalarm.spotifyapi
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity

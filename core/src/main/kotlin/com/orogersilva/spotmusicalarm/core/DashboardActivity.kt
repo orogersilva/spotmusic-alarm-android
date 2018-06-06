@@ -1,4 +1,4 @@
-package com.orogersilva.spotmusicalarm.base
+package com.orogersilva.spotmusicalarm.core
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -6,8 +6,10 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.orogersilva.spotmusicalarm.base.databinding.ActivityDashboardBinding
-import com.spotify.sdk.android.authentication.AuthenticationResponse
+import com.orogersilva.spotmusicalarm.core.databinding.ActivityDashboardBinding
+import com.orogersilva.spotmusicalarm.spotifyapi.SpotifyAdapterHelper
+import com.orogersilva.spotmusicalarm.spotifyapi.SpotifyHelper
+import com.orogersilva.spotmusicalarm.spotifyapi.SpotifyWrapper
 
 class DashboardActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.orogersilva.spotmusicalarm.base
+package com.orogersilva.spotmusicalarm.core
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider

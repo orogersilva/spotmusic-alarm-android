@@ -5,7 +5,7 @@
 
         <variable
             name="dashboardViewModel"
-            type="com.orogersilva.spotmusicalarm.base.DashboardViewModel"
+            type="com.orogersilva.spotmusicalarm.core.DashboardViewModel"
             />
 
     </data>

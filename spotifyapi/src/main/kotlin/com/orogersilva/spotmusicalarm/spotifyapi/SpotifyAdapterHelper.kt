@@ -1,5 +1,6 @@
-package com.orogersilva.spotmusicalarm.base
+package com.orogersilva.spotmusicalarm.spotifyapi
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import com.spotify.sdk.android.authentication.AuthenticationRequest
@@ -91,7 +92,7 @@ class SpotifyAdapterHelper(private val activity: AppCompatActivity,
 
     private fun preparePlayer(accessToken: String) {
 
-        val spotifyPlayerConfig = Config(activity, accessToken, SPOTIFY_CLIENT_ID)
+        val spotifyPlayerConfig = Config(activity as Context, accessToken, SPOTIFY_CLIENT_ID)
 
         spotifyWrapper.getPlayer(spotifyPlayerConfig, activity, object : SpotifyPlayer.InitializationObserver {
 

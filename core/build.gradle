@@ -1,6 +1,5 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.feature'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -9,67 +8,18 @@ android {
 
     defaultConfig {
 
-        applicationId "com.orogersilva.spotmusicalarm"
-
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
 
-        versionCode buildConfig.version.code
-        versionName buildConfig.version.name
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
-
-    signingConfigs {
-
-        debug {
-
-            storeFile rootProject.file('keystore/debug.jks')
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
-        }
-
-        release {
-
-            storeFile rootProject.file('keystore/release.jks')
-            storePassword System.getenv("STORE_PASSWORD")
-            keyAlias System.getenv("KEY_ALIAS")
-            keyPassword System.getenv("KEY_PASSWORD")
-        }
-    }
-
-    flavorDimensions "environment"
-
-    productFlavors {
-
-        dev {
-
-            dimension "environment"
-
-            applicationIdSuffix ".dev"
-        }
-
-        prod {
-
-            dimension "environment"
-        }
-    }
-
 
     buildTypes {
 
-        debug {
-
-            signingConfig signingConfigs.debug
-        }
-
         release {
-
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
-            signingConfig signingConfigs.release
         }
     }
 
@@ -86,8 +36,11 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':core')
+    api project(':base')
+    implementation project(':spotifyapi')
 
+    implementation deps.android.arch.extensions
+    implementation deps.android.arch.viewmodel
     kapt deps.android.databinding.compiler
     implementation deps.android.support.appCompat
     implementation deps.android.support.constraintLayout
