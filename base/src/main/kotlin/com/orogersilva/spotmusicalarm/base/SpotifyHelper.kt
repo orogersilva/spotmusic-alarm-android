@@ -13,7 +13,7 @@ interface SpotifyHelper {
 
     fun openLoginScreen(requestCode: Int)
 
-    fun getPlayer(accessToken: String)
+    fun tryPreparePlayer(resultCode: Int, data: Intent?)
 
     fun destroyPlayer()
 

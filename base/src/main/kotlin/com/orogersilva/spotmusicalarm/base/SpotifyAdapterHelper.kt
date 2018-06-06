@@ -2,19 +2,19 @@ package com.orogersilva.spotmusicalarm.base
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
-import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 import com.spotify.sdk.android.authentication.AuthenticationResponse
 import com.spotify.sdk.android.player.*
 
-class SpotifyAdapterHelper(private val activity: AppCompatActivity) : SpotifyHelper, ConnectionStateCallback, Player.NotificationCallback {
+class SpotifyAdapterHelper(private val activity: AppCompatActivity,
+                           private val spotifyWrapper: SpotifyWrapper) : SpotifyHelper, ConnectionStateCallback, Player.NotificationCallback {
 
     // region PROPERTIES
 
+    private lateinit var spotifyPlayer: SpotifyPlayer
+
     private val SPOTIFY_CLIENT_ID = BuildConfig.SPOTIFY_CLIENT_ID
     private val SPOTIFY_REDIRECT_URI = BuildConfig.SPOTIFY_REDIRECT_URI
-
-    private lateinit var spotifyPlayer: SpotifyPlayer
 
     // endregion
 
@@ -27,35 +27,25 @@ class SpotifyAdapterHelper(private val activity: AppCompatActivity) : SpotifyHel
                 .setScopes(arrayOf("streaming"))
                 .build()
 
-        AuthenticationClient.openLoginActivity(activity, requestCode, spotifyAuthRequest)
+        spotifyWrapper.openLoginActivity(activity, requestCode, spotifyAuthRequest)
     }
 
-    override fun getPlayer(accessToken: String) {
+    override fun tryPreparePlayer(resultCode: Int, data: Intent?) {
 
-        val spotifyPlayerConfig = Config(activity, accessToken, SPOTIFY_CLIENT_ID)
+        val authResponse = getAuthenticationResponse(resultCode, data)
 
-        Spotify.getPlayer(spotifyPlayerConfig, activity, object : SpotifyPlayer.InitializationObserver {
-
-            override fun onInitialized(spotPlayer: SpotifyPlayer) {
-
-                spotifyPlayer = spotPlayer
-
-                spotifyPlayer.addConnectionStateCallback(this@SpotifyAdapterHelper)
-                spotifyPlayer.addNotificationCallback(this@SpotifyAdapterHelper)
-            }
-
-            override fun onError(throwable: Throwable) {
-            }
-        })
+        if (authResponse.type == AuthenticationResponse.Type.TOKEN) {
+            preparePlayer(authResponse.accessToken)
+        }
     }
 
     override fun destroyPlayer() {
 
-        Spotify.destroyPlayer(activity)
+        spotifyWrapper.destroyPlayer(activity)
     }
 
     override fun getAuthenticationResponse(resultCode: Int, intent: Intent?): AuthenticationResponse =
-            AuthenticationClient.getResponse(resultCode, intent)
+            spotifyWrapper.getResponse(resultCode, intent)
 
     override fun onLoggedOut() {
     }
@@ -93,6 +83,29 @@ class SpotifyAdapterHelper(private val activity: AppCompatActivity) : SpotifyHel
 
             }
         }*/
+    }
+
+    // endregion
+
+    // region UTILITY METHODS
+
+    private fun preparePlayer(accessToken: String) {
+
+        val spotifyPlayerConfig = Config(activity, accessToken, SPOTIFY_CLIENT_ID)
+
+        spotifyWrapper.getPlayer(spotifyPlayerConfig, activity, object : SpotifyPlayer.InitializationObserver {
+
+            override fun onInitialized(spotPlayer: SpotifyPlayer) {
+
+                spotifyPlayer = spotPlayer
+
+                spotifyPlayer.addConnectionStateCallback(this@SpotifyAdapterHelper)
+                spotifyPlayer.addNotificationCallback(this@SpotifyAdapterHelper)
+            }
+
+            override fun onError(throwable: Throwable) {
+            }
+        })
     }
 
     // endregion

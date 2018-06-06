@@ -7,10 +7,7 @@ import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.orogersilva.spotmusicalarm.base.databinding.ActivityDashboardBinding
-import com.spotify.sdk.android.authentication.AuthenticationClient
-import com.spotify.sdk.android.authentication.AuthenticationRequest
 import com.spotify.sdk.android.authentication.AuthenticationResponse
-import com.spotify.sdk.android.player.*
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -47,7 +44,7 @@ class DashboardActivity : AppCompatActivity() {
         dashboardBinding.setLifecycleOwner(this)
         dashboardBinding.dashboardViewModel = dashboardViewModel
 
-        spotifyHelper = SpotifyAdapterHelper(this)
+        spotifyHelper = SpotifyAdapterHelper(this, SpotifyWrapper())
 
         spotifyHelper.openLoginScreen(SPOTIFY_AUTH_REQUEST_CODE)
     }
@@ -69,12 +66,7 @@ class DashboardActivity : AppCompatActivity() {
 
         if (requestCode == SPOTIFY_AUTH_REQUEST_CODE) {
 
-            val authResponse = spotifyHelper.getAuthenticationResponse(resultCode, data)
-
-            if (authResponse.type == AuthenticationResponse.Type.TOKEN) {
-
-                spotifyHelper.getPlayer(authResponse.accessToken)
-            }
+            spotifyHelper.tryPreparePlayer(resultCode, data)
         }
     }
 
