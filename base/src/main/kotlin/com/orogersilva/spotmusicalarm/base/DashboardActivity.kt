@@ -47,7 +47,7 @@ class DashboardActivity : AppCompatActivity(), Player.NotificationCallback, Conn
                 redirectToCreateClockAlarmScreen()
             })
         }
-        
+
         dashboardBinding.setLifecycleOwner(this)
         dashboardBinding.dashboardViewModel = dashboardViewModel
 
