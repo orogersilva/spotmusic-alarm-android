@@ -1,4 +1,4 @@
-package com.orogersilva.spotmusicalarm.core
+package com.orogersilva.spotmusicalarm.core.presentation.screen.dashboard.view
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -6,6 +6,9 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.orogersilva.spotmusicalarm.core.presentation.screen.dashboard.DashboardViewModel
+import com.orogersilva.spotmusicalarm.core.presentation.screen.dashboard.DashboardViewModelFactory
+import com.orogersilva.spotmusicalarm.core.R
 import com.orogersilva.spotmusicalarm.core.databinding.ActivityDashboardBinding
 import com.orogersilva.spotmusicalarm.spotifyapi.SpotifyAdapterHelper
 import com.orogersilva.spotmusicalarm.spotifyapi.SpotifyHelper

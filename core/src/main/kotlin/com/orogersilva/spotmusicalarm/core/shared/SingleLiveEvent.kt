@@ -1,4 +1,4 @@
-package com.orogersilva.spotmusicalarm.core
+package com.orogersilva.spotmusicalarm.core.shared
 
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData

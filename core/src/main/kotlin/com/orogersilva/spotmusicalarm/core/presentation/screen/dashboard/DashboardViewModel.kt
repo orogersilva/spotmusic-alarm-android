@@ -1,6 +1,7 @@
-package com.orogersilva.spotmusicalarm.core
+package com.orogersilva.spotmusicalarm.core.presentation.screen.dashboard
 
 import android.arch.lifecycle.ViewModel
+import com.orogersilva.spotmusicalarm.core.shared.SingleLiveEvent
 
 class DashboardViewModel : ViewModel() {
 
