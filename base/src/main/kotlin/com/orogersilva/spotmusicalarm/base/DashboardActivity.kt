@@ -12,18 +12,14 @@ import com.spotify.sdk.android.authentication.AuthenticationRequest
 import com.spotify.sdk.android.authentication.AuthenticationResponse
 import com.spotify.sdk.android.player.*
 
-class DashboardActivity : AppCompatActivity(), Player.NotificationCallback, ConnectionStateCallback {
+class DashboardActivity : AppCompatActivity() {
 
     // region PROPERTIES
 
     private lateinit var dashboardViewModel: DashboardViewModel
 
-    private val SPOTIFY_CLIENT_ID = BuildConfig.SPOTIFY_CLIENT_ID
-    private val SPOTIFY_REDIRECT_URI = BuildConfig.SPOTIFY_REDIRECT_URI
-
+    private lateinit var spotifyHelper: SpotifyHelper
     private val SPOTIFY_AUTH_REQUEST_CODE = 1
-
-    private lateinit var spotifyPlayer: SpotifyPlayer
 
     // endregion
 
@@ -51,18 +47,14 @@ class DashboardActivity : AppCompatActivity(), Player.NotificationCallback, Conn
         dashboardBinding.setLifecycleOwner(this)
         dashboardBinding.dashboardViewModel = dashboardViewModel
 
-        val spotifyAuthRequest = AuthenticationRequest
-                .Builder(SPOTIFY_CLIENT_ID, AuthenticationResponse.Type.TOKEN, SPOTIFY_REDIRECT_URI)
-                .setScopes(arrayOf("streaming"))
-                .build()
+        spotifyHelper = SpotifyAdapterHelper(this)
 
-        AuthenticationClient.openLoginActivity(this, SPOTIFY_AUTH_REQUEST_CODE,
-                spotifyAuthRequest)
+        spotifyHelper.openLoginScreen(SPOTIFY_AUTH_REQUEST_CODE)
     }
 
     override fun onDestroy() {
 
-        Spotify.destroyPlayer(this)
+        spotifyHelper.destroyPlayer()
 
         super.onDestroy()
     }
@@ -77,66 +69,13 @@ class DashboardActivity : AppCompatActivity(), Player.NotificationCallback, Conn
 
         if (requestCode == SPOTIFY_AUTH_REQUEST_CODE) {
 
-            val authResponse = AuthenticationClient.getResponse(resultCode, data)
+            val authResponse = spotifyHelper.getAuthenticationResponse(resultCode, data)
 
             if (authResponse.type == AuthenticationResponse.Type.TOKEN) {
 
-                val spotifyPlayerConfig = Config(this, authResponse.accessToken,
-                        SPOTIFY_CLIENT_ID)
-
-                Spotify.getPlayer(spotifyPlayerConfig, this, object : SpotifyPlayer.InitializationObserver {
-
-                    override fun onInitialized(spotPlayer: SpotifyPlayer) {
-
-                        spotifyPlayer = spotPlayer
-
-                        spotifyPlayer.addConnectionStateCallback(this@DashboardActivity)
-                        spotifyPlayer.addNotificationCallback(this@DashboardActivity)
-                    }
-
-                    override fun onError(throwable: Throwable) {
-                    }
-                })
+                spotifyHelper.getPlayer(authResponse.accessToken)
             }
         }
-    }
-
-    override fun onPlaybackEvent(playerEvent: PlayerEvent) {
-
-        /*when (playerEvent) {
-
-            else -> {
-
-            }
-        }*/
-    }
-
-    override fun onPlaybackError(error: Error) {
-
-        /*when (error) {
-
-            else -> {
-
-            }
-        }*/
-    }
-
-    override fun onLoggedOut() {
-    }
-
-    override fun onLoggedIn() {
-
-        spotifyPlayer.playUri(null, "spotify:track:2TpxZ7JUBn3uw46aR7qd6V",
-                0, 0)
-    }
-
-    override fun onConnectionMessage(message: String) {
-    }
-
-    override fun onLoginFailed(error: Error) {
-    }
-
-    override fun onTemporaryError() {
     }
 
     // endregion
