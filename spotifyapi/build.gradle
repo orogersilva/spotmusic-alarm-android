@@ -30,7 +30,8 @@ android {
             buildConfigField "String", "SPOTIFY_REDIRECT_URI",
                     "\"${envOrEmpty('SPOTIFY_REDIRECT_URI')}\""
 
-            minifyEnabled false
+            minifyEnabled true
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
