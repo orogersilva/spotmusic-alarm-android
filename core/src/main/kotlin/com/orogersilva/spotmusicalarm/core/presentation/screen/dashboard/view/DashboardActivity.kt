@@ -47,7 +47,7 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         dashboardBinding.setLifecycleOwner(this)
-        dashboardBinding.dashboardViewModel = dashboardViewModel
+        dashboardBinding.dashViewModel = dashboardViewModel
 
         spotifyHelper = SpotifyAdapterHelper(this, SpotifyWrapper())
 
