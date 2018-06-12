@@ -22,6 +22,7 @@ ext.versions = [
         'androidGradlePluginVersion': '3.1.2',
         'androidSDKVersion': '27.1.1',
         'constraintLayoutVersion': '1.1.0',
+        'daggerVersion': '2.16',
         'databindingVersion': '3.1.2',
         'espressoVersion': '3.0.2',
         'junitVersion': '4.12',
@@ -49,6 +50,14 @@ ext.deps = [
                         'espresso': "com.android.support.test.espresso:espresso-core:${versions.espressoVersion}",
                         'runner': "com.android.support.test:runner:${versions.testRunnerVersion}"
                 ]
+        ],
+        'dagger': [
+                'android': [
+                        'processor': "com.google.dagger:dagger-android-processor:${versions.daggerVersion}",
+                        'support': "com.google.dagger:dagger-android-support:${versions.daggerVersion}"
+                ],
+                'compiler': "com.google.dagger:dagger-compiler:${versions.daggerVersion}",
+                'core': "com.google.dagger:dagger:${versions.daggerVersion}"
         ],
         'kotlin': [
                 'stdlib': [

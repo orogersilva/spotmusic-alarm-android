@@ -6,9 +6,10 @@ import android.support.v7.app.AppCompatActivity
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 import com.spotify.sdk.android.authentication.AuthenticationResponse
 import com.spotify.sdk.android.player.*
+import javax.inject.Inject
 
-class SpotifyAdapterHelper(private val activity: AppCompatActivity,
-                           private val spotifyWrapper: SpotifyWrapper) : SpotifyHelper, ConnectionStateCallback, Player.NotificationCallback {
+class SpotifyAdapterHelper @Inject constructor(private val spotifyWrapper: SpotifyWrapper)
+    : SpotifyHelper, ConnectionStateCallback, Player.NotificationCallback {
 
     // region PROPERTIES
 
@@ -21,7 +22,7 @@ class SpotifyAdapterHelper(private val activity: AppCompatActivity,
 
     // region OVERRIDED METHODS
 
-    override fun openLoginScreen(requestCode: Int) {
+    override fun openLoginScreen(activity: AppCompatActivity, requestCode: Int) {
 
         val spotifyAuthRequest = AuthenticationRequest
                 .Builder(SPOTIFY_CLIENT_ID, AuthenticationResponse.Type.TOKEN, SPOTIFY_REDIRECT_URI)
@@ -31,16 +32,16 @@ class SpotifyAdapterHelper(private val activity: AppCompatActivity,
         spotifyWrapper.openLoginActivity(activity, requestCode, spotifyAuthRequest)
     }
 
-    override fun tryPreparePlayer(resultCode: Int, data: Intent?) {
+    override fun tryPreparePlayer(activity: AppCompatActivity, resultCode: Int, data: Intent?) {
 
         val authResponse = getAuthenticationResponse(resultCode, data)
 
         if (authResponse.type == AuthenticationResponse.Type.TOKEN) {
-            preparePlayer(authResponse.accessToken)
+            preparePlayer(activity, authResponse.accessToken)
         }
     }
 
-    override fun destroyPlayer() {
+    override fun destroyPlayer(activity: AppCompatActivity) {
 
         spotifyWrapper.destroyPlayer(activity)
     }
@@ -90,7 +91,7 @@ class SpotifyAdapterHelper(private val activity: AppCompatActivity,
 
     // region UTILITY METHODS
 
-    private fun preparePlayer(accessToken: String) {
+    private fun preparePlayer(activity: AppCompatActivity, accessToken: String) {
 
         val spotifyPlayerConfig = Config(activity as Context, accessToken, SPOTIFY_CLIENT_ID)
 

@@ -4,23 +4,24 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.orogersilva.spotmusicalarm.base.SpotmusicAlarmApplication
 import com.orogersilva.spotmusicalarm.core.presentation.screen.dashboard.DashboardViewModel
 import com.orogersilva.spotmusicalarm.core.presentation.screen.dashboard.DashboardViewModelFactory
 import com.orogersilva.spotmusicalarm.core.R
 import com.orogersilva.spotmusicalarm.core.databinding.ActivityDashboardBinding
+import com.orogersilva.spotmusicalarm.core.di.component.DaggerDashboardComponent
+import com.orogersilva.spotmusicalarm.core.presentation.screen.BaseActivity
 import com.orogersilva.spotmusicalarm.spotifyapi.SpotifyAdapterHelper
-import com.orogersilva.spotmusicalarm.spotifyapi.SpotifyHelper
-import com.orogersilva.spotmusicalarm.spotifyapi.SpotifyWrapper
+import javax.inject.Inject
 
-class DashboardActivity : AppCompatActivity() {
+class DashboardActivity : BaseActivity() {
 
     // region PROPERTIES
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    @Inject lateinit var dashboardViewModel: DashboardViewModel
+    @Inject lateinit var spotifyAdapterHelper: SpotifyAdapterHelper
 
-    private lateinit var spotifyHelper: SpotifyHelper
     private val SPOTIFY_AUTH_REQUEST_CODE = 1
 
     // endregion
@@ -29,15 +30,15 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        DaggerDashboardComponent
+                .builder()
+                .plus((application as SpotmusicAlarmApplication).applicationComponent)
+                .inject(this)
+
         super.onCreate(savedInstanceState)
 
         val dashboardBinding = DataBindingUtil.setContentView<ActivityDashboardBinding>(
                 this, R.layout.activity_dashboard)
-
-        val dashboardViewModelFactory = DashboardViewModelFactory()
-
-        dashboardViewModel = ViewModelProviders.of(this, dashboardViewModelFactory)
-                .get(DashboardViewModel::class.java)
 
         dashboardViewModel.apply {
 
@@ -49,14 +50,12 @@ class DashboardActivity : AppCompatActivity() {
         dashboardBinding.setLifecycleOwner(this)
         dashboardBinding.dashViewModel = dashboardViewModel
 
-        spotifyHelper = SpotifyAdapterHelper(this, SpotifyWrapper())
-
-        spotifyHelper.openLoginScreen(SPOTIFY_AUTH_REQUEST_CODE)
+        spotifyAdapterHelper.openLoginScreen(this, SPOTIFY_AUTH_REQUEST_CODE)
     }
 
     override fun onDestroy() {
 
-        spotifyHelper.destroyPlayer()
+        spotifyAdapterHelper.destroyPlayer(this)
 
         super.onDestroy()
     }
@@ -71,7 +70,7 @@ class DashboardActivity : AppCompatActivity() {
 
         if (requestCode == SPOTIFY_AUTH_REQUEST_CODE) {
 
-            spotifyHelper.tryPreparePlayer(resultCode, data)
+            spotifyAdapterHelper.tryPreparePlayer(this, resultCode, data)
         }
     }
 

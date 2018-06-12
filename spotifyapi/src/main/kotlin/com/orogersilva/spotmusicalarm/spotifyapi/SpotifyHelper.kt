@@ -11,11 +11,11 @@ interface SpotifyHelper {
 
     // region METHODS
 
-    fun openLoginScreen(requestCode: Int)
+    fun openLoginScreen(activity: AppCompatActivity, requestCode: Int)
 
-    fun tryPreparePlayer(resultCode: Int, data: Intent?)
+    fun tryPreparePlayer(activity: AppCompatActivity, resultCode: Int, data: Intent?)
 
-    fun destroyPlayer()
+    fun destroyPlayer(activity: AppCompatActivity)
 
     fun getAuthenticationResponse(resultCode: Int, intent: Intent?): AuthenticationResponse
 

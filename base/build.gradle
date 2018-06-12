@@ -1,5 +1,6 @@
 apply plugin: 'com.android.feature'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
 
@@ -36,4 +37,13 @@ dependencies {
 
     application project(':installed')
     feature project(':core')
+
+    implementation deps.android.arch.extensions
+
+    implementation deps.kotlin.stdlib.jdk
+
+    kapt deps.dagger.android.processor
+    api deps.dagger.android.support
+    kapt deps.dagger.compiler
+    api deps.dagger.core
 }

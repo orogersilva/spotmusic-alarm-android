@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
 
@@ -45,9 +46,14 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(':base')
+
     implementation deps.android.support.appCompat
 
     implementation deps.kotlin.stdlib.jdk
+
+    kapt deps.dagger.android.processor
+    kapt deps.dagger.compiler
 
     api deps.spotify.auth
     api deps.spotify.player

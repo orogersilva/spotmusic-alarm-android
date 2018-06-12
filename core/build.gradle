@@ -46,6 +46,9 @@ dependencies {
     implementation deps.android.support.constraintLayout
     implementation deps.android.support.design
 
+    kapt deps.dagger.android.processor
+    kapt deps.dagger.compiler
+
     implementation deps.kotlin.stdlib.jdk
 
     testImplementation deps.kotlin.test.jdk
