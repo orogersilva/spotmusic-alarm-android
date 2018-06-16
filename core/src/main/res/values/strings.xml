@@ -2,6 +2,6 @@
 
     <!-- DASHBOARD SCREEN -->
     <string name="new_clock_alarm">New clock alarm</string>
-    <string name="no_alarms">No alarms</string>
+    <string name="no_alarm">No alarm</string>
 
 </resources>
