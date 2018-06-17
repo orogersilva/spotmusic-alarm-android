@@ -3,5 +3,8 @@
     <!-- DASHBOARD SCREEN -->
     <string name="new_clock_alarm">Novo alarme</string>
     <string name="no_alarm">Nenhum alarme</string>
+    <string name="save">Salvar</string>
+    <string name="set_music">Definir música</string>
+    <string name="set_time">Definir horário</string>
 
 </resources>

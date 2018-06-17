@@ -2,25 +2,25 @@ package com.orogersilva.spotmusicalarm.core.di.component
 
 import com.orogersilva.spotmusicalarm.base.di.component.ApplicationComponent
 import com.orogersilva.spotmusicalarm.base.di.scope.ActivityScope
-import com.orogersilva.spotmusicalarm.core.di.module.DashboardModule
-import com.orogersilva.spotmusicalarm.core.presentation.screen.dashboard.view.DashboardActivity
+import com.orogersilva.spotmusicalarm.core.di.module.NewClockAlarmModule
+import com.orogersilva.spotmusicalarm.core.presentation.screen.newclockalarm.view.NewClockAlarmActivity
 import com.orogersilva.spotmusicalarm.spotifyapi.di.module.SpotifyModule
 import dagger.Component
 import dagger.android.AndroidInjector
 
 @ActivityScope
-@Component(modules = [DashboardModule::class, SpotifyModule::class],
+@Component(modules = [NewClockAlarmModule::class, SpotifyModule::class],
         dependencies = [ApplicationComponent::class]
 )
-interface DashboardComponent : AndroidInjector<DashboardActivity> {
+interface NewClockAlarmComponent : AndroidInjector<NewClockAlarmActivity> {
 
     // region BUILDERS
 
-    @Component.Builder abstract class Builder : AndroidInjector.Builder<DashboardActivity>() {
+    @Component.Builder abstract class Builder : AndroidInjector.Builder<NewClockAlarmActivity>() {
 
         abstract operator fun plus(component: ApplicationComponent): Builder
 
-        fun inject(activity: DashboardActivity) {
+        fun inject(activity: NewClockAlarmActivity) {
 
             plus(activity.provideApplication().applicationComponent)
 

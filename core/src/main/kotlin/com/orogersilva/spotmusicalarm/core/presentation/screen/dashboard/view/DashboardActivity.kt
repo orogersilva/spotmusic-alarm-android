@@ -12,6 +12,7 @@ import com.orogersilva.spotmusicalarm.core.R
 import com.orogersilva.spotmusicalarm.core.databinding.ActivityDashboardBinding
 import com.orogersilva.spotmusicalarm.core.di.component.DaggerDashboardComponent
 import com.orogersilva.spotmusicalarm.core.presentation.screen.BaseActivity
+import com.orogersilva.spotmusicalarm.core.presentation.screen.newclockalarm.view.NewClockAlarmActivity
 import com.orogersilva.spotmusicalarm.spotifyapi.SpotifyAdapterHelper
 import javax.inject.Inject
 
@@ -20,9 +21,6 @@ class DashboardActivity : BaseActivity() {
     // region PROPERTIES
 
     @Inject lateinit var dashboardViewModel: DashboardViewModel
-    @Inject lateinit var spotifyAdapterHelper: SpotifyAdapterHelper
-
-    private val SPOTIFY_AUTH_REQUEST_CODE = 1
 
     // endregion
 
@@ -49,29 +47,6 @@ class DashboardActivity : BaseActivity() {
 
         dashboardBinding.setLifecycleOwner(this)
         dashboardBinding.dashViewModel = dashboardViewModel
-
-        spotifyAdapterHelper.openLoginScreen(this, SPOTIFY_AUTH_REQUEST_CODE)
-    }
-
-    override fun onDestroy() {
-
-        spotifyAdapterHelper.destroyPlayer(this)
-
-        super.onDestroy()
-    }
-
-    // endregion
-
-    // region OVERRIDED METHODS
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == SPOTIFY_AUTH_REQUEST_CODE) {
-
-            spotifyAdapterHelper.tryPreparePlayer(this, resultCode, data)
-        }
     }
 
     // endregion
@@ -80,7 +55,9 @@ class DashboardActivity : BaseActivity() {
 
     private fun redirectToCreateClockAlarmScreen() {
 
-        // TODO: Redirect to creation of clock alarm screen.
+        val newClockAlarmIntent = Intent(this, NewClockAlarmActivity::class.java)
+
+        startActivity(newClockAlarmIntent)
     }
 
     // endregion

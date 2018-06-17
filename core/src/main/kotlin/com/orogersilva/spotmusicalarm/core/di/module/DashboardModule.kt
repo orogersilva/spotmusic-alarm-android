@@ -1,8 +1,7 @@
 package com.orogersilva.spotmusicalarm.core.di.module
 
 import android.arch.lifecycle.ViewModelProviders
-import android.support.v7.app.AppCompatActivity
-import com.orogersilva.spotmusicalarm.base.di.scope.ModuleScope
+import com.orogersilva.spotmusicalarm.base.di.scope.ActivityScope
 import com.orogersilva.spotmusicalarm.core.presentation.screen.dashboard.DashboardViewModel
 import com.orogersilva.spotmusicalarm.core.presentation.screen.dashboard.DashboardViewModelFactory
 import com.orogersilva.spotmusicalarm.core.presentation.screen.dashboard.view.DashboardActivity
@@ -14,7 +13,7 @@ object DashboardModule {
 
     // region PROVIDERS
 
-    @Provides @ModuleScope @JvmStatic fun provideDashboardViewModel(dashboardActivity: DashboardActivity): DashboardViewModel {
+    @Provides @ActivityScope @JvmStatic fun provideDashboardViewModel(dashboardActivity: DashboardActivity): DashboardViewModel {
 
         val dashboardViewModelFactory = DashboardViewModelFactory()
 
