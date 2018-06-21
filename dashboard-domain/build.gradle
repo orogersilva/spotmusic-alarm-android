@@ -1,4 +1,5 @@
 apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -12,5 +13,8 @@ dependencies {
 
     implementation deps.kotlin.stdlib.jdk
 
+    kapt deps.dagger.compiler
+    implementation deps.dagger.core
     implementation deps.gson.core
+    implementation deps.rx.java
 }

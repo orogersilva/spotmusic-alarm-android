@@ -28,7 +28,7 @@ ext.versions = [
         'gsonVersion': '2.8.5',
         'junitVersion': '4.12',
         'kotlinVersion': '1.2.50',
-        'lifecycleVersion': '1.1.0',
+        'lifecycleVersion': '1.1.1',
         'retrofitVersion': '2.4.0',
         'roomVersion': '1.1.1',
         'rxAndroidVersion': '2.0.2',

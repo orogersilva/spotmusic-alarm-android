@@ -1,4 +1,4 @@
-package com.orogersilva.spotmusicalarm.dashboarddomain.dto
+package com.orogersilva.spotmusicalarm.dashboarddata.dto
 
 import com.google.gson.annotations.SerializedName
 

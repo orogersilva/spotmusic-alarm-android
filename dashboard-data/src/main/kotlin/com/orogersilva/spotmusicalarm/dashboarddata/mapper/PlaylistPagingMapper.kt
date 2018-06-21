@@ -1,19 +1,28 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.mapper
 
-import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.PlaylistPagingEntity
-import com.orogersilva.spotmusicalarm.dashboarddomain.dto.PlaylistPagingDTO
+import com.orogersilva.spotmusicalarm.dashboarddata.entity.PagedPlaylistEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.dto.PagedPlaylistDTO
+import com.orogersilva.spotmusicalarm.dashboarddomain.model.PagedPlaylist
 
 object PlaylistPagingMapper {
 
     // region METHODS
 
-    fun transformPlaylistPagingDTOToPlaylistPagingEntity(playlistPagingDTO: PlaylistPagingDTO): PlaylistPagingEntity {
+    fun transformPagedPlaylistDTOToPagedPlaylistEntity(pagedPlaylistDTO: PagedPlaylistDTO): PagedPlaylistEntity {
 
         val playlistEntities = PlaylistMapper
-                .transformPlaylistDTOsToPlaylistEntities(playlistPagingDTO.items)
+                .transformPlaylistDTOsToPlaylistEntities(pagedPlaylistDTO.items)
 
-        return PlaylistPagingEntity(playlistEntities, playlistPagingDTO.limit, playlistPagingDTO.next,
-                playlistPagingDTO.offset, playlistPagingDTO.previous, playlistPagingDTO.total)
+        return PagedPlaylistEntity(playlistEntities, pagedPlaylistDTO.limit, pagedPlaylistDTO.next,
+                pagedPlaylistDTO.offset, pagedPlaylistDTO.previous, pagedPlaylistDTO.total)
+    }
+
+    fun transformPagedPlaylistEntityToPagedPlaylist(pagedPlaylistEntity: PagedPlaylistEntity): PagedPlaylist {
+
+        val playlists = PlaylistMapper.transformPlaylistEntitiesToPlaylists(pagedPlaylistEntity.items)
+
+        return PagedPlaylist(playlists, pagedPlaylistEntity.limit, pagedPlaylistEntity.next,
+                pagedPlaylistEntity.offset, pagedPlaylistEntity.previous, pagedPlaylistEntity.total)
     }
 
     // endregion

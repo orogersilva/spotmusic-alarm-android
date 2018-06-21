@@ -37,9 +37,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':base')
+    implementation project(':dashboard-data')
     implementation project(':spotify-api')
 
-    implementation deps.android.arch.extensions
+    api deps.android.arch.extensions
     implementation deps.android.arch.viewmodel
     kapt deps.android.databinding.compiler
     implementation deps.android.support.appCompat

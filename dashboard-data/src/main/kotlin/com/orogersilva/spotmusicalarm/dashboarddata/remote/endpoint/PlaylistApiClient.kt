@@ -1,8 +1,7 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint
 
-import com.orogersilva.spotmusicalarm.dashboarddomain.dto.PlaylistPagingDTO
-import com.orogersilva.spotmusicalarm.dashboarddomain.dto.PlaylistDTO
-import io.reactivex.Maybe
+import com.orogersilva.spotmusicalarm.dashboarddata.dto.PagedPlaylistDTO
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path
@@ -14,7 +13,7 @@ interface PlaylistApiClient {
     @Headers(
             "Content-Type: application/json"
     )
-    @GET("users/{user_id}/playlists") fun getUserPlaylists(@Path("user_id") userId: String): Maybe<PlaylistPagingDTO<PlaylistDTO>>
+    @GET("users/{user_id}/playlists") fun getPagedUserPlaylists(@Path("user_id") userId: String): Single<PagedPlaylistDTO>
 
     // endregion
 }
