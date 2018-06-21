@@ -1,10 +1,8 @@
-apply plugin: 'com.android.feature'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-
-    baseFeature true
 
     compileSdkVersion buildConfig.compileSdk
 
@@ -14,14 +12,13 @@ android {
         targetSdkVersion buildConfig.targetSdk
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
 
         release {
-
-            minifyEnabled true
-
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -35,15 +32,19 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    application project(':installed')
-    feature project(':feature-dashboard')
+    implementation project(':dashboard-domain')
 
-    implementation deps.android.arch.extensions
+    implementation deps.kotlin.stdlib.jdk
 
-    api deps.kotlin.stdlib.jdk
-
-    kapt deps.dagger.android.processor
-    api deps.dagger.android.support
+    kapt deps.android.arch.room.compiler
+    implementation deps.android.arch.room.runtime
+    implementation deps.android.arch.room.rxjava
     kapt deps.dagger.compiler
-    api deps.dagger.core
+    implementation deps.dagger.core
+    implementation deps.retrofit.core
+    implementation deps.retrofit.gsonconverter
+    implementation deps.rx.android
+    implementation deps.rx.java
+
+    testImplementation deps.kotlin.test.jdk
 }

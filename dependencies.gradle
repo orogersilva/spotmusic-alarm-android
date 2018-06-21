@@ -25,9 +25,14 @@ ext.versions = [
         'daggerVersion': '2.16',
         'databindingVersion': '3.1.3',
         'espressoVersion': '3.0.2',
+        'gsonVersion': '2.8.5',
         'junitVersion': '4.12',
         'kotlinVersion': '1.2.50',
         'lifecycleVersion': '1.1.0',
+        'retrofitVersion': '2.4.0',
+        'roomVersion': '1.1.1',
+        'rxAndroidVersion': '2.0.2',
+        'rxJavaVersion': '2.1.14',
         'spotifyAuthVersion': '1.1.0',
         'testRunnerVersion': '1.0.2'
 ]
@@ -36,6 +41,11 @@ ext.deps = [
         'android': [
                 'arch': [
                         'extensions': "android.arch.lifecycle:extensions:${versions.lifecycleVersion}",
+                        'room': [
+                                'compiler': "android.arch.persistence.room:compiler:${versions.roomVersion}",
+                                'runtime': "android.arch.persistence.room:runtime:${versions.roomVersion}",
+                                'rxjava': "android.arch.persistence.room:rxjava2:${versions.roomVersion}"
+                        ],
                         'viewmodel': "android.arch.lifecycle:viewmodel:${versions.lifecycleVersion}"
                 ],
                 'databinding': [
@@ -59,6 +69,9 @@ ext.deps = [
                 'compiler': "com.google.dagger:dagger-compiler:${versions.daggerVersion}",
                 'core': "com.google.dagger:dagger:${versions.daggerVersion}"
         ],
+        'gson': [
+                'core': "com.google.code.gson:gson:${versions.gsonVersion}"
+        ],
         'kotlin': [
                 'stdlib': [
                         'jdk': "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlinVersion}"
@@ -66,6 +79,14 @@ ext.deps = [
                 'test': [
                         'jdk': "org.jetbrains.kotlin:kotlin-test-junit:${versions.kotlinVersion}"
                 ]
+        ],
+        'retrofit': [
+                'core': "com.squareup.retrofit2:retrofit:${versions.retrofitVersion}",
+                'gsonconverter': "com.squareup.retrofit2:converter-gson:${versions.retrofitVersion}"
+        ],
+        'rx': [
+                'android': "io.reactivex.rxjava2:rxandroid:${versions.rxAndroidVersion}",
+                'java': "io.reactivex.rxjava2:rxjava:${versions.rxJavaVersion}"
         ],
         'spotify': [
                 'auth': "com.spotify.android:auth:${versions.spotifyAuthVersion}",

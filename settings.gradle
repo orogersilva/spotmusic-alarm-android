@@ -1,1 +1,1 @@
-include ':installed', ':base', ':instant', ':spotifyapi', ':core'
+include ':installed', ':base', ':instant', ':spotify-api', ':feature-dashboard', ':dashboard-domain', ':dashboard-data'

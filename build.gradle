@@ -12,7 +12,7 @@ buildscript {
         jcenter()
 
         flatDir {
-            dirs project(':spotifyapi').file('libs')
+            dirs project(':spotify-api').file('libs')
         }
     }
 
@@ -34,7 +34,7 @@ allprojects {
         jcenter()
 
         flatDir {
-            dirs project(':spotifyapi').file('libs')
+            dirs project(':spotify-api').file('libs')
         }
     }
 }

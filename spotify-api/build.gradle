@@ -1,0 +1,73 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    compileSdkVersion buildConfig.compileSdk
+
+    defaultConfig {
+
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+
+        debug {
+
+            buildConfigField "String", "SPOTIFY_CLIENT_ID",
+                    "\"ff63264c74f94c07852357c4d4977473\""
+            buildConfigField "String", "SPOTIFY_REDIRECT_URI",
+                    "\"http://www.orogersilva.com/callback/\""
+        }
+
+        release {
+
+            buildConfigField "String", "SPOTIFY_CLIENT_ID",
+                    "\"${'SPOTIFY_CLIENT_ID'}\""
+            buildConfigField "String", "SPOTIFY_REDIRECT_URI",
+                    "\"${'SPOTIFY_REDIRECT_URI'}\""
+
+            minifyEnabled true
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets.androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    sourceSets.main.java.srcDirs += 'src/main/kotlin'
+    sourceSets.test.java.srcDirs += 'src/test/kotlin'
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':base')
+
+    implementation deps.android.support.appCompat
+
+    kapt deps.dagger.android.processor
+    kapt deps.dagger.compiler
+
+    api deps.spotify.auth
+    api deps.spotify.player
+
+    testImplementation deps.kotlin.test.jdk
+}
+
+repositories {
+
+    jcenter()
+
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+def envOrEmpty(String name) {
+    return System.getenv(name) ? getProperty(name) : ''
+}
