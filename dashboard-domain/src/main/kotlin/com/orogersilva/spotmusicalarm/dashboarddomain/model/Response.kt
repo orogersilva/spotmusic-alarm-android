@@ -1,11 +1,6 @@
 package com.orogersilva.spotmusicalarm.dashboarddomain.model
 
-import com.orogersilva.spotmusicalarm.dashboarddomain.enum.Status
-import com.orogersilva.spotmusicalarm.dashboarddomain.enum.Status.*
-
-class Response<T> private constructor(private val status: Status,
-                                      private val data: T?,
-                                      private val error: Throwable?) {
+sealed class Response<T> {
 
     // region COMPANION OBJECT
 
@@ -13,17 +8,25 @@ class Response<T> private constructor(private val status: Status,
 
         // region METHODS
 
-        fun <T> loading(): Response<T> =
-                Response(LOADING, null, null)
+        fun <T> loading(isLoading: Boolean): Response<T> =
+                Progress(isLoading)
 
         fun <T> success(data: T): Response<T> =
-                Response(SUCCESS, data, null)
+                Success(data)
 
         fun <T> error(error: Throwable): Response<T> =
-                Response(ERROR, null, error)
+                Failure(error)
 
         // endregion
     }
+
+    // endregion
+
+    // region DATA CLASSES
+
+    data class Progress<T>(val isLoading: Boolean): Response<T>()
+    data class Success<T>(val data: T): Response<T>()
+    data class Failure<T>(val error: Throwable): Response<T>()
 
     // endregion
 }
