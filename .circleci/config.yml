@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "base/build.gradle" }}-{{ checksum  "spotifyapi/build.gradle" }}-{{ checksum  "core/build.gradle" }}-{{ checksum  "installed/build.gradle" }}-{{ checksum  "instant/build.gradle" }}
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "base/build.gradle" }}-{{ checksum  "spotify-api/build.gradle" }}-{{ checksum  "dashboard-domain/build.gradle" }}-{{ checksum  "dashboard-data/build.gradle" }}-{{ checksum  "feature-dashboard/build.gradle" }}-{{ checksum  "installed/build.gradle" }}-{{ checksum  "instant/build.gradle" }}
 #      - run:
 #         name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
 #         command: sudo chmod +x ./gradlew
@@ -19,7 +19,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "base/build.gradle" }}-{{ checksum  "spotifyapi/build.gradle" }}-{{ checksum  "core/build.gradle" }}-{{ checksum  "installed/build.gradle" }}-{{ checksum  "instant/build.gradle" }}
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "base/build.gradle" }}-{{ checksum  "spotify-api/build.gradle" }}-{{ checksum  "dashboard-domain/build.gradle" }}-{{ checksum  "dashboard-data/build.gradle" }}-{{ checksum  "feature-dashboard/build.gradle" }}-{{ checksum  "installed/build.gradle" }}-{{ checksum  "instant/build.gradle" }}
       - run:
           name: Run Code Static Analysis
           command: ./gradlew lintProdRelease
