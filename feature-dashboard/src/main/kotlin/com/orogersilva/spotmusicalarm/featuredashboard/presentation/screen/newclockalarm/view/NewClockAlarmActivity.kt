@@ -67,7 +67,14 @@ class NewClockAlarmActivity : BaseActivity() {
 
         if (requestCode == SPOTIFY_AUTH_REQUEST_CODE) {
 
-            spotifyAdapterHelper.tryPreparePlayer(this, resultCode, data)
+            // spotifyAdapterHelper.tryPreparePlayer(this, resultCode, data)
+
+            val accessToken = spotifyAdapterHelper.getAccessToken(resultCode, data)
+
+            accessToken?.let {
+
+
+            }
         }
     }
 

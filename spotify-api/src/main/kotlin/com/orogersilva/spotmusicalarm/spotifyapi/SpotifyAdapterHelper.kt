@@ -26,7 +26,11 @@ class SpotifyAdapterHelper @Inject constructor(private val spotifyWrapper: Spoti
 
         val spotifyAuthRequest = AuthenticationRequest
                 .Builder(SPOTIFY_CLIENT_ID, AuthenticationResponse.Type.TOKEN, SPOTIFY_REDIRECT_URI)
-                .setScopes(arrayOf("playlist-read-collaborative", "playlist-read-private", "streaming"))
+                .setScopes(arrayOf(
+                        "playlist-read-collaborative",
+                        "playlist-read-private",
+                        "streaming"
+                ))
                 .build()
 
         spotifyWrapper.openLoginActivity(activity, requestCode, spotifyAuthRequest)
@@ -46,8 +50,13 @@ class SpotifyAdapterHelper @Inject constructor(private val spotifyWrapper: Spoti
         spotifyWrapper.destroyPlayer(activity)
     }
 
-    override fun getAuthenticationResponse(resultCode: Int, intent: Intent?): AuthenticationResponse =
-            spotifyWrapper.getResponse(resultCode, intent)
+    override fun getAccessToken(resultCode: Int, data: Intent?): String? {
+
+        val authResponse = getAuthenticationResponse(resultCode, data)
+
+        return if (authResponse.type == AuthenticationResponse.Type.TOKEN)
+            authResponse.accessToken else null
+    }
 
     override fun onLoggedOut() {
     }
@@ -109,6 +118,9 @@ class SpotifyAdapterHelper @Inject constructor(private val spotifyWrapper: Spoti
             }
         })
     }
+
+    private fun getAuthenticationResponse(resultCode: Int, intent: Intent?): AuthenticationResponse =
+            spotifyWrapper.getResponse(resultCode, intent)
 
     // endregion
 }

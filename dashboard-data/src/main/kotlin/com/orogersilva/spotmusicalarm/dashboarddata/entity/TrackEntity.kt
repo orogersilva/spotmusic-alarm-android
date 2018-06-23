@@ -15,7 +15,7 @@ import android.arch.persistence.room.PrimaryKey
                     onDelete = CASCADE)
         ]
 )
-data class TrackEntity(@PrimaryKey val id: Int,
+data class TrackEntity(@PrimaryKey val id: String,
                        @ColumnInfo(name = "name") val name: String,
                        @ColumnInfo(name = "preview_url") val previewUrl: String,
                        @ColumnInfo(name = "playlist_id") val playlistId: String)

@@ -44,4 +44,6 @@ dependencies {
     api deps.dagger.android.support
     kapt deps.dagger.compiler
     api deps.dagger.core
+    implementation deps.rx.android
+    implementation deps.rx.java
 }

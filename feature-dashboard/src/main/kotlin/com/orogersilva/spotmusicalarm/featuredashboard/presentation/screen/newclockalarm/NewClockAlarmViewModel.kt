@@ -28,5 +28,10 @@ class NewClockAlarmViewModel : ViewModel() {
 
     }
 
+    fun getUserPlaylists(accessToken: String) {
+
+
+    }
+
     // endregion
 }

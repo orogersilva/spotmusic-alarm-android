@@ -17,7 +17,7 @@ interface SpotifyHelper {
 
     fun destroyPlayer(activity: AppCompatActivity)
 
-    fun getAuthenticationResponse(resultCode: Int, intent: Intent?): AuthenticationResponse
+    fun getAccessToken(resultCode: Int, data: Intent?): String?
 
     // endregion
 }
