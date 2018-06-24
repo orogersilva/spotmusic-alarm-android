@@ -69,9 +69,13 @@ class UserDataRepositoryTest {
         val ID = "90453698768"
         val DISPLAY_NAME = "Kevin Watt"
 
-        val expectedUserEntityData = Single.just(UserEntity(ID, DISPLAY_NAME))
+        val EMITTED_VALUE_COUNT = 1
 
-        whenever(userRemoteDataSourceMock.getMe()).thenReturn(expectedUserEntityData)
+        val expectedUserData = Single.just(User(ID))
+
+        val userEntityData = Single.just(UserEntity(ID, DISPLAY_NAME))
+
+        whenever(userRemoteDataSourceMock.getMe()).thenReturn(userEntityData)
 
         val testObserver = TestObserver<User>()
 
@@ -84,7 +88,7 @@ class UserDataRepositoryTest {
 
         testObserver
                 .assertComplete()
-                .assertValueCount(1)
-                .assertOf { userData -> (userData == expectedUserEntityData) }
+                .assertValueCount(EMITTED_VALUE_COUNT)
+                .assertOf { userData -> (userData == expectedUserData) }
     }
 }

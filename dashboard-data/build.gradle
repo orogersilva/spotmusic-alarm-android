@@ -13,6 +13,8 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        buildConfigField "String", "SPOTIFY_API_URL",
+                "\"https://api.spotify.com/v1/\""
     }
 
     buildTypes {
@@ -49,6 +51,7 @@ dependencies {
     implementation deps.android.arch.room.rxjava
     kapt deps.dagger.compiler
     implementation deps.dagger.core
+    implementation deps.retrofit.adapter
     implementation deps.retrofit.core
     implementation deps.retrofit.gsonconverter
     implementation deps.rx.android
@@ -56,4 +59,5 @@ dependencies {
 
     testImplementation deps.kotlin.test.jdk
     testImplementation deps.mockitokotlin.core
+    testImplementation deps.okhttp.test.mockwebserver
 }

@@ -30,6 +30,7 @@ ext.versions = [
         'kotlinVersion': '1.2.50',
         'lifecycleVersion': '1.1.1',
         'mockitoKotlinVersion': '2.0.0-RC1',
+        'mockWebServerVersion': '3.10.0',
         'retrofitVersion': '2.4.0',
         'roomVersion': '1.1.1',
         'rxAndroidVersion': '2.0.2',
@@ -84,7 +85,13 @@ ext.deps = [
         'mockitokotlin': [
                 'core': "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockitoKotlinVersion}"
         ],
+        'okhttp': [
+                'test': [
+                        'mockwebserver': "com.squareup.okhttp3:mockwebserver:${versions.mockWebServerVersion}"
+                ]
+        ],
         'retrofit': [
+                'adapter': "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofitVersion}",
                 'core': "com.squareup.retrofit2:retrofit:${versions.retrofitVersion}",
                 'gsonconverter': "com.squareup.retrofit2:converter-gson:${versions.retrofitVersion}"
         ],

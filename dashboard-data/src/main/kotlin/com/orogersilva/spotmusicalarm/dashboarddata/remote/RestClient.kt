@@ -2,6 +2,7 @@ package com.orogersilva.spotmusicalarm.dashboarddata.remote
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RestClient {
@@ -22,6 +23,7 @@ object RestClient {
         retrofit = Retrofit.Builder()
                 .baseUrl(baseEndpoint)
                 .client(client)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 

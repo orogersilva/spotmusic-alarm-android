@@ -1,0 +1,21 @@
+{
+  "display_name": "Kevin Watt",
+  "external_urls": {
+    "spotify": "https://open.spotify.com/user/90453698768"
+  },
+  "followers": {
+    "href": null,
+    "total": 15
+  },
+  "href": "https://api.spotify.com/v1/users/90453698768",
+  "id": "90453698768",
+  "images": [
+    {
+      "height": null,
+      "url": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=732694653596057&height=200&width=200&ext=1530055723&hash=AeTq3zoRxy3ITRxd",
+      "width": null
+    }
+  ],
+  "type": "user",
+  "uri": "spotify:user:90453698768"
+}
