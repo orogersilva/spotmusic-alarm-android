@@ -2,6 +2,7 @@ package com.orogersilva.spotmusicalarm.dashboarddata.mapper
 
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.UserDTO
 import com.orogersilva.spotmusicalarm.dashboarddata.entity.UserEntity
+import com.orogersilva.spotmusicalarm.dashboarddomain.model.User
 
 object UserMapper {
 
@@ -9,6 +10,9 @@ object UserMapper {
 
     fun transformUserDTOToUserEntity(userDTO: UserDTO): UserEntity =
             UserEntity(userDTO.id, userDTO.displayName)
+
+    fun transformUserEntityToUser(userEntity: UserEntity): User =
+            User(userEntity.id)
 
     // endregion
 }
