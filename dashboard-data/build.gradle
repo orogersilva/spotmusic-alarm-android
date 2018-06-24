@@ -47,4 +47,5 @@ dependencies {
     implementation deps.rx.java
 
     testImplementation deps.kotlin.test.jdk
+    testImplementation deps.mockitokotlin.core
 }

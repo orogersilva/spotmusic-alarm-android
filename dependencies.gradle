@@ -29,6 +29,7 @@ ext.versions = [
         'junitVersion': '4.12',
         'kotlinVersion': '1.2.50',
         'lifecycleVersion': '1.1.1',
+        'mockitoKotlinVersion': '2.0.0-RC1',
         'retrofitVersion': '2.4.0',
         'roomVersion': '1.1.1',
         'rxAndroidVersion': '2.0.2',
@@ -79,6 +80,9 @@ ext.deps = [
                 'test': [
                         'jdk': "org.jetbrains.kotlin:kotlin-test-junit:${versions.kotlinVersion}"
                 ]
+        ],
+        'mockitokotlin': [
+                'core': "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockitoKotlinVersion}"
         ],
         'retrofit': [
                 'core': "com.squareup.retrofit2:retrofit:${versions.retrofitVersion}",
