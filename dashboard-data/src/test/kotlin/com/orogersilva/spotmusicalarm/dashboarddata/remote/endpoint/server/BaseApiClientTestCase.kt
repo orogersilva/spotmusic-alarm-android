@@ -1,4 +1,4 @@
-package com.orogersilva.spotmusicalarm.dashboarddata.remote.server
+package com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.server
 
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After

@@ -1,7 +1,7 @@
-package com.orogersilva.spotmusicalarm.dashboarddata.remote
+package com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint
 
-import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.UserApiClient
-import com.orogersilva.spotmusicalarm.dashboarddata.remote.server.BaseApiClientTestCase
+import com.orogersilva.spotmusicalarm.dashboarddata.remote.RestClient
+import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.server.BaseApiClientTestCase
 import io.reactivex.observers.TestObserver
 import okhttp3.ResponseBody
 import org.junit.Test

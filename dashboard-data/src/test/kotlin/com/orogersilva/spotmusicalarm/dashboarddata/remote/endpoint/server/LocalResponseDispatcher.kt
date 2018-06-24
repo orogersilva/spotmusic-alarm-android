@@ -1,12 +1,10 @@
-package com.orogersilva.spotmusicalarm.dashboarddata.remote.server
+package com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.server
 
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.OK_STATUS_CODE
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.QueueDispatcher
 import okhttp3.mockwebserver.RecordedRequest
-import java.io.BufferedReader
 import java.io.IOException
-import java.io.InputStreamReader
 import java.nio.charset.Charset
 import java.util.*
 
