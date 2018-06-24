@@ -24,8 +24,8 @@ jobs:
           name: Run Code Static Analysis
           command: ./gradlew lintProdRelease
       - run:
-          name: Run Tests
-          command: ./gradlew testProdReleaseUnitTest
+          name: Run Unit Tests
+          command: ./gradlew :dashboard-data:testReleaseUnitTest
       - store_artifacts:
           path: installed/build/reports
           destination: reports
