@@ -1,6 +1,6 @@
 package com.orogersilva.spotmusicalarm.dashboarddomain.model
 
-data class Alarm(private val id: Long,
+data class Alarm(val id: Long,
                  val trackName: String,
                  val artistName: String,
-                 var isEnabled: Boolean)
+                 val isEnabled: Boolean)
