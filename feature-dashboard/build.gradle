@@ -44,6 +44,7 @@ dependencies {
     implementation deps.android.arch.viewmodel
     kapt deps.android.databinding.compiler
     implementation deps.android.support.appCompat
+    implementation deps.android.support.cardView
     implementation deps.android.support.constraintLayout
     implementation deps.android.support.design
 

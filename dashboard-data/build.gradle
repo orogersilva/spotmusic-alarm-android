@@ -42,7 +42,7 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':dashboard-domain')
+    api project(':dashboard-domain')
 
     implementation deps.kotlin.stdlib.jdk
 

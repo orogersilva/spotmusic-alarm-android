@@ -7,4 +7,9 @@
     <string name="set_music">Set music</string>
     <string name="set_time">Set time</string>
 
+    <!-- SAMPLE DATA -->
+    <string name="alarm_time">06:00</string>
+    <string name="artist_name">Eric Clapton</string>
+    <string name="track_name">Layla</string>
+
 </resources>

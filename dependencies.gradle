@@ -55,6 +55,7 @@ ext.deps = [
                 ],
                 'support': [
                         'appCompat': "com.android.support:appcompat-v7:${versions.androidSDKVersion}",
+                        'cardView': "com.android.support:cardview-v7:${versions.androidSDKVersion}",
                         'constraintLayout': "com.android.support.constraint:constraint-layout:${versions.constraintLayoutVersion}",
                         'design': "com.android.support:design:${versions.androidSDKVersion}"
                 ],
