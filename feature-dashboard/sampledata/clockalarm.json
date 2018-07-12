@@ -1,0 +1,40 @@
+{
+  "data": [
+    {
+      "clockAlarmTime": "06:00",
+      "trackName": "Layla",
+      "artistName": "Eric Clapton",
+      "isEnabled": true
+    },
+    {
+      "clockAlarmTime": "07:30",
+      "trackName": "Satisfaction",
+      "artistName": "Rolling Stones",
+      "isEnabled": true
+    },
+    {
+      "clockAlarmTime": "05:00",
+      "trackName": "Like a Rolling Stone",
+      "artistName": "Rolling Stones",
+      "isEnabled": false
+    },
+    {
+      "clockAlarmTime": "08:15",
+      "trackName": "Suspicious Mind",
+      "artistName": "Elvis Presley",
+      "isEnabled": false
+    },
+    {
+      "clockAlarmTime": "09:30",
+      "trackName": "Thriller",
+      "artistName": "Michael Jackson",
+      "isEnabled": true
+    },
+    {
+      "clockAlarmTime": "04:30",
+      "trackName": "Seven Nation Army",
+      "artistName": "The White Stripes",
+      "isEnabled": false
+    },
+  ]
+}

@@ -17,32 +17,27 @@
         android:layout_height="match_parent"
         tools:context=".presentation.screen.dashboard.view.DashboardActivity">
 
-        <TextView
-            android:id="@+id/noAlarmsTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/no_alarm"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/clockAlarmRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/item_clockalarm"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/addClockAlarmButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/new_clock_alarm"
             android:onClick="@{() -> dashViewModel.createClockAlarm()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:srcCompat="@drawable/ic_round_add_black" />
 
     </android.support.constraint.ConstraintLayout>
 
