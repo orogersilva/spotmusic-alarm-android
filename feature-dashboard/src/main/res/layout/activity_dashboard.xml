@@ -18,7 +18,7 @@
         tools:context=".presentation.screen.dashboard.view.DashboardActivity">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/clockAlarmRecyclerView"
+            android:id="@+id/dashboardRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
