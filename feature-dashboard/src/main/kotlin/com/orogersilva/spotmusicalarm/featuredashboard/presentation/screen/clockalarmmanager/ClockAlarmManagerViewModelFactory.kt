@@ -1,15 +1,15 @@
-package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.dashboard
+package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 
-class DashboardViewModelFactory : ViewModelProvider.NewInstanceFactory() {
+class ClockAlarmManagerViewModelFactory : ViewModelProvider.NewInstanceFactory() {
 
     // region OVERRIDED METHODS
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>) : T =
-            DashboardViewModel() as T
+            ClockAlarmManagerViewModel() as T
 
     // endregion
 }

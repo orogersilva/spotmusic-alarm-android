@@ -1,9 +1,9 @@
-package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.dashboard
+package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager
 
 import android.arch.lifecycle.ViewModel
 import com.orogersilva.spotmusicalarm.featuredashboard.shared.SingleLiveEvent
 
-class DashboardViewModel : ViewModel() {
+class ClockAlarmManagerViewModel : ViewModel() {
 
     // region PROPERTIES
 

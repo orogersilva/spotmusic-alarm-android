@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="dashViewModel"
-            type="com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.dashboard.DashboardViewModel"
+            name="clockAlarmManagerViewModel"
+            type="com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.ClockAlarmManagerViewModel"
             />
 
     </data>
@@ -15,14 +15,14 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.screen.dashboard.view.DashboardActivity">
+        tools:context=".presentation.screen.clockalarmmanager.view.ClockAlarmManagerActivity">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/dashboardRecyclerView"
+            android:id="@+id/clockAlarmManagerRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
-            tools:listitem="@layout/item_clockalarm"
+            tools:listitem="@layout/item_clock_alarm"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +34,7 @@
             android:layout_height="60dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
-            android:onClick="@{() -> dashViewModel.createClockAlarm()}"
+            android:onClick="@{() -> clockAlarmManagerViewModel.createClockAlarm()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_round_add_black" />

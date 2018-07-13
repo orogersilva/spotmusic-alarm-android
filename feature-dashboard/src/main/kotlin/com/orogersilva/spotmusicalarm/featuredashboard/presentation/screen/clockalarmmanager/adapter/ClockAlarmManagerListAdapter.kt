@@ -1,4 +1,4 @@
-package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.dashboard.adapter
+package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.adapter
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.ClockAlarm
 import com.orogersilva.spotmusicalarm.featuredashboard.R
-import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ItemClockalarmBinding
-import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.dashboard.DashboardViewModel
+import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ItemClockAlarmBinding
+import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.ClockAlarmManagerViewModel
 import javax.inject.Inject
 
-class DashboardListAdapter @Inject constructor(private val dashboardViewModel: DashboardViewModel)
+class ClockAlarmManagerListAdapter @Inject constructor(private val clockAlarmManagerViewModel: ClockAlarmManagerViewModel)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     // region PROPERTIES
@@ -35,7 +35,7 @@ class DashboardListAdapter @Inject constructor(private val dashboardViewModel: D
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
             ViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context),
-                R.layout.item_clockalarm, parent, false))
+                R.layout.item_clock_alarm, parent, false))
 
     override fun getItemCount(): Int = clockAlarms.size
 
@@ -50,7 +50,7 @@ class DashboardListAdapter @Inject constructor(private val dashboardViewModel: D
 
     // region VIEW HOLDERS
 
-    inner class ViewHolder(private val binding: ItemClockalarmBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemClockAlarmBinding) : RecyclerView.ViewHolder(binding.root) {
 
         // region PUBLIC METHODS
 

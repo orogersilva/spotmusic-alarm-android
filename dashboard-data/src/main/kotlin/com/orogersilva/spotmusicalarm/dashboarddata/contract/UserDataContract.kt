@@ -7,6 +7,17 @@ interface UserDataContract {
 
     // region INTERFACES
 
+    interface Local {
+
+        // region METHODS
+
+        fun getAccessToken(): String?
+
+        fun saveAccessToken(accessToken: String)
+
+        // endregion
+    }
+
     interface Remote {
 
         // region METHODS

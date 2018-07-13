@@ -8,7 +8,7 @@
         <!-- ACTIVITIES - BEGIN -->
 
         <activity
-            android:name=".presentation.screen.dashboard.view.DashboardActivity"
+            android:name=".presentation.screen.clockalarmmanager.view.ClockAlarmManagerActivity"
             android:screenOrientation="portrait"
             >
 
