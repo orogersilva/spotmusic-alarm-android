@@ -18,6 +18,7 @@ class UserDataRepositoryTest {
 
     // region PROPERTIES
 
+    private lateinit var userLocalDataSourceMock: UserDataContract.Local
     private lateinit var userRemoteDataSourceMock: UserDataContract.Remote
 
     private lateinit var userRepository: UserRepository
@@ -29,9 +30,10 @@ class UserDataRepositoryTest {
     @Before
     fun setUp() {
 
+        userLocalDataSourceMock = mock()
         userRemoteDataSourceMock = mock()
 
-        userRepository = UserDataRepository(userRemoteDataSourceMock)
+        userRepository = UserDataRepository(userLocalDataSourceMock, userRemoteDataSourceMock)
 
     }
 
