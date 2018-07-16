@@ -9,5 +9,7 @@ interface UserRepository {
 
     fun getMe(): Single<User>
 
+    fun saveAccessToken(accessToken: String)
+
     // endregion
 }

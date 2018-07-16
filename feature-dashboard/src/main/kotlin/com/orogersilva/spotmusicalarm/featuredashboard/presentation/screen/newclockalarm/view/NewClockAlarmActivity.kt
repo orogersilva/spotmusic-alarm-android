@@ -64,7 +64,7 @@ class NewClockAlarmActivity : BaseActivity() {
 
             accessToken?.let {
 
-
+                newClockAlarmViewModel.saveAccessToken(it)
             }
         }
     }

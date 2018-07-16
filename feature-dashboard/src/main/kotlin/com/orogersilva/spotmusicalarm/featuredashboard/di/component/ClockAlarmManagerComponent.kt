@@ -2,14 +2,18 @@ package com.orogersilva.spotmusicalarm.featuredashboard.di.component
 
 import com.orogersilva.spotmusicalarm.base.di.component.ApplicationComponent
 import com.orogersilva.spotmusicalarm.base.di.scope.ActivityScope
-import com.orogersilva.spotmusicalarm.featuredashboard.di.module.ClockAlarmManagerModule
+import com.orogersilva.spotmusicalarm.featuredashboard.di.module.ClockAlarmManagerViewModelModule
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.view.ClockAlarmManagerActivity
 import com.orogersilva.spotmusicalarm.spotifyapi.di.module.SpotifyModule
 import dagger.Component
 import dagger.android.AndroidInjector
 
 @ActivityScope
-@Component(modules = [ClockAlarmManagerModule::class, SpotifyModule::class],
+@Component(
+        modules = [
+            ClockAlarmManagerViewModelModule::class,
+            SpotifyModule::class
+        ],
         dependencies = [ApplicationComponent::class]
 )
 interface ClockAlarmManagerComponent : AndroidInjector<ClockAlarmManagerActivity> {

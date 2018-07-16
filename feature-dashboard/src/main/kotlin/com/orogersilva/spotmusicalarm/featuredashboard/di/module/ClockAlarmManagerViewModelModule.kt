@@ -10,15 +10,15 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-object ClockAlarmManagerModule {
+object ClockAlarmManagerViewModelModule {
 
     // region PROVIDERS
 
     @Provides @ActivityScope @JvmStatic fun provideClockAlarmManagerViewModel(clockAlarmManagerActivity: ClockAlarmManagerActivity): ClockAlarmManagerViewModel {
 
-        val dashboardViewModelFactory = ClockAlarmManagerViewModelFactory()
+        val clockAlarmManagerViewModelFactory = ClockAlarmManagerViewModelFactory()
 
-        return ViewModelProviders.of(clockAlarmManagerActivity, dashboardViewModelFactory)
+        return ViewModelProviders.of(clockAlarmManagerActivity, clockAlarmManagerViewModelFactory)
                 .get(ClockAlarmManagerViewModel::class.java)
     }
 

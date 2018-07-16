@@ -2,7 +2,7 @@ package com.orogersilva.spotmusicalarm.dashboarddata.di.module
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.orogersilva.spotmusicalarm.dashboarddata.di.scope.DashboardScope
+import com.orogersilva.spotmusicalarm.base.di.scope.ActivityScope
 import dagger.Module
 import dagger.Provides
 
@@ -17,10 +17,10 @@ object PreferencesModule {
 
     // region PROVIDERS
 
-    @Provides @DashboardScope @JvmStatic fun provideSharedPreferences(context: Context): SharedPreferences =
+    @Provides @ActivityScope @JvmStatic fun provideSharedPreferences(context: Context): SharedPreferences =
             context.getSharedPreferences(PREF_FILE_KEY, Context.MODE_PRIVATE)
 
-    @Provides @DashboardScope @JvmStatic fun provideSharedPreferencesEditor(sharedPreferences: SharedPreferences): SharedPreferences.Editor =
+    @Provides @ActivityScope @JvmStatic fun provideSharedPreferencesEditor(sharedPreferences: SharedPreferences): SharedPreferences.Editor =
             sharedPreferences.edit()
 
     // endregion

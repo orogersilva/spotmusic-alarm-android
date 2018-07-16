@@ -2,14 +2,18 @@ package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.newc
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import com.orogersilva.spotmusicalarm.base.scheduler.SchedulerProvider
+import com.orogersilva.spotmusicalarm.dashboarddomain.repository.UserRepository
+import javax.inject.Inject
 
-class NewClockAlarmViewModelFactory : ViewModelProvider.NewInstanceFactory() {
+class NewClockAlarmViewModelFactory @Inject constructor(private val userRepository: UserRepository,
+                                                        private val schedulerProvider: SchedulerProvider) : ViewModelProvider.NewInstanceFactory() {
 
     // region OVERRIDED METHODS
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-            NewClockAlarmViewModel() as T
+            NewClockAlarmViewModel(userRepository, schedulerProvider) as T
 
     // endregion
 }
