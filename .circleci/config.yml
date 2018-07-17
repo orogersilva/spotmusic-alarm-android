@@ -26,6 +26,15 @@ jobs:
       - run:
           name: Run Unit Tests
           command: ./gradlew :dashboard-data:testReleaseUnitTest :feature-dashboard:testReleaseUnitTest
+      - restore_cache:
+          key: graphviz
+      - run:
+          name: Install graphviz
+          command: sudo apt-get update; sudo apt-get install graphviz
+      - save_cache:
+          paths:
+            - graphviz
+          key: graphviz
       - run:
           name: Generate Project Dependency Graph
           command: ./gradlew projectDependencyGraphGenerator
