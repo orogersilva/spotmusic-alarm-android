@@ -40,6 +40,11 @@ jobs:
           command: ./gradlew projectDependencyGraphGenerator
       - store_artifacts:
           path: installed/build/reports
-          destination: reports
+          destination: reports/lint
+      - store_artifacts:
+          path: project-dependency-graph
+          destination: reports/project-dependency-graph
       - store_test_results:
-          path: installed/build/test-results
+          path: dashboard-data/build/test-results
+      - store_test_results:
+          path: feature-dashboard/build/test-results
