@@ -28,7 +28,7 @@ jobs:
           command: ./gradlew :dashboard-data:testReleaseUnitTest :feature-dashboard:testReleaseUnitTest
       - run:
           name: Generate Project Dependency Graph
-          command: ./gradlew projectDependencyGraph
+          command: ./gradlew projectDependencyGraphGenerator
       - store_artifacts:
           path: installed/build/reports
           destination: reports

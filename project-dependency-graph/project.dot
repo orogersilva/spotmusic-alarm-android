@@ -1,0 +1,33 @@
+digraph {
+  graph [label="SpotmusicAlarm\n ",labelloc=t,fontsize=30];
+  node [style=filled, fillcolor="#bbbbbb"];
+  rankdir=TB;
+
+  # Projects
+
+  ":base" [fillcolor="#eeeeee"];
+  ":dashboard-data" [fillcolor="#baffc9"];
+  ":dashboard-domain" [fillcolor="#ffb3ba"];
+  ":feature-dashboard" [fillcolor="#eeeeee"];
+  ":installed" [fillcolor="#baffc9"];
+  ":instant" [shape=box, fillcolor="#eeeeee"];
+  ":spotify-api" [fillcolor="#baffc9"];
+  ":test-utils" [fillcolor="#baffc9"];
+
+  {rank = same; ":instant";}
+
+  # Dependencies
+
+  ":base" -> ":installed"
+  ":base" -> ":feature-dashboard"
+  ":dashboard-data" -> ":dashboard-domain"
+  ":dashboard-data" -> ":base" [style=dotted]
+  ":feature-dashboard" -> ":dashboard-data"
+  ":feature-dashboard" -> ":base" [style=dotted]
+  ":feature-dashboard" -> ":spotify-api" [style=dotted]
+  ":feature-dashboard" -> ":test-utils" [style=dotted]
+  ":installed" -> ":feature-dashboard" [style=dotted]
+  ":instant" -> ":base" [style=dotted]
+  ":spotify-api" -> ":base" [style=dotted]
+  ":test-utils" -> ":base" [style=dotted]
+}
