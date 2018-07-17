@@ -53,7 +53,9 @@ dependencies {
 
     implementation deps.kotlin.stdlib.jdk
 
+    testImplementation project(':test-utils')
     testImplementation deps.kotlin.test.jdk
+    testImplementation deps.mockitokotlin.core
 
     androidTestImplementation deps.android.test.espresso
     androidTestImplementation deps.android.test.runner

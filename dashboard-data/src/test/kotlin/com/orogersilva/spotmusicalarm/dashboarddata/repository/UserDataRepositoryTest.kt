@@ -1,6 +1,7 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.repository
 
 import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.entity.UserEntity
@@ -92,5 +93,20 @@ class UserDataRepositoryTest {
                 .assertComplete()
                 .assertValueCount(EMITTED_VALUE_COUNT)
                 .assertOf { userData -> (userData == expectedUserData) }
+    }
+
+    @Test fun `Save access token, when access token is provided, then verify persistence layer is called`() {
+
+        // ARRANGE
+
+        val ACCESS_TOKEN = "k3dKssoamxMa20dj3Lzamk1La9ssamxLDfjsKE3d9dmxMxnzSKie20da0sk2"
+
+        // ACT
+
+        userRepository.saveAccessToken(ACCESS_TOKEN)
+
+        // ASSERT
+
+        verify(userLocalDataSourceMock).saveAccessToken(ACCESS_TOKEN)
     }
 }
