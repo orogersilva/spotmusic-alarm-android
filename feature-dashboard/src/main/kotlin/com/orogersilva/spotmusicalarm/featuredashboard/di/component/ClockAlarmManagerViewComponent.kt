@@ -16,7 +16,7 @@ import dagger.android.AndroidInjector
         ],
         dependencies = [ApplicationComponent::class]
 )
-interface ClockAlarmManagerComponent : AndroidInjector<ClockAlarmManagerActivity> {
+interface ClockAlarmManagerViewComponent : AndroidInjector<ClockAlarmManagerActivity> {
 
     // region BUILDERS
 

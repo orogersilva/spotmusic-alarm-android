@@ -44,6 +44,7 @@ dependencies {
     implementation deps.android.arch.room.rxjava
     kapt deps.dagger.compiler
     implementation deps.dagger.core
+    implementation deps.okhttp.core
     implementation deps.retrofit.adapter
     implementation deps.retrofit.core
     implementation deps.retrofit.gsonconverter

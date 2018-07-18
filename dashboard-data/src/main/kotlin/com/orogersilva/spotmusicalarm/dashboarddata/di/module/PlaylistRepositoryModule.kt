@@ -1,14 +1,13 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.di.module
 
-import android.content.SharedPreferences
 import com.orogersilva.spotmusicalarm.base.di.scope.ActivityScope
 import com.orogersilva.spotmusicalarm.dashboarddata.BuildConfig
+import com.orogersilva.spotmusicalarm.dashboarddata.contract.PlaylistDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
-import com.orogersilva.spotmusicalarm.dashboarddata.local.UserLocalDataSource
-import com.orogersilva.spotmusicalarm.dashboarddata.remote.UserRemoteDataSource
-import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.UserApiClient
-import com.orogersilva.spotmusicalarm.dashboarddata.repository.UserDataRepository
-import com.orogersilva.spotmusicalarm.dashboarddomain.repository.UserRepository
+import com.orogersilva.spotmusicalarm.dashboarddata.remote.PlaylistRemoteDataSource
+import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.PlaylistApiClient
+import com.orogersilva.spotmusicalarm.dashboarddata.repository.PlaylistDataRepository
+import com.orogersilva.spotmusicalarm.dashboarddomain.repository.PlaylistRepository
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -20,13 +19,9 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-object UserRepositoryModule {
+object PlaylistRepositoryModule {
 
     // region PROVIDERS
-
-    @Provides @ActivityScope @JvmStatic fun provideUserLocalDataSource(sharedPreferences: SharedPreferences,
-                                                                       sharedPreferencesEditor: SharedPreferences.Editor): UserDataContract.Local =
-            UserLocalDataSource(sharedPreferences, sharedPreferencesEditor)
 
     @Provides @ActivityScope @JvmStatic fun provideOkHttpClient(userLocalDataSource: UserDataContract.Local): OkHttpClient {
 
@@ -56,7 +51,7 @@ object UserRepositoryModule {
         return okHttpClient
     }
 
-    @Provides @ActivityScope @JvmStatic fun provideUserApiClient(okHttpClient: OkHttpClient): UserApiClient {
+    @Provides @ActivityScope @JvmStatic fun providePlaylistApiClient(okHttpClient: OkHttpClient): PlaylistApiClient {
 
         val retrofit = Retrofit.Builder()
                 .baseUrl(BuildConfig.SPOTIFY_API_URL)
@@ -65,15 +60,14 @@ object UserRepositoryModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
-        return retrofit.create(UserApiClient::class.java)
+        return retrofit.create(PlaylistApiClient::class.java)
     }
 
-    @Provides @ActivityScope @JvmStatic fun provideUserRemoteDataSource(userApiClient: UserApiClient): UserDataContract.Remote =
-            UserRemoteDataSource(userApiClient)
+    @Provides @ActivityScope @JvmStatic fun providePlaylistRemoteDataSource(playlistApiClient: PlaylistApiClient): PlaylistDataContract.Remote =
+            PlaylistRemoteDataSource(playlistApiClient)
 
-    @Provides @ActivityScope @JvmStatic fun provideUserRepository(userLocalDataSource: UserDataContract.Local,
-                                                                  userRemoteDataSource: UserDataContract.Remote): UserRepository =
-            UserDataRepository(userLocalDataSource, userRemoteDataSource)
+    @Provides @ActivityScope @JvmStatic fun providePlaylistRepository(playlistRemoteDataSource: PlaylistDataContract.Remote): PlaylistRepository =
+            PlaylistDataRepository(playlistRemoteDataSource)
 
     // endregion
 }

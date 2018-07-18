@@ -16,10 +16,9 @@ object NewClockAlarmViewModelModule {
     // region PROVIDERS
 
     @Provides @ActivityScope @JvmStatic fun provideNewClockAlarmViewModel(newClockAlarmActivity: NewClockAlarmActivity,
-                                                                          userRepository: UserRepository,
-                                                                          schedulerProvider: SchedulerProvider): NewClockAlarmViewModel {
+                                                                          userRepository: UserRepository): NewClockAlarmViewModel {
 
-        val newClockAlarmViewModelFactory = NewClockAlarmViewModelFactory(userRepository, schedulerProvider)
+        val newClockAlarmViewModelFactory = NewClockAlarmViewModelFactory(userRepository)
 
         return ViewModelProviders.of(newClockAlarmActivity, newClockAlarmViewModelFactory)
                 .get(NewClockAlarmViewModel::class.java)

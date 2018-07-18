@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="playlist"
+            type="com.orogersilva.spotmusicalarm.dashboarddomain.model.Playlist"
+            />
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/playlistConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/gray"
+        >
+
+        <TextView
+            android:id="@+id/playlistNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="@{playlist.name}"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@sample/playlist.json/data/playlistName"
+            />
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

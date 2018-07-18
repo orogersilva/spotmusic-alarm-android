@@ -6,8 +6,7 @@ import com.orogersilva.spotmusicalarm.dashboarddomain.repository.UserRepository
 import com.orogersilva.spotmusicalarm.featuredashboard.shared.SingleLiveEvent
 import javax.inject.Inject
 
-class NewClockAlarmViewModel @Inject constructor(private val userRepository: UserRepository,
-                                                 private val schedulerProvider: SchedulerProvider) : ViewModel() {
+class NewClockAlarmViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
 
     // region PROPERTIES
 
@@ -35,11 +34,6 @@ class NewClockAlarmViewModel @Inject constructor(private val userRepository: Use
     fun saveAccessToken(accessToken: String) {
 
         userRepository.saveAccessToken(accessToken)
-    }
-
-    fun getUserPlaylists(accessToken: String) {
-
-
     }
 
     // endregion

@@ -7,7 +7,7 @@ import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.entity.UserEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.UNAUTHORIZED_STATUS_CODE
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.UNAUTHORIZED_STATUS_MESSAGE
-import com.orogersilva.spotmusicalarm.dashboarddomain.SpotifyException
+import com.orogersilva.spotmusicalarm.dashboarddomain.SpotifyRegularErrorException
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.User
 import com.orogersilva.spotmusicalarm.dashboarddomain.repository.UserRepository
 import io.reactivex.Single
@@ -47,7 +47,7 @@ class UserDataRepositoryTest {
         // ARRANGE
 
         val expectedSpotifyException =
-                SpotifyException(UNAUTHORIZED_STATUS_CODE, UNAUTHORIZED_STATUS_MESSAGE)
+                SpotifyRegularErrorException(UNAUTHORIZED_STATUS_CODE, UNAUTHORIZED_STATUS_MESSAGE)
 
         whenever(userRemoteDataSourceMock.getMe()).thenReturn(Single.error(expectedSpotifyException))
 

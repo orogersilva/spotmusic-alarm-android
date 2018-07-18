@@ -50,6 +50,7 @@ dependencies {
 
     kapt deps.dagger.android.processor
     kapt deps.dagger.compiler
+    implementation deps.okhttp.core     // TODO: To discover why this is necessary.
 
     implementation deps.kotlin.stdlib.jdk
 

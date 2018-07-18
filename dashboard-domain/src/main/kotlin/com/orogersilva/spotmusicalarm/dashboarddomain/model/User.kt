@@ -1,3 +1,3 @@
 package com.orogersilva.spotmusicalarm.dashboarddomain.model
 
-data class User(private val id: String)
+data class User(val id: String)

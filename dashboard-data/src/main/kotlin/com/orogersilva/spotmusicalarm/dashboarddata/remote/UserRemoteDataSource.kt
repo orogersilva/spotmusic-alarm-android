@@ -7,7 +7,7 @@ import com.orogersilva.spotmusicalarm.dashboarddata.dto.UserDTO
 import com.orogersilva.spotmusicalarm.dashboarddata.entity.UserEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.mapper.UserMapper
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.UserApiClient
-import com.orogersilva.spotmusicalarm.dashboarddomain.SpotifyException
+import com.orogersilva.spotmusicalarm.dashboarddomain.SpotifyRegularErrorException
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -36,7 +36,7 @@ class UserRemoteDataSource @Inject constructor(private val userApiClient: UserAp
                         else -> {
 
                             Single.error(
-                                    SpotifyException(userHttpResponse.code(),
+                                    SpotifyRegularErrorException(userHttpResponse.code(),
                                             userHttpResponse.message())
                             )
                         }

@@ -13,5 +13,7 @@ object ApplicationModule {
 
     @Provides @Singleton @JvmStatic fun provideContext(application: SpotmusicAlarmApplication): Context = application
 
+
+
     // endregion
 }

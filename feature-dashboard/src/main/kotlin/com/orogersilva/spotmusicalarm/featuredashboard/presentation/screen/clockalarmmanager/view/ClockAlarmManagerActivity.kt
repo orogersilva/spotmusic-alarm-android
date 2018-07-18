@@ -9,7 +9,7 @@ import com.orogersilva.spotmusicalarm.base.SpotmusicAlarmApplication
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.ClockAlarmManagerViewModel
 import com.orogersilva.spotmusicalarm.featuredashboard.R
 import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ActivityClockAlarmManagerBinding
-import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerClockAlarmManagerComponent
+import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerClockAlarmManagerViewComponent
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.BaseActivity
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.adapter.ClockAlarmManagerListAdapter
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.newclockalarm.view.NewClockAlarmActivity
@@ -31,7 +31,7 @@ class ClockAlarmManagerActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        DaggerClockAlarmManagerComponent
+        DaggerClockAlarmManagerViewComponent
                 .builder()
                 .plus((application as SpotmusicAlarmApplication).applicationComponent)
                 .inject(this)

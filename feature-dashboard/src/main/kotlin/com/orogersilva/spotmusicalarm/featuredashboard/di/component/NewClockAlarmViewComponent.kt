@@ -16,13 +16,12 @@ import dagger.android.AndroidInjector
         modules = [
             NewClockAlarmViewModelModule::class,
             PreferencesModule::class,
-            SchedulerProviderModule::class,
             SpotifyModule::class,
             UserRepositoryModule::class
         ],
         dependencies = [ApplicationComponent::class]
 )
-interface NewClockAlarmComponent : AndroidInjector<NewClockAlarmActivity> {
+interface NewClockAlarmViewComponent : AndroidInjector<NewClockAlarmActivity> {
 
     // region BUILDERS
 

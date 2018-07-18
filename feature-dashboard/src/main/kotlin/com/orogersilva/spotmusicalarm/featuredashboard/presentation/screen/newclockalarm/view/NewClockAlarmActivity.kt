@@ -7,7 +7,7 @@ import android.os.Bundle
 import com.orogersilva.spotmusicalarm.base.SpotmusicAlarmApplication
 import com.orogersilva.spotmusicalarm.featuredashboard.R
 import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ActivityNewClockAlarmBinding
-import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerNewClockAlarmComponent
+import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerNewClockAlarmViewComponent
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.BaseActivity
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.newclockalarm.NewClockAlarmViewModel
 import com.orogersilva.spotmusicalarm.spotifyapi.SpotifyAdapterHelper
@@ -31,7 +31,7 @@ class NewClockAlarmActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        DaggerNewClockAlarmComponent
+        DaggerNewClockAlarmViewComponent
                 .builder()
                 .plus((application as SpotmusicAlarmApplication).applicationComponent)
                 .inject(this)
