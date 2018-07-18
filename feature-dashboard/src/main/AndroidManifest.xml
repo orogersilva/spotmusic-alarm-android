@@ -30,6 +30,11 @@
             android:screenOrientation="portrait"
             />
 
+        <activity
+            android:name=".presentation.screen.tracklist.view.TrackListActivity"
+            android:screenOrientation="portrait"
+            />
+
         <!-- ACTIVITIES - END -->
 
     </application>

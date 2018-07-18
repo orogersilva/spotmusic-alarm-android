@@ -10,8 +10,7 @@ import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ItemClockAlar
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.ClockAlarmManagerViewModel
 import javax.inject.Inject
 
-class ClockAlarmManagerListAdapter @Inject constructor(private val clockAlarmManagerViewModel: ClockAlarmManagerViewModel)
-    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ClockAlarmManagerListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     // region PROPERTIES
 

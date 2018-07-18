@@ -4,12 +4,7 @@
     <string name="new_clock_alarm">New clock alarm</string>
     <string name="no_alarm">No alarm</string>
     <string name="save">Save</string>
-    <string name="set_music">Set music</string>
-    <string name="set_time">Set time</string>
-
-    <!-- SAMPLE DATA -->
-    <string name="alarm_time">06:00</string>
-    <string name="artist_name">Eric Clapton</string>
-    <string name="track_name">Layla</string>
+    <string name="uppercase_time">TIME</string>
+    <string name="uppercase_track">TRACK</string>
 
 </resources>

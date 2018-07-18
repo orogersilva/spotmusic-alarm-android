@@ -8,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager
 import com.orogersilva.spotmusicalarm.base.SpotmusicAlarmApplication
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.ClockAlarmManagerViewModel
 import com.orogersilva.spotmusicalarm.featuredashboard.R
-import com.orogersilva.spotmusicalarm.featuredashboard.R.id.clockAlarmManagerRecyclerView
 import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ActivityClockAlarmManagerBinding
 import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerClockAlarmManagerComponent
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.BaseActivity
@@ -40,7 +39,7 @@ class ClockAlarmManagerActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         prepareUi()
-        prepareLogic()
+        prepareViewModel()
     }
 
     // endregion
@@ -58,7 +57,7 @@ class ClockAlarmManagerActivity : BaseActivity() {
         clockAlarmManagerRecyclerView.layoutManager = linearLayoutManager
     }
 
-    private fun prepareLogic() {
+    private fun prepareViewModel() {
 
         clockAlarmManagerViewModel.apply {
 

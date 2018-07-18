@@ -17,5 +17,5 @@ import android.arch.persistence.room.PrimaryKey
 )
 data class TrackEntity(@PrimaryKey val id: String,
                        @ColumnInfo(name = "name") val name: String,
-                       @ColumnInfo(name = "preview_url") val previewUrl: String,
+                       @ColumnInfo(name = "artist_name") val artistName: String,
                        @ColumnInfo(name = "playlist_id") val playlistId: String)

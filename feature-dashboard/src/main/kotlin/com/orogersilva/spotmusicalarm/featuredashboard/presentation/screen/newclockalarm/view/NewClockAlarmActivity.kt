@@ -11,6 +11,7 @@ import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerNewClo
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.BaseActivity
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.newclockalarm.NewClockAlarmViewModel
 import com.orogersilva.spotmusicalarm.spotifyapi.SpotifyAdapterHelper
+import kotlinx.android.synthetic.main.activity_new_clock_alarm.*
 import javax.inject.Inject
 
 class NewClockAlarmActivity : BaseActivity() {
@@ -38,7 +39,8 @@ class NewClockAlarmActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         prepareUi()
-        prepareLogic()
+        prepareListeners()
+        prepareViewModel()
     }
 
     override fun onDestroy() {
@@ -79,7 +81,13 @@ class NewClockAlarmActivity : BaseActivity() {
                 this, R.layout.activity_new_clock_alarm)
     }
 
-    private fun prepareLogic() {
+    private fun prepareListeners() {
+
+        timeTextInputEditText.keyListener = null
+        trackTextInputEditText.keyListener = null
+    }
+
+    private fun prepareViewModel() {
 
         newClockAlarmViewModel.apply {
 

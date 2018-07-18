@@ -16,31 +16,56 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/setTimeButton"
-            android:layout_width="0dp"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/timeTextInputLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@string/set_time"
-            android:onClick="@{() -> newClockAlarmViewModel.setClockAlarmTime()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/setMusicButton"
-            android:layout_width="0dp"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/timeTextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:inputType="textCapSentences"
+                android:maxLines="1"
+                android:padding="12dp"
+                android:hint="@string/uppercase_time"
+                android:onClick="@{() -> newClockAlarmViewModel.setClockAlarmTime()}"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/trackTextInputLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/set_music"
-            android:onClick="@{() -> newClockAlarmViewModel.setClockAlarmMusic()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/setTimeButton" />
+            app:layout_constraintTop_toBottomOf="@+id/timeTextInputLayout">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/trackTextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:inputType="textCapSentences"
+                android:maxLines="1"
+                android:padding="12dp"
+                android:hint="@string/uppercase_track"
+                android:onClick="@{() -> newClockAlarmViewModel.setClockAlarmMusic()}"
+                />
+
+        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/saveButton"

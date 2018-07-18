@@ -22,8 +22,8 @@ object ClockAlarmManagerViewModelModule {
                 .get(ClockAlarmManagerViewModel::class.java)
     }
 
-    @Provides @ActivityScope @JvmStatic fun provideDashboardAdapter(clockAlarmManagerViewModel: ClockAlarmManagerViewModel): ClockAlarmManagerListAdapter =
-            ClockAlarmManagerListAdapter(clockAlarmManagerViewModel)
+    @Provides @ActivityScope @JvmStatic fun provideDashboardAdapter(): ClockAlarmManagerListAdapter =
+            ClockAlarmManagerListAdapter()
 
     // endregion
 }
