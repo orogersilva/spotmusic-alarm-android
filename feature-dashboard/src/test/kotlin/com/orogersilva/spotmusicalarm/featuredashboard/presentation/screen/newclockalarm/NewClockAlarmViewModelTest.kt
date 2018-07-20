@@ -13,7 +13,6 @@ class NewClockAlarmViewModelTest {
     // region PROPERTIES
 
     private lateinit var userRepositoryMock: UserRepository
-    private lateinit var schedulerProvider: SchedulerProvider
 
     private lateinit var newClockAlarmViewModel: NewClockAlarmViewModel
 
@@ -25,9 +24,7 @@ class NewClockAlarmViewModelTest {
 
         userRepositoryMock = mock()
 
-        schedulerProvider = TestSchedulerProvider()
-
-        newClockAlarmViewModel = NewClockAlarmViewModel(userRepositoryMock, schedulerProvider)
+        newClockAlarmViewModel = NewClockAlarmViewModel(userRepositoryMock)
     }
 
     // endregion
