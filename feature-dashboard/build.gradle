@@ -39,7 +39,7 @@ dependencies {
 
     implementation project(':base')
     api project(':dashboard-data')
-    implementation project(':spotify-api')
+    implementation project(':spotify-sdk-wrapper')
 
     api deps.android.arch.extensions
     implementation deps.android.arch.viewmodel
