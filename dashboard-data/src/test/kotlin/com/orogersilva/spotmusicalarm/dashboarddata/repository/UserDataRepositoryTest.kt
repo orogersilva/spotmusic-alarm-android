@@ -42,7 +42,7 @@ class UserDataRepositoryTest {
 
     // region TEST METHODS
 
-    @Test fun `Get me, when i am not authenticated, then throws SpotifyException`() {
+    @Test fun `Get me, when user is not authenticated, then throws SpotifyRegularErrorException`() {
 
         // ARRANGE
 
@@ -65,7 +65,7 @@ class UserDataRepositoryTest {
                 .assertError(expectedSpotifyException)
     }
 
-    @Test fun `Get me, when i am authenticated, then return User`() {
+    @Test fun `Get me, when user is authenticated, then return User`() {
 
         // ARRANGE
 

@@ -3,6 +3,7 @@ package com.orogersilva.spotmusicalarm.dashboarddata.remote
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
+import com.orogersilva.spotmusicalarm.dashboarddata.dto.SpotifyRegularErrorDTO
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.UserDTO
 import com.orogersilva.spotmusicalarm.dashboarddata.entity.UserEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.mapper.UserMapper
@@ -35,9 +36,17 @@ class UserRemoteDataSource @Inject constructor(private val userApiClient: UserAp
 
                         else -> {
 
+                            val content = userHttpResponse.errorBody()?.string()
+
+                            val type = object : TypeToken<SpotifyRegularErrorDTO>(){}.type
+
+                            val spotifyRegularErrorDTO = Gson().fromJson<SpotifyRegularErrorDTO>(content, type)
+
                             Single.error(
-                                    SpotifyRegularErrorException(userHttpResponse.code(),
-                                            userHttpResponse.message())
+                                    SpotifyRegularErrorException(
+                                            spotifyRegularErrorDTO.error.status,
+                                            spotifyRegularErrorDTO.error.message
+                                    )
                             )
                         }
                     }

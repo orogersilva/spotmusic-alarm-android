@@ -1,5 +1,6 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.server
 
+import com.orogersilva.spotmusicalarm.dashboarddata.remote.FORBIDDEN_STATUS_CODE
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.NOT_FOUND_STATUS_CODE
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.OK_STATUS_CODE
 import okhttp3.mockwebserver.MockResponse
@@ -19,20 +20,33 @@ class LocalResponseDispatcher : QueueDispatcher() {
 
         mockResponse.setResponseCode(NOT_FOUND_STATUS_CODE)
 
-        val scenario = getScenario(request)
+        val accessToken = request?.getHeader("Authorization")
 
-        scenario?.let {
+        if (accessToken == null) {
 
-            mockResponse.setBody(readFile(it))
+            val SPOTIFY_REGULAR_ERROR_FILE_NAME = "spotify_regular_error.json"
 
-            when (request?.path) {
+            mockResponse.setBody(readFile(SPOTIFY_REGULAR_ERROR_FILE_NAME))
+            mockResponse.setResponseCode(FORBIDDEN_STATUS_CODE)
 
-                "/me" -> {
+        } else {
 
-                    mockResponse.setResponseCode(OK_STATUS_CODE)
+            val scenario = getScenario(request)
+
+            scenario?.let {
+
+                mockResponse.setBody(readFile(it))
+
+                when (request.path) {
+
+                    "/me" -> {
+                        mockResponse.setResponseCode(OK_STATUS_CODE)
+                    }
+
+                    else -> {
+                        mockResponse.setResponseCode(NOT_FOUND_STATUS_CODE)
+                    }
                 }
-
-                else -> { }
             }
         }
 

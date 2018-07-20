@@ -10,6 +10,7 @@ import com.orogersilva.spotmusicalarm.dashboarddata.di.module.TestBaseRemoteData
 import com.orogersilva.spotmusicalarm.dashboarddata.di.module.TestUserRemoteDataSourceModule
 import com.orogersilva.spotmusicalarm.dashboarddata.entity.UserEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.server.BaseRemoteClientTest
+import com.orogersilva.spotmusicalarm.dashboarddomain.SpotifyRegularErrorException
 import io.reactivex.Single
 import io.reactivex.observers.TestObserver
 import org.junit.Before
@@ -27,6 +28,29 @@ class UserRemoteDataSourceTest : BaseRemoteClientTest() {
     // endregion
 
     // region TEST METHODS
+
+    @Test fun `Get me, when user is not authenticated, then return SpotifyRegularErrorException`() {
+
+        // ARRANGE
+
+        val ACCESS_TOKEN = null
+
+        whenever(userLocalDataSourceMock.getAccessToken()).thenReturn(ACCESS_TOKEN)
+
+        val testObserver = TestObserver<UserEntity>()
+
+        // ACT
+
+        userRemoteDataSource.getMe()
+                .subscribe(testObserver)
+
+        // ASSERT
+
+        testObserver
+                .assertNotComplete()
+                .assertError(SpotifyRegularErrorException::class.java)
+                .assertErrorMessage(UNAUTHORIZED_STATUS_MESSAGE)
+    }
 
     @Test fun `Get me, when user is authenticated, then return UserEntity`() {
 
