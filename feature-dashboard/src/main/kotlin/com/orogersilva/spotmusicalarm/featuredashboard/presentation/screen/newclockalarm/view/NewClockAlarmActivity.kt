@@ -5,18 +5,24 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import com.orogersilva.spotmusicalarm.base.SpotmusicAlarmApplication
+import com.orogersilva.spotmusicalarm.base.shared.app
 import com.orogersilva.spotmusicalarm.featuredashboard.R
 import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ActivityNewClockAlarmBinding
-import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerNewClockAlarmViewComponent
+import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerDashboardComponent
+import com.orogersilva.spotmusicalarm.featuredashboard.di.component.NewClockAlarmViewComponent
+import com.orogersilva.spotmusicalarm.featuredashboard.di.module.NewClockAlarmViewModelModule
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.BaseActivity
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.newclockalarm.NewClockAlarmViewModel
 import com.orogersilva.spotmusicalarm.spotifyapi.SpotifyAdapterHelper
+import com.orogersilva.spotmusicalarm.spotifyapi.di.module.SpotifyModule
 import kotlinx.android.synthetic.main.activity_new_clock_alarm.*
 import javax.inject.Inject
 
 class NewClockAlarmActivity : BaseActivity() {
 
     // region PROPERTIES
+
+    private lateinit var newClockAlarmViewComponent: NewClockAlarmViewComponent
 
     private lateinit var newClockAlarmBinding: ActivityNewClockAlarmBinding
 
@@ -31,13 +37,9 @@ class NewClockAlarmActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        DaggerNewClockAlarmViewComponent
-                .builder()
-                .plus((application as SpotmusicAlarmApplication).applicationComponent)
-                .inject(this)
-
         super.onCreate(savedInstanceState)
 
+        injectDependencies()
         prepareUi()
         prepareListeners()
         prepareViewModel()
@@ -74,6 +76,18 @@ class NewClockAlarmActivity : BaseActivity() {
     // endregion
 
     // region UTILITY METHODS
+
+    private fun injectDependencies() {
+
+        val dashboardComponent = DaggerDashboardComponent.builder()
+                .applicationComponent(app().applicationComponent)
+                .build()
+
+        newClockAlarmViewComponent = dashboardComponent
+                .plusNewClockAlarmViewComponent(NewClockAlarmViewModelModule(this), SpotifyModule())
+
+        newClockAlarmViewComponent.inject(this)
+    }
 
     private fun prepareUi() {
 

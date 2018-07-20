@@ -11,12 +11,11 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-object NewClockAlarmViewModelModule {
+open class NewClockAlarmViewModelModule(private val newClockAlarmActivity: NewClockAlarmActivity) {
 
     // region PROVIDERS
 
-    @Provides @ActivityScope @JvmStatic fun provideNewClockAlarmViewModel(newClockAlarmActivity: NewClockAlarmActivity,
-                                                                          userRepository: UserRepository): NewClockAlarmViewModel {
+    @Provides @ActivityScope open fun provideNewClockAlarmViewModel(userRepository: UserRepository): NewClockAlarmViewModel {
 
         val newClockAlarmViewModelFactory = NewClockAlarmViewModelFactory(userRepository)
 

@@ -48,11 +48,11 @@ dependencies {
     implementation deps.android.support.constraintLayout
     implementation deps.android.support.design
 
-    kapt deps.dagger.android.processor
     kapt deps.dagger.compiler
-    implementation deps.okhttp.core     // TODO: To discover why this is necessary.
-
     implementation deps.kotlin.stdlib.jdk
+    implementation deps.okhttp.core     // TODO: To discover why this is necessary.
+    implementation deps.rx.android
+    implementation deps.rx.java
 
     testImplementation project(':test-utils')
     testImplementation deps.kotlin.test.jdk

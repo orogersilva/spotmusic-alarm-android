@@ -51,10 +51,10 @@ dependencies {
     application project(':installed')
     feature project(':feature-dashboard')
 
+    implementation deps.android.support.appCompat
+
     api deps.kotlin.stdlib.jdk
 
-    kapt deps.dagger.android.processor
-    api deps.dagger.android.support
     kapt deps.dagger.compiler
     api deps.dagger.core
     implementation deps.rx.android

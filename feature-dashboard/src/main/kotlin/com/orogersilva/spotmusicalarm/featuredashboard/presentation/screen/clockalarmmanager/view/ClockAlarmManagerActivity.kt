@@ -6,10 +6,13 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.orogersilva.spotmusicalarm.base.SpotmusicAlarmApplication
+import com.orogersilva.spotmusicalarm.base.shared.app
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.ClockAlarmManagerViewModel
 import com.orogersilva.spotmusicalarm.featuredashboard.R
 import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ActivityClockAlarmManagerBinding
-import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerClockAlarmManagerViewComponent
+import com.orogersilva.spotmusicalarm.featuredashboard.di.component.ClockAlarmManagerViewComponent
+import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerDashboardComponent
+import com.orogersilva.spotmusicalarm.featuredashboard.di.module.ClockAlarmManagerViewModelModule
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.BaseActivity
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.adapter.ClockAlarmManagerListAdapter
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.newclockalarm.view.NewClockAlarmActivity
@@ -19,6 +22,8 @@ import javax.inject.Inject
 class ClockAlarmManagerActivity : BaseActivity() {
 
     // region PROPERTIES
+
+    private lateinit var clockAlarmManagerViewComponent: ClockAlarmManagerViewComponent
 
     private lateinit var clockAlarmManagerBinding: ActivityClockAlarmManagerBinding
 
@@ -31,13 +36,9 @@ class ClockAlarmManagerActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        DaggerClockAlarmManagerViewComponent
-                .builder()
-                .plus((application as SpotmusicAlarmApplication).applicationComponent)
-                .inject(this)
-
         super.onCreate(savedInstanceState)
 
+        injectDependencies()
         prepareUi()
         prepareViewModel()
     }
@@ -45,6 +46,18 @@ class ClockAlarmManagerActivity : BaseActivity() {
     // endregion
 
     // region UTILITY METHODS
+
+    private fun injectDependencies() {
+
+        val dashboardComponent = DaggerDashboardComponent.builder()
+                .applicationComponent(app().applicationComponent)
+                .build()
+
+        clockAlarmManagerViewComponent = dashboardComponent
+                .plusClockAlarmManagerViewComponent(ClockAlarmManagerViewModelModule(this))
+
+        clockAlarmManagerViewComponent.inject(this)
+    }
 
     private fun prepareUi() {
 

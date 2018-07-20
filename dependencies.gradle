@@ -65,10 +65,6 @@ ext.deps = [
                 ]
         ],
         'dagger': [
-                'android': [
-                        'processor': "com.google.dagger:dagger-android-processor:${versions.daggerVersion}",
-                        'support': "com.google.dagger:dagger-android-support:${versions.daggerVersion}"
-                ],
                 'compiler': "com.google.dagger:dagger-compiler:${versions.daggerVersion}",
                 'core': "com.google.dagger:dagger:${versions.daggerVersion}"
         ],

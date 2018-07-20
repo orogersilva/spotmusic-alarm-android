@@ -13,14 +13,13 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-object PlaylistViewModelModule {
+open class PlaylistViewModelModule(private val playlistActivity: PlaylistActivity) {
 
     // region PROVIDERS
 
-    @Provides @ActivityScope @JvmStatic fun providePlaylistViewModel(playlistActivity: PlaylistActivity,
-                                                                     playlistRepository: PlaylistRepository,
-                                                                     userRepository: UserRepository,
-                                                                     schedulerProvider: SchedulerProvider): PlaylistViewModel {
+    @Provides @ActivityScope open fun providePlaylistViewModel(playlistRepository: PlaylistRepository,
+                                                               userRepository: UserRepository,
+                                                               schedulerProvider: SchedulerProvider): PlaylistViewModel {
 
         val playlistViewModelFactory = PlaylistViewModelFactory(
                 playlistRepository, userRepository, schedulerProvider
@@ -30,7 +29,7 @@ object PlaylistViewModelModule {
                 .get(PlaylistViewModel::class.java)
     }
 
-    @Provides @ActivityScope @JvmStatic fun providePlaylistAdapter(playlistViewModel: PlaylistViewModel): PlaylistAdapter =
+    @Provides @ActivityScope open fun providePlaylistAdapter(playlistViewModel: PlaylistViewModel): PlaylistAdapter =
             PlaylistAdapter(playlistViewModel)
 
     // endregion

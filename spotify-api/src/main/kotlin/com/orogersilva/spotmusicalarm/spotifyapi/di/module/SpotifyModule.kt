@@ -7,11 +7,11 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-object SpotifyModule {
+open class SpotifyModule {
 
     // region PROVIDERS
 
-    @Provides @ActivityScope @JvmStatic fun provideSpotifyAdapterHelper(): SpotifyAdapterHelper =
+    @Provides @ActivityScope open fun provideSpotifyAdapterHelper(): SpotifyAdapterHelper =
             SpotifyAdapterHelper(SpotifyWrapper())
 
     // endregion

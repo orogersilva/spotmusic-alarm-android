@@ -1,36 +1,37 @@
 package com.orogersilva.spotmusicalarm.base.di.component
 
 import android.content.Context
+import android.content.SharedPreferences
 import com.orogersilva.spotmusicalarm.base.SpotmusicAlarmApplication
 import com.orogersilva.spotmusicalarm.base.di.module.ApplicationModule
+import com.orogersilva.spotmusicalarm.base.di.module.PreferencesModule
+import com.orogersilva.spotmusicalarm.base.di.module.SchedulerProviderModule
+import com.orogersilva.spotmusicalarm.base.scheduler.SchedulerProvider
 import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
 import dagger.Provides
-import dagger.android.AndroidInjector
-import dagger.android.support.AndroidSupportInjectionModule
-import dagger.android.support.DaggerApplication
 import javax.inject.Singleton
 
 @Singleton
 @Component(
         modules = [
-            AndroidSupportInjectionModule::class,
-            ApplicationModule::class
+            ApplicationModule::class,
+            PreferencesModule::class,
+            SchedulerProviderModule::class
         ]
 )
-interface ApplicationComponent : AndroidInjector<DaggerApplication> {
+interface ApplicationComponent {
 
-    // region BUILDERS
-
-    @Component.Builder interface Builder {
-
-        @BindsInstance fun application(application: SpotmusicAlarmApplication): Builder
-
-        fun build(): ApplicationComponent
-    }
+    // region EXPOSED DEPENDENCIES
 
     fun context(): Context
+
+    fun schedulerProvider(): SchedulerProvider
+
+    fun sharedPreferences(): SharedPreferences
+
+    fun sharedPreferencesEditor(): SharedPreferences.Editor
 
     // endregion
 }

@@ -6,32 +6,19 @@ import com.orogersilva.spotmusicalarm.featuredashboard.di.module.ClockAlarmManag
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.view.ClockAlarmManagerActivity
 import com.orogersilva.spotmusicalarm.spotifyapi.di.module.SpotifyModule
 import dagger.Component
-import dagger.android.AndroidInjector
+import dagger.Subcomponent
 
 @ActivityScope
-@Component(
+@Subcomponent(
         modules = [
-            ClockAlarmManagerViewModelModule::class,
-            SpotifyModule::class
-        ],
-        dependencies = [ApplicationComponent::class]
+            ClockAlarmManagerViewModelModule::class
+        ]
 )
-interface ClockAlarmManagerViewComponent : AndroidInjector<ClockAlarmManagerActivity> {
+interface ClockAlarmManagerViewComponent {
 
-    // region BUILDERS
+    // region INJECTORS
 
-    @Component.Builder abstract class Builder : AndroidInjector.Builder<ClockAlarmManagerActivity>() {
-
-        abstract operator fun plus(component: ApplicationComponent): Builder
-
-        fun inject(activity: ClockAlarmManagerActivity) {
-
-            plus(activity.provideApplication().applicationComponent)
-
-            create(activity)
-                    .inject(activity)
-        }
-    }
+    fun inject(clockAlarmManagerActivity: ClockAlarmManagerActivity)
 
     // endregion
 }

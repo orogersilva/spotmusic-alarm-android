@@ -1,4 +1,4 @@
-package com.orogersilva.spotmusicalarm.dashboarddata.di.scope
+package com.orogersilva.spotmusicalarm.dashboarddomain.di.scope
 
 import javax.inject.Scope
 import kotlin.annotation.AnnotationRetention.RUNTIME

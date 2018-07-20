@@ -10,11 +10,11 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-object ClockAlarmManagerViewModelModule {
+open class ClockAlarmManagerViewModelModule(private val clockAlarmManagerActivity: ClockAlarmManagerActivity) {
 
     // region PROVIDERS
 
-    @Provides @ActivityScope @JvmStatic fun provideClockAlarmManagerViewModel(clockAlarmManagerActivity: ClockAlarmManagerActivity): ClockAlarmManagerViewModel {
+    @Provides @ActivityScope open fun provideClockAlarmManagerViewModel(): ClockAlarmManagerViewModel {
 
         val clockAlarmManagerViewModelFactory = ClockAlarmManagerViewModelFactory()
 
@@ -22,7 +22,7 @@ object ClockAlarmManagerViewModelModule {
                 .get(ClockAlarmManagerViewModel::class.java)
     }
 
-    @Provides @ActivityScope @JvmStatic fun provideDashboardAdapter(): ClockAlarmManagerListAdapter =
+    @Provides @ActivityScope open fun provideDashboardAdapter(): ClockAlarmManagerListAdapter =
             ClockAlarmManagerListAdapter()
 
     // endregion

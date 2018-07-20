@@ -1,17 +1,17 @@
 package com.orogersilva.spotmusicalarm.base.di.module
 
-import com.orogersilva.spotmusicalarm.base.di.scope.ActivityScope
 import com.orogersilva.spotmusicalarm.base.scheduler.SchedulerProvider
 import com.orogersilva.spotmusicalarm.base.scheduler.impl.AppSchedulerProvider
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
-object SchedulerProviderModule {
+open class SchedulerProviderModule {
 
     // region PROVIDERS
 
-    @Provides @ActivityScope @JvmStatic fun provideSchedulerProvider(): SchedulerProvider =
+    @Provides @Singleton open fun provideSchedulerProvider(): SchedulerProvider =
             AppSchedulerProvider()
 
     // endregion

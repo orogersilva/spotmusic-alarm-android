@@ -19,39 +19,11 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-object PlaylistRepositoryModule {
+open class PlaylistRepositoryModule {
 
     // region PROVIDERS
 
-    @Provides @ActivityScope @JvmStatic fun provideOkHttpClient(userLocalDataSource: UserDataContract.Local): OkHttpClient {
-
-        val okHttpClient = OkHttpClient.Builder()
-                .addNetworkInterceptor(object : Interceptor {
-
-                    @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-                    override fun intercept(chain: Interceptor.Chain): Response {
-
-                        val accessToken = userLocalDataSource.getAccessToken()
-
-                        var request: Request? = null
-
-                        accessToken?.let {
-
-                            request = chain.request()
-                                    .newBuilder()
-                                    .addHeader("Authorization", it)
-                                    .build()
-                        }
-
-                        return chain.proceed(request)
-                    }
-                })
-                .build()
-
-        return okHttpClient
-    }
-
-    @Provides @ActivityScope @JvmStatic fun providePlaylistApiClient(okHttpClient: OkHttpClient): PlaylistApiClient {
+    @Provides @ActivityScope open fun providePlaylistApiClient(okHttpClient: OkHttpClient): PlaylistApiClient {
 
         val retrofit = Retrofit.Builder()
                 .baseUrl(BuildConfig.SPOTIFY_API_URL)
@@ -63,10 +35,10 @@ object PlaylistRepositoryModule {
         return retrofit.create(PlaylistApiClient::class.java)
     }
 
-    @Provides @ActivityScope @JvmStatic fun providePlaylistRemoteDataSource(playlistApiClient: PlaylistApiClient): PlaylistDataContract.Remote =
+    @Provides @ActivityScope open fun providePlaylistRemoteDataSource(playlistApiClient: PlaylistApiClient): PlaylistDataContract.Remote =
             PlaylistRemoteDataSource(playlistApiClient)
 
-    @Provides @ActivityScope @JvmStatic fun providePlaylistRepository(playlistRemoteDataSource: PlaylistDataContract.Remote): PlaylistRepository =
+    @Provides @ActivityScope open fun providePlaylistRepository(playlistRemoteDataSource: PlaylistDataContract.Remote): PlaylistRepository =
             PlaylistDataRepository(playlistRemoteDataSource)
 
     // endregion

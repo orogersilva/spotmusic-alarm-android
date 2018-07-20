@@ -8,6 +8,7 @@ import com.orogersilva.spotmusicalarm.dashboarddata.local.UserLocalDataSource
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.UserRemoteDataSource
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.UserApiClient
 import com.orogersilva.spotmusicalarm.dashboarddata.repository.UserDataRepository
+import com.orogersilva.spotmusicalarm.dashboarddomain.di.scope.DashboardScope
 import com.orogersilva.spotmusicalarm.dashboarddomain.repository.UserRepository
 import dagger.Module
 import dagger.Provides
@@ -20,15 +21,15 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-object UserRepositoryModule {
+open class UserRepositoryModule {
 
     // region PROVIDERS
 
-    @Provides @ActivityScope @JvmStatic fun provideUserLocalDataSource(sharedPreferences: SharedPreferences,
-                                                                       sharedPreferencesEditor: SharedPreferences.Editor): UserDataContract.Local =
+    @Provides @DashboardScope open fun provideUserLocalDataSource(sharedPreferences: SharedPreferences,
+                                                                            sharedPreferencesEditor: SharedPreferences.Editor): UserDataContract.Local =
             UserLocalDataSource(sharedPreferences, sharedPreferencesEditor)
 
-    @Provides @ActivityScope @JvmStatic fun provideOkHttpClient(userLocalDataSource: UserDataContract.Local): OkHttpClient {
+    @Provides @DashboardScope open fun provideOkHttpClient(userLocalDataSource: UserDataContract.Local): OkHttpClient {
 
         val okHttpClient = OkHttpClient.Builder()
                 .addNetworkInterceptor(object : Interceptor {
@@ -56,7 +57,7 @@ object UserRepositoryModule {
         return okHttpClient
     }
 
-    @Provides @ActivityScope @JvmStatic fun provideUserApiClient(okHttpClient: OkHttpClient): UserApiClient {
+    @Provides @DashboardScope open fun provideUserApiClient(okHttpClient: OkHttpClient): UserApiClient {
 
         val retrofit = Retrofit.Builder()
                 .baseUrl(BuildConfig.SPOTIFY_API_URL)
@@ -68,11 +69,11 @@ object UserRepositoryModule {
         return retrofit.create(UserApiClient::class.java)
     }
 
-    @Provides @ActivityScope @JvmStatic fun provideUserRemoteDataSource(userApiClient: UserApiClient): UserDataContract.Remote =
+    @Provides @DashboardScope open fun provideUserRemoteDataSource(userApiClient: UserApiClient): UserDataContract.Remote =
             UserRemoteDataSource(userApiClient)
 
-    @Provides @ActivityScope @JvmStatic fun provideUserRepository(userLocalDataSource: UserDataContract.Local,
-                                                                  userRemoteDataSource: UserDataContract.Remote): UserRepository =
+    @Provides @DashboardScope open fun provideUserRepository(userLocalDataSource: UserDataContract.Local,
+                                                                 userRemoteDataSource: UserDataContract.Remote): UserRepository =
             UserDataRepository(userLocalDataSource, userRemoteDataSource)
 
     // endregion

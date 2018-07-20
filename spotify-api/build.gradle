@@ -50,7 +50,6 @@ dependencies {
 
     implementation deps.android.support.appCompat
 
-    kapt deps.dagger.android.processor
     kapt deps.dagger.compiler
 
     api deps.spotify.auth

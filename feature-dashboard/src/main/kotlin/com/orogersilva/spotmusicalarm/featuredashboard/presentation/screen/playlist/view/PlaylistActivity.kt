@@ -5,8 +5,13 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.orogersilva.spotmusicalarm.base.shared.app
+import com.orogersilva.spotmusicalarm.dashboarddata.di.module.PlaylistRepositoryModule
 import com.orogersilva.spotmusicalarm.featuredashboard.R
 import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ActivityPlaylistBinding
+import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerDashboardComponent
+import com.orogersilva.spotmusicalarm.featuredashboard.di.component.PlaylistViewComponent
+import com.orogersilva.spotmusicalarm.featuredashboard.di.module.PlaylistViewModelModule
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.BaseActivity
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.playlist.PlaylistViewModel
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.playlist.adapter.PlaylistAdapter
@@ -17,6 +22,8 @@ import javax.inject.Inject
 class PlaylistActivity : BaseActivity() {
 
     // region PROPERTIES
+
+    private lateinit var playlistViewComponent: PlaylistViewComponent
 
     private lateinit var playlistBinding: ActivityPlaylistBinding
 
@@ -31,8 +38,7 @@ class PlaylistActivity : BaseActivity() {
 
         super.onCreate(savedInstanceState)
 
-
-
+        injectDependencies()
         prepareUi()
         prepareViewModel()
     }
@@ -47,6 +53,18 @@ class PlaylistActivity : BaseActivity() {
     // endregion
 
     // region UTILITY METHODS
+
+    private fun injectDependencies() {
+
+        val dashboardComponent = DaggerDashboardComponent.builder()
+                .applicationComponent(app().applicationComponent)
+                .build()
+
+        playlistViewComponent = dashboardComponent
+                .plusPlaylistViewComponent(PlaylistRepositoryModule(), PlaylistViewModelModule(this))
+
+        playlistViewComponent.inject(this)
+    }
 
     private fun prepareUi() {
 

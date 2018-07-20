@@ -1,17 +1,18 @@
 package com.orogersilva.spotmusicalarm.base
 
+import android.app.Application
 import com.orogersilva.spotmusicalarm.base.di.component.ApplicationComponent
 import com.orogersilva.spotmusicalarm.base.di.component.DaggerApplicationComponent
-import dagger.android.AndroidInjector
-import dagger.android.support.DaggerApplication
+import com.orogersilva.spotmusicalarm.base.di.module.ApplicationModule
+import com.orogersilva.spotmusicalarm.base.di.module.PreferencesModule
+import com.orogersilva.spotmusicalarm.base.di.module.SchedulerProviderModule
 import io.reactivex.plugins.RxJavaPlugins
 
-class SpotmusicAlarmApplication : DaggerApplication() {
+class SpotmusicAlarmApplication : Application() {
 
     // region FIELDS
 
-    val applicationComponent: ApplicationComponent =
-            DaggerApplicationComponent.builder().application(this).build()
+    lateinit var applicationComponent: ApplicationComponent
 
     // endregion
 
@@ -23,16 +24,20 @@ class SpotmusicAlarmApplication : DaggerApplication() {
 
         // Allowing to emit errors via stream...
         RxJavaPlugins.setErrorHandler {  }
+
+        applicationComponent = createApplicationComponent()
     }
 
     // endregion
 
-    // region OVERRIDED METHODS
+    // region PUBLIC METHODS
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
-            applicationComponent.apply {
-                inject(this@SpotmusicAlarmApplication)
-            }
+    fun createApplicationComponent(): ApplicationComponent =
+            DaggerApplicationComponent.builder()
+                .applicationModule(ApplicationModule(this))
+                .preferencesModule(PreferencesModule())
+                .schedulerProviderModule(SchedulerProviderModule())
+                .build()
 
     // endregion
 }

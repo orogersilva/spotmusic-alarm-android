@@ -6,9 +6,8 @@ import android.arch.lifecycle.LifecycleRegistry
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.orogersilva.spotmusicalarm.base.SpotmusicAlarmApplication
-import com.orogersilva.spotmusicalarm.featuredashboard.ApplicationProvider
 
-abstract class BaseActivity : AppCompatActivity(), LifecycleOwner, ApplicationProvider {
+abstract class BaseActivity : AppCompatActivity(), LifecycleOwner {
 
     // region FIELDS
 
@@ -32,13 +31,6 @@ abstract class BaseActivity : AppCompatActivity(), LifecycleOwner, ApplicationPr
 
         lifecycleRegistry.markState(Lifecycle.State.DESTROYED)
     }
-
-    // endregion
-
-    // region OVERRIDED METHODS
-
-    override fun provideApplication(): SpotmusicAlarmApplication =
-            application as SpotmusicAlarmApplication
 
     // endregion
 }
