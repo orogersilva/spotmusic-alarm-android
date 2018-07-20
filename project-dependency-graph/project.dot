@@ -1,5 +1,5 @@
 digraph {
-  graph [label="SpotmusicAlarm\n ",labelloc=t,fontsize=30];
+  graph [label=SpotmusicAlarm,labelloc=t,fontsize=30];
   node [style=filled, fillcolor="#bbbbbb"];
   rankdir=TB;
 

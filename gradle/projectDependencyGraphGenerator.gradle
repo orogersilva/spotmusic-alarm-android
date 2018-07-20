@@ -4,7 +4,7 @@ task projectDependencyGraphGenerator {
         dot.delete()
 
         dot << 'digraph {\n'
-        dot << "  graph [label=\"${rootProject.name}\\n \",labelloc=t,fontsize=30];\n"
+        dot << "  graph [label=SpotmusicAlarm,labelloc=t,fontsize=30];\n"
         dot << '  node [style=filled, fillcolor="#bbbbbb"];\n'
         dot << '  rankdir=TB;\n'
 
