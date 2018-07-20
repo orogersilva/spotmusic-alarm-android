@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.orogersilva.spotmusicalarm.base.shared.app
 import com.orogersilva.spotmusicalarm.dashboarddata.di.module.PlaylistRepositoryModule
+import com.orogersilva.spotmusicalarm.dashboarddata.di.module.UserRepositoryModule
 import com.orogersilva.spotmusicalarm.featuredashboard.R
 import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ActivityPlaylistBinding
 import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerDashboardComponent
@@ -58,6 +59,7 @@ class PlaylistActivity : BaseActivity() {
 
         val dashboardComponent = DaggerDashboardComponent.builder()
                 .applicationComponent(app().applicationComponent)
+                .userRepositoryModule(UserRepositoryModule())
                 .build()
 
         playlistViewComponent = dashboardComponent

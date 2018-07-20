@@ -1,0 +1,73 @@
+package com.orogersilva.spotmusicalarm.dashboarddata.di.module
+
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.whenever
+import com.orogersilva.spotmusicalarm.dashboarddata.BuildConfig
+import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
+import com.orogersilva.spotmusicalarm.dashboarddata.remote.UserRemoteDataSource
+import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.UserApiClient
+import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.server.LocalResponseDispatcher
+import dagger.Module
+import dagger.Provides
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
+import okhttp3.mockwebserver.MockWebServer
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
+
+@Module
+open class TestUserRemoteDataSourceModule(private val userLocalDataSourceMock: UserDataContract.Local) {
+
+    // region PROVIDERS
+
+    @Provides open fun provideOkHttpClient(): OkHttpClient {
+
+        val okHttpClient = OkHttpClient.Builder()
+                .addNetworkInterceptor(object : Interceptor {
+
+                    @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+                    override fun intercept(chain: Interceptor.Chain): Response {
+
+                        val accessToken = userLocalDataSourceMock.getAccessToken()
+
+                        var request: Request? = null
+
+                        accessToken?.let {
+
+                            request = chain.request()
+                                    .newBuilder()
+                                    .addHeader("Authorization", it)
+                                    .build()
+                        }
+
+                        return chain.proceed(request)
+                    }
+                })
+                .build()
+
+        return okHttpClient
+    }
+
+    @Provides open fun provideUserApiClient(okHttpClient: OkHttpClient, mockWebServer: MockWebServer): UserApiClient {
+
+        mockWebServer.start()
+        mockWebServer.setDispatcher(LocalResponseDispatcher())
+
+        val retrofit = Retrofit.Builder()
+                .baseUrl(mockWebServer.url("/").toString())
+                .client(okHttpClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+        return retrofit.create(UserApiClient::class.java)
+    }
+
+    @Provides open fun provideUserRemoteDataSource(userApiClient: UserApiClient): UserDataContract.Remote =
+            UserRemoteDataSource(userApiClient)
+
+    // endregion
+}

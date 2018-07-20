@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.orogersilva.spotmusicalarm.base.SpotmusicAlarmApplication
 import com.orogersilva.spotmusicalarm.base.shared.app
+import com.orogersilva.spotmusicalarm.dashboarddata.di.module.UserRepositoryModule
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.ClockAlarmManagerViewModel
 import com.orogersilva.spotmusicalarm.featuredashboard.R
 import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ActivityClockAlarmManagerBinding
@@ -43,6 +44,13 @@ class ClockAlarmManagerActivity : BaseActivity() {
         prepareViewModel()
     }
 
+    override fun onResume() {
+
+        super.onResume()
+
+        clockAlarmManagerViewModel.resume()
+    }
+
     // endregion
 
     // region UTILITY METHODS
@@ -51,6 +59,7 @@ class ClockAlarmManagerActivity : BaseActivity() {
 
         val dashboardComponent = DaggerDashboardComponent.builder()
                 .applicationComponent(app().applicationComponent)
+                .userRepositoryModule(UserRepositoryModule())
                 .build()
 
         clockAlarmManagerViewComponent = dashboardComponent

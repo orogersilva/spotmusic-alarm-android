@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import com.orogersilva.spotmusicalarm.base.SpotmusicAlarmApplication
 import com.orogersilva.spotmusicalarm.base.shared.app
+import com.orogersilva.spotmusicalarm.dashboarddata.di.module.UserRepositoryModule
 import com.orogersilva.spotmusicalarm.featuredashboard.R
 import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ActivityNewClockAlarmBinding
 import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerDashboardComponent
@@ -45,6 +46,13 @@ class NewClockAlarmActivity : BaseActivity() {
         prepareViewModel()
     }
 
+    override fun onResume() {
+
+        super.onResume()
+
+        newClockAlarmViewModel.resume()
+    }
+
     override fun onDestroy() {
 
         spotifyAdapterHelper.destroyPlayer(this)
@@ -81,6 +89,7 @@ class NewClockAlarmActivity : BaseActivity() {
 
         val dashboardComponent = DaggerDashboardComponent.builder()
                 .applicationComponent(app().applicationComponent)
+                .userRepositoryModule(UserRepositoryModule())
                 .build()
 
         newClockAlarmViewComponent = dashboardComponent

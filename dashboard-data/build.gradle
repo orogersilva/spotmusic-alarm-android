@@ -51,6 +51,7 @@ dependencies {
     implementation deps.rx.android
     implementation deps.rx.java
 
+    kaptTest deps.dagger.compiler
     testImplementation deps.kotlin.test.jdk
     testImplementation deps.mockitokotlin.core
     testImplementation deps.okhttp.test.mockwebserver

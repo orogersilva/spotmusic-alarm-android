@@ -1,5 +1,6 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.server
 
+import com.orogersilva.spotmusicalarm.dashboarddata.remote.NOT_FOUND_STATUS_CODE
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.OK_STATUS_CODE
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.QueueDispatcher
@@ -16,20 +17,23 @@ class LocalResponseDispatcher : QueueDispatcher() {
 
         val mockResponse = MockResponse()
 
+        mockResponse.setResponseCode(NOT_FOUND_STATUS_CODE)
+
         val scenario = getScenario(request)
 
-        if (scenario != null) {
+        scenario?.let {
 
-            try {
+            mockResponse.setBody(readFile(it))
 
-                mockResponse.setBody(readFile(scenario))
-                mockResponse.setResponseCode(OK_STATUS_CODE)
+            when (request?.path) {
 
-            } catch (e: IOException) {
+                "/me" -> {
 
-                e.printStackTrace()
+                    mockResponse.setResponseCode(OK_STATUS_CODE)
+                }
+
+                else -> { }
             }
-
         }
 
         return mockResponse
@@ -55,9 +59,6 @@ class LocalResponseDispatcher : QueueDispatcher() {
     }
 
     private fun readFile(jsonFileName: String): String? {
-
-        /*val inputStream = LocalResponseDispatcher::class.java
-                .getResourceAsStream(jsonFileName)*/
 
         val inputStream = javaClass.classLoader.getResourceAsStream(jsonFileName)
 

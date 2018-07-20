@@ -16,6 +16,11 @@ class NewClockAlarmViewModel @Inject constructor(private val userRepository: Use
 
     // region PUBLIC METHODS
 
+    fun resume() {
+
+
+    }
+
     fun setClockAlarmTime() {
 
 

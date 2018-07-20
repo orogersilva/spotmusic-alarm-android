@@ -13,6 +13,11 @@ class ClockAlarmManagerViewModel : ViewModel() {
 
     // region PUBLIC METHODS
 
+    fun resume() {
+
+
+    }
+
     fun createClockAlarm() {
 
         newClockAlarmEvent.call()
