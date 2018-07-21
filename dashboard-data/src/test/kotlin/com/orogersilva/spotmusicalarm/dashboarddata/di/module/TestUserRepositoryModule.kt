@@ -1,5 +1,6 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.di.module
 
+import android.content.SharedPreferences
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.orogersilva.spotmusicalarm.dashboarddata.BuildConfig
@@ -17,13 +18,16 @@ import okhttp3.mockwebserver.MockWebServer
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 @Module
-open class TestUserRemoteDataSourceModule(private val userLocalDataSourceMock: UserDataContract.Local) {
+open class TestUserRepositoryModule(private val mockWebServer: MockWebServer) {
 
     // region PROVIDERS
 
-    @Provides open fun provideOkHttpClient(): OkHttpClient {
+    @Provides @Singleton open fun provideUserLocalDataSource(): UserDataContract.Local = mock()
+
+    @Provides @Singleton open fun provideOkHttpClient(userLocalDataSource: UserDataContract.Local): OkHttpClient {
 
         val okHttpClient = OkHttpClient.Builder()
                 .addNetworkInterceptor(object : Interceptor {
@@ -31,7 +35,7 @@ open class TestUserRemoteDataSourceModule(private val userLocalDataSourceMock: U
                     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
                     override fun intercept(chain: Interceptor.Chain): Response {
 
-                        val accessToken = userLocalDataSourceMock.getAccessToken()
+                        val accessToken = userLocalDataSource.getAccessToken()
 
                         var request: Request? = null
 
@@ -57,10 +61,7 @@ open class TestUserRemoteDataSourceModule(private val userLocalDataSourceMock: U
         return okHttpClient
     }
 
-    @Provides open fun provideUserApiClient(okHttpClient: OkHttpClient, mockWebServer: MockWebServer): UserApiClient {
-
-        mockWebServer.start()
-        mockWebServer.setDispatcher(LocalResponseDispatcher())
+    @Provides @Singleton fun provideUserApiClient(okHttpClient: OkHttpClient): UserApiClient {
 
         val retrofit = Retrofit.Builder()
                 .baseUrl(mockWebServer.url("/").toString())
@@ -72,7 +73,7 @@ open class TestUserRemoteDataSourceModule(private val userLocalDataSourceMock: U
         return retrofit.create(UserApiClient::class.java)
     }
 
-    @Provides open fun provideUserRemoteDataSource(userApiClient: UserApiClient): UserDataContract.Remote =
+    @Provides @Singleton open fun provideUserRemoteDataSource(userApiClient: UserApiClient): UserDataContract.Remote =
             UserRemoteDataSource(userApiClient)
 
     // endregion

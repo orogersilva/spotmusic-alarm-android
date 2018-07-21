@@ -3,17 +3,13 @@ package com.orogersilva.spotmusicalarm.dashboarddata.remote
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
-import com.orogersilva.spotmusicalarm.dashboarddata.di.component.DaggerTestBaseRemoteDataSourceComponent
-import com.orogersilva.spotmusicalarm.dashboarddata.di.component.DaggerTestUserRemoteDataSourceComponent
-import com.orogersilva.spotmusicalarm.dashboarddata.di.component.TestBaseRemoteDataSourceComponent
-import com.orogersilva.spotmusicalarm.dashboarddata.di.module.TestBaseRemoteDataSourceModule
-import com.orogersilva.spotmusicalarm.dashboarddata.di.module.TestUserRemoteDataSourceModule
+import com.orogersilva.spotmusicalarm.dashboarddata.di.component.DaggerTestComponent
+import com.orogersilva.spotmusicalarm.dashboarddata.di.module.TestUserRepositoryModule
 import com.orogersilva.spotmusicalarm.dashboarddata.entity.UserEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.server.BaseRemoteClientTest
 import com.orogersilva.spotmusicalarm.dashboarddomain.SpotifyRegularErrorException
 import io.reactivex.Single
 import io.reactivex.observers.TestObserver
-import org.junit.Before
 import org.junit.Test
 import javax.inject.Inject
 
@@ -21,7 +17,7 @@ class UserRemoteDataSourceTest : BaseRemoteClientTest() {
 
     // region PROPERTIES
 
-    private lateinit var userLocalDataSourceMock: UserDataContract.Local
+    @Inject lateinit var userLocalDataSourceMock: UserDataContract.Local
 
     @Inject lateinit var userRemoteDataSource: UserDataContract.Remote
 
@@ -89,19 +85,13 @@ class UserRemoteDataSourceTest : BaseRemoteClientTest() {
 
     // region OVERRIDED METHODS
 
-    override fun initializeMocks() {
+    override fun injectDependencies() {
 
-        userLocalDataSourceMock = mock()
-    }
-
-    override fun injectDependencies(testBaseRemoteDataSourceComponent: TestBaseRemoteDataSourceComponent) {
-
-        val userRemoteDataSourceComponent = DaggerTestUserRemoteDataSourceComponent.builder()
-                .testBaseRemoteDataSourceComponent(testBaseRemoteDataSourceComponent)
-                .testUserRemoteDataSourceModule(TestUserRemoteDataSourceModule(userLocalDataSourceMock))
+        val testComponent = DaggerTestComponent.builder()
+                .testUserRepositoryModule(TestUserRepositoryModule(mockWebServer))
                 .build()
 
-        userRemoteDataSourceComponent.inject(this)
+        testComponent.inject(this)
     }
 
     // endregion

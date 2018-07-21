@@ -41,11 +41,17 @@ open class UserRepositoryModule {
 
                         var request: Request? = null
 
-                        accessToken?.let {
+                        if (accessToken == null) {
 
                             request = chain.request()
                                     .newBuilder()
-                                    .addHeader("Authorization", it)
+                                    .build()
+
+                        } else {
+
+                            request = chain.request()
+                                    .newBuilder()
+                                    .addHeader("Authorization", accessToken)
                                     .build()
                         }
 

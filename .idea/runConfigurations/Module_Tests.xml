@@ -19,6 +19,7 @@
     <envs />
     <patterns />
     <method>
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Assemble unit test sources" run_configuration_type="GradleRunConfiguration" />
       <option name="RunConfigurationTask" enabled="true" run_configuration_name="dashboarddata in dashboard-data" run_configuration_type="AndroidJUnit" />
       <option name="RunConfigurationTask" enabled="true" run_configuration_name="featuredashboard in feature-dashboard" run_configuration_type="AndroidJUnit" />
     </method>
