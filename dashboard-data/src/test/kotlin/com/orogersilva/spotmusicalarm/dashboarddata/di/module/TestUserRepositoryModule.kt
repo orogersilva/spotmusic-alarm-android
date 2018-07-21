@@ -49,7 +49,7 @@ open class TestUserRepositoryModule(private val mockWebServer: MockWebServer) {
 
                             request = chain.request()
                                     .newBuilder()
-                                    .addHeader("Authorization", accessToken)
+                                    .addHeader("Authorization", "Bearer " + accessToken)
                                     .build()
                         }
 

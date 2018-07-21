@@ -5,7 +5,6 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import com.orogersilva.spotmusicalarm.base.SpotmusicAlarmApplication
 import com.orogersilva.spotmusicalarm.base.shared.app
 import com.orogersilva.spotmusicalarm.dashboarddata.di.module.UserRepositoryModule
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.ClockAlarmManagerViewModel
@@ -84,7 +83,7 @@ class ClockAlarmManagerActivity : BaseActivity() {
         clockAlarmManagerViewModel.apply {
 
             newClockAlarmEvent.observe(this@ClockAlarmManagerActivity, Observer<Void> {
-                redirectToCreateClockAlarmScreen()
+                redirectToNewClockAlarmScreen()
             })
         }
 
@@ -92,7 +91,7 @@ class ClockAlarmManagerActivity : BaseActivity() {
         clockAlarmManagerBinding.clockAlarmManagerViewModel = clockAlarmManagerViewModel
     }
 
-    private fun redirectToCreateClockAlarmScreen() {
+    private fun redirectToNewClockAlarmScreen() {
 
         val newClockAlarmIntent = Intent(this, NewClockAlarmActivity::class.java)
 

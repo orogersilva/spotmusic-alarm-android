@@ -51,7 +51,7 @@ open class UserRepositoryModule {
 
                             request = chain.request()
                                     .newBuilder()
-                                    .addHeader("Authorization", accessToken)
+                                    .addHeader("Authorization", "Bearer " + accessToken)
                                     .build()
                         }
 

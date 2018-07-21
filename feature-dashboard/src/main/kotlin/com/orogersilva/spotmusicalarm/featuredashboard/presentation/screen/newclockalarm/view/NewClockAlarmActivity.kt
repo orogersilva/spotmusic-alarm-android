@@ -14,6 +14,7 @@ import com.orogersilva.spotmusicalarm.featuredashboard.di.component.NewClockAlar
 import com.orogersilva.spotmusicalarm.featuredashboard.di.module.NewClockAlarmViewModelModule
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.BaseActivity
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.newclockalarm.NewClockAlarmViewModel
+import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.playlist.view.PlaylistActivity
 import com.orogersilva.spotmusicalarm.spotifyapi.SpotifyAdapterHelper
 import com.orogersilva.spotmusicalarm.spotifyapi.di.module.SpotifyModule
 import kotlinx.android.synthetic.main.activity_new_clock_alarm.*
@@ -77,6 +78,8 @@ class NewClockAlarmActivity : BaseActivity() {
             accessToken?.let {
 
                 newClockAlarmViewModel.saveAccessToken(it)
+
+                redirectToPlaylistScreen()
             }
         }
     }
@@ -122,6 +125,13 @@ class NewClockAlarmActivity : BaseActivity() {
 
         newClockAlarmBinding.setLifecycleOwner(this)
         newClockAlarmBinding.newClockAlarmViewModel = newClockAlarmViewModel
+    }
+
+    private fun redirectToPlaylistScreen() {
+
+        val playlistIntent = Intent(this, PlaylistActivity::class.java)
+
+        startActivity(playlistIntent)
     }
 
     // endregion

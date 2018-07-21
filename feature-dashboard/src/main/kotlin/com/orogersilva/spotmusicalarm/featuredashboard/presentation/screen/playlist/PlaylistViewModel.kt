@@ -43,6 +43,20 @@ class PlaylistViewModel @Inject constructor(private val playlistRepository: Play
 
         userRepository.getMe()
                 .flatMap { user -> playlistRepository.getPagedUserPlaylists(user.id) }
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.ui())
+                .subscribe({ user ->
+
+                    var i = 1
+
+                    i++
+
+                }, {
+
+                    var i = 1
+
+                    i++
+                })
     }
 
     // endregion
