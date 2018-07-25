@@ -7,13 +7,13 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.orogersilva.spotmusicalarm.base.shared.app
 import com.orogersilva.spotmusicalarm.dashboarddata.di.module.UserRepositoryModule
-import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.ClockAlarmManagerViewModel
 import com.orogersilva.spotmusicalarm.featuredashboard.R
 import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ActivityClockAlarmManagerBinding
 import com.orogersilva.spotmusicalarm.featuredashboard.di.component.ClockAlarmManagerViewComponent
 import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerDashboardComponent
 import com.orogersilva.spotmusicalarm.featuredashboard.di.module.ClockAlarmManagerViewModelModule
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.BaseActivity
+import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.ClockAlarmManagerViewModel
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.adapter.ClockAlarmManagerListAdapter
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.newclockalarm.view.NewClockAlarmActivity
 import kotlinx.android.synthetic.main.activity_clock_alarm_manager.*

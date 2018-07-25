@@ -1,8 +1,8 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.mapper
 
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.PagingDTO
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.PlaylistEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.PlaylistDTO
+import com.orogersilva.spotmusicalarm.dashboarddata.entity.PlaylistEntity
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Paging
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Playlist
 

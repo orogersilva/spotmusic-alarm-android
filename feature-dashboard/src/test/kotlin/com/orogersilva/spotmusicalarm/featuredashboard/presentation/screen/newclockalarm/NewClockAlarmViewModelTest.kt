@@ -2,9 +2,7 @@ package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.newc
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import com.orogersilva.spotmusicalarm.base.scheduler.SchedulerProvider
 import com.orogersilva.spotmusicalarm.dashboarddomain.repository.UserRepository
-import com.orogersilva.spotmusicalarm.testutils.scheduler.impl.TestSchedulerProvider
 import org.junit.Before
 import org.junit.Test
 

@@ -1,9 +1,8 @@
 package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.newclockalarm
 
-import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.orogersilva.spotmusicalarm.dashboarddomain.repository.UserRepository
 import com.orogersilva.spotmusicalarm.dashboarddata.shared.SingleLiveEvent
+import com.orogersilva.spotmusicalarm.dashboarddomain.repository.UserRepository
 import javax.inject.Inject
 
 class NewClockAlarmViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {

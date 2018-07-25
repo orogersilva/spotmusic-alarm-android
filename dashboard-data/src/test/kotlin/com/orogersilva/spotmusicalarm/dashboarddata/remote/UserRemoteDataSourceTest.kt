@@ -1,6 +1,5 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.remote
 
-import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.di.component.DaggerTestUserRepositoryComponent

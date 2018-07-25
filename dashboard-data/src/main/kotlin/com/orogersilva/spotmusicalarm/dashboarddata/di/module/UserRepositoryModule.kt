@@ -1,7 +1,6 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.di.module
 
 import android.content.SharedPreferences
-import com.orogersilva.spotmusicalarm.base.di.scope.ActivityScope
 import com.orogersilva.spotmusicalarm.dashboarddata.BuildConfig
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.local.UserLocalDataSource

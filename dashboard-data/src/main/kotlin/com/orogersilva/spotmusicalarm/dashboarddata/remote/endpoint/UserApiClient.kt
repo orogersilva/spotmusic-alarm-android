@@ -1,6 +1,5 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint
 
-import com.orogersilva.spotmusicalarm.dashboarddata.dto.UserDTO
 import io.reactivex.Single
 import okhttp3.ResponseBody
 import retrofit2.Response

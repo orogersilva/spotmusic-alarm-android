@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.ClockAlarm
 import com.orogersilva.spotmusicalarm.featuredashboard.R
 import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ItemClockAlarmBinding
-import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.ClockAlarmManagerViewModel
-import javax.inject.Inject
 
 class ClockAlarmManagerListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

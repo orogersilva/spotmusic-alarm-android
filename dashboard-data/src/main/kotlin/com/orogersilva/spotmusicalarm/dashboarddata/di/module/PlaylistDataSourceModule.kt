@@ -8,7 +8,6 @@ import com.orogersilva.spotmusicalarm.dashboarddata.factory.PlaylistDataSourceFa
 import com.orogersilva.spotmusicalarm.dashboarddata.pagination.PlaylistPaginationDataSource
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.PlaylistRemoteDataSource
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.PlaylistApiClient
-import com.orogersilva.spotmusicalarm.dashboarddomain.repository.PlaylistRepository
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

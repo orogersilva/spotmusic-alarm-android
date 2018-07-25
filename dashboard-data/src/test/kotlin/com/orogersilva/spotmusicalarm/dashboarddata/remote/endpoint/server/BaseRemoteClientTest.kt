@@ -3,7 +3,6 @@ package com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.server
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
-import javax.inject.Inject
 
 abstract class BaseRemoteClientTest {
 

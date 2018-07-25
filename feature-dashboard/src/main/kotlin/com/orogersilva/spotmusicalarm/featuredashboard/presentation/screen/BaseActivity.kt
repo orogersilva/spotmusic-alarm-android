@@ -5,7 +5,6 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LifecycleRegistry
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.orogersilva.spotmusicalarm.base.SpotmusicAlarmApplication
 
 abstract class BaseActivity : AppCompatActivity(), LifecycleOwner {
 

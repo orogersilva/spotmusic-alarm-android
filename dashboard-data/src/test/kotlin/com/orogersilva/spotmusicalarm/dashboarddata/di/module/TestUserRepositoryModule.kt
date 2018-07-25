@@ -1,13 +1,9 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.di.module
 
-import android.content.SharedPreferences
 import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
-import com.orogersilva.spotmusicalarm.dashboarddata.BuildConfig
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.UserRemoteDataSource
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.UserApiClient
-import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.server.LocalResponseDispatcher
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor

@@ -1,6 +1,5 @@
 package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager
 
-import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.orogersilva.spotmusicalarm.dashboarddata.shared.SingleLiveEvent
 

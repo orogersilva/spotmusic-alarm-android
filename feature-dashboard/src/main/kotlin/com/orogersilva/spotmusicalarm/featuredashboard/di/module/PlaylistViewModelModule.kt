@@ -2,10 +2,7 @@ package com.orogersilva.spotmusicalarm.featuredashboard.di.module
 
 import android.arch.lifecycle.ViewModelProviders
 import com.orogersilva.spotmusicalarm.base.di.scope.ActivityScope
-import com.orogersilva.spotmusicalarm.base.scheduler.SchedulerProvider
 import com.orogersilva.spotmusicalarm.dashboarddata.factory.PlaylistDataSourceFactory
-import com.orogersilva.spotmusicalarm.dashboarddomain.repository.PlaylistRepository
-import com.orogersilva.spotmusicalarm.dashboarddomain.repository.UserRepository
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.playlist.PlaylistViewModel
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.playlist.PlaylistViewModelFactory
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.playlist.adapter.PlaylistPagedAdapter

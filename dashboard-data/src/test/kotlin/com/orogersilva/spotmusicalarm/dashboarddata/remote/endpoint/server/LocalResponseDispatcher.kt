@@ -7,8 +7,6 @@ import com.orogersilva.spotmusicalarm.testutils.shared.FileUtils
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.QueueDispatcher
 import okhttp3.mockwebserver.RecordedRequest
-import java.io.IOException
-import java.nio.charset.Charset
 import java.util.*
 
 class LocalResponseDispatcher : QueueDispatcher() {

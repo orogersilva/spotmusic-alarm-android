@@ -66,29 +66,6 @@ class PlaylistRemoteDataSourceTest : BaseRemoteClientTest() {
         val LIMIT = 10
         val OFFSET = 14
 
-        /*val ID_1 = "37i9dQZF1DXbOVU4mpMJjh"
-        val ID_2 = "0HM6i5SUouetTNY9dslhtC"
-        val ID_3 = "4JFZ4dcs1AjmCM6u3QwK3q"
-
-        val NAME_1 = "Deixa o Jazz Rolar"
-        val NAME_2 = "Donkey Kong Country"
-        val NAME_3 = "O Som Das Quadras"
-
-        val playlistEntity1 = PlaylistEntity(ID_1, NAME_1)
-        val playlistEntity2 = PlaylistEntity(ID_2, NAME_2)
-        val playlistEntity3 = PlaylistEntity(ID_3, NAME_3)
-
-        val playlistEntities = mutableListOf<PlaylistEntity>()
-
-        playlistEntities.add(playlistEntity1)
-        playlistEntities.add(playlistEntity2)
-        playlistEntities.add(playlistEntity3)
-
-        val PAGE_NEXT_LINK = "https://api.spotify.com/v1/users/12153689768/playlists?offset=3&limit=3"
-        val PAGES_TOTAL = 14
-
-        val expectedPaging = Paging(playlistEntities, LIMIT, PAGE_NEXT_LINK, OFFSET, null, PAGES_TOTAL)*/
-
         val expectedPaging = DataUtils.createPagedPlaylistEntitiesTestData(FileUtils.readFile(DATA_SET_FILE_NAME))
 
         whenever(userLocalDataSourceMock.getAccessToken()).thenReturn(ACCESS_TOKEN)
