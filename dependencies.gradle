@@ -32,6 +32,7 @@ ext.versions = [
         'mockitoKotlinVersion': '2.0.0-RC1',
         'mockWebServerVersion': '3.11.0',
         'okHttpVersion': '3.11.0',
+        'pagingVersion': '1.0.0',
         'retrofitVersion': '2.4.0',
         'roomVersion': '1.1.1',
         'rxAndroidVersion': '2.0.2',
@@ -44,6 +45,7 @@ ext.deps = [
         'android': [
                 'arch': [
                         'extensions': "android.arch.lifecycle:extensions:${versions.lifecycleVersion}",
+                        'paging': "android.arch.paging:runtime:${versions.pagingVersion}",
                         'room': [
                                 'compiler': "android.arch.persistence.room:compiler:${versions.roomVersion}",
                                 'runtime': "android.arch.persistence.room:runtime:${versions.roomVersion}",

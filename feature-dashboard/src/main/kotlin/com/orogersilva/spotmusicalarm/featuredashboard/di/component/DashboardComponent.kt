@@ -1,7 +1,7 @@
 package com.orogersilva.spotmusicalarm.featuredashboard.di.component
 
 import com.orogersilva.spotmusicalarm.base.di.component.ApplicationComponent
-import com.orogersilva.spotmusicalarm.dashboarddata.di.module.PlaylistRepositoryModule
+import com.orogersilva.spotmusicalarm.dashboarddata.di.module.PlaylistDataSourceModule
 import com.orogersilva.spotmusicalarm.dashboarddata.di.module.UserRepositoryModule
 import com.orogersilva.spotmusicalarm.featuredashboard.di.module.ClockAlarmManagerViewModelModule
 import com.orogersilva.spotmusicalarm.featuredashboard.di.module.NewClockAlarmViewModelModule
@@ -26,7 +26,7 @@ interface DashboardComponent {
     fun plusNewClockAlarmViewComponent(newClockAlarmViewModelModule: NewClockAlarmViewModelModule,
                                        spotifyModule: SpotifyModule): NewClockAlarmViewComponent
 
-    fun plusPlaylistViewComponent(playlistRepositoryModule: PlaylistRepositoryModule,
+    fun plusPlaylistViewComponent(playlistDataSourceModule: PlaylistDataSourceModule,
                                   playlistViewModelModule: PlaylistViewModelModule): PlaylistViewComponent
 
     // endregion

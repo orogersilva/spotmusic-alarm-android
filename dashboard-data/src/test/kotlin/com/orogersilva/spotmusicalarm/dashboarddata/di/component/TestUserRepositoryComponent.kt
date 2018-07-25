@@ -14,7 +14,7 @@ import javax.inject.Singleton
             TestUserRepositoryModule::class
         ]
 )
-interface TestComponent {
+interface TestUserRepositoryComponent {
 
     // region INJECTORS
 

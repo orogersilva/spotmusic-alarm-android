@@ -1,7 +1,9 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.mapper
 
+import com.orogersilva.spotmusicalarm.dashboarddata.dto.PagingDTO
 import com.orogersilva.spotmusicalarm.dashboarddata.entity.PlaylistEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.PlaylistDTO
+import com.orogersilva.spotmusicalarm.dashboarddomain.model.Paging
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Playlist
 
 object PlaylistMapper {
@@ -29,6 +31,14 @@ object PlaylistMapper {
 
         return playlists
     }
+
+    fun transformPagedPlaylistDTOsToPagedPlaylistEntities(pagedPlaylistDTOs: PagingDTO<PlaylistDTO>): Paging<PlaylistEntity> =
+            Paging(transformPlaylistDTOsToPlaylistEntities(pagedPlaylistDTOs.items),
+                pagedPlaylistDTOs.limit,
+                pagedPlaylistDTOs.next,
+                pagedPlaylistDTOs.offset,
+                pagedPlaylistDTOs.previous,
+                pagedPlaylistDTOs.total)
 
     // endregion
 

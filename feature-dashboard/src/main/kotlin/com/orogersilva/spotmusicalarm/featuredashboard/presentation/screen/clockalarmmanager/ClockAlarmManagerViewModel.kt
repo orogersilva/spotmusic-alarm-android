@@ -1,13 +1,14 @@
 package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.orogersilva.spotmusicalarm.featuredashboard.shared.SingleLiveEvent
+import com.orogersilva.spotmusicalarm.dashboarddata.shared.SingleLiveEvent
 
 class ClockAlarmManagerViewModel : ViewModel() {
 
     // region PROPERTIES
 
-    val newClockAlarmEvent = SingleLiveEvent<Void>()
+    val newClockAlarmLiveData = SingleLiveEvent<Void>()
 
     // endregion
 
@@ -20,7 +21,7 @@ class ClockAlarmManagerViewModel : ViewModel() {
 
     fun createClockAlarm() {
 
-        newClockAlarmEvent.call()
+        newClockAlarmLiveData.call()
     }
 
     // endregion

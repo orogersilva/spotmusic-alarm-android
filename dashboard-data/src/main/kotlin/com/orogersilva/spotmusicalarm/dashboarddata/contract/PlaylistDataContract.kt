@@ -1,6 +1,7 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.contract
 
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.PagedPlaylistEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.entity.PlaylistEntity
+import com.orogersilva.spotmusicalarm.dashboarddomain.model.Paging
 import io.reactivex.Single
 
 interface PlaylistDataContract {
@@ -11,7 +12,7 @@ interface PlaylistDataContract {
 
         // region METHODS
 
-        fun getPagedUserPlaylists(userId: String): Single<PagedPlaylistEntity>
+        fun getPagedPlaylists(limit: Int, offset: Int): Single<Paging<PlaylistEntity>>
 
         // endregion
     }

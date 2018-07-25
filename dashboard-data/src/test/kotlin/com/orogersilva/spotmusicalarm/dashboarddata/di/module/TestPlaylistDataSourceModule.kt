@@ -1,13 +1,10 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.di.module
 
-import android.content.SharedPreferences
 import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
-import com.orogersilva.spotmusicalarm.dashboarddata.BuildConfig
+import com.orogersilva.spotmusicalarm.dashboarddata.contract.PlaylistDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
-import com.orogersilva.spotmusicalarm.dashboarddata.remote.UserRemoteDataSource
-import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.UserApiClient
-import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.server.LocalResponseDispatcher
+import com.orogersilva.spotmusicalarm.dashboarddata.remote.PlaylistRemoteDataSource
+import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.PlaylistApiClient
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -21,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-open class TestUserRepositoryModule(private val mockWebServer: MockWebServer) {
+open class TestPlaylistDataSourceModule(private val mockWebServer: MockWebServer) {
 
     // region PROVIDERS
 
@@ -61,7 +58,7 @@ open class TestUserRepositoryModule(private val mockWebServer: MockWebServer) {
         return okHttpClient
     }
 
-    @Provides @Singleton fun provideUserApiClient(okHttpClient: OkHttpClient): UserApiClient {
+    @Provides @Singleton open fun providePlaylistApiClient(okHttpClient: OkHttpClient): PlaylistApiClient {
 
         val retrofit = Retrofit.Builder()
                 .baseUrl(mockWebServer.url("/").toString())
@@ -70,11 +67,11 @@ open class TestUserRepositoryModule(private val mockWebServer: MockWebServer) {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
-        return retrofit.create(UserApiClient::class.java)
+        return retrofit.create(PlaylistApiClient::class.java)
     }
 
-    @Provides @Singleton open fun provideUserRemoteDataSource(userApiClient: UserApiClient): UserDataContract.Remote =
-            UserRemoteDataSource(userApiClient)
+    @Provides @Singleton open fun providePlaylistRemoteDataSource(playlistApiClient: PlaylistApiClient): PlaylistDataContract.Remote =
+            PlaylistRemoteDataSource(playlistApiClient)
 
     // endregion
 }

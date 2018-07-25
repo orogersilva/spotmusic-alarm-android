@@ -1,25 +1,23 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.di.module
 
 import com.orogersilva.spotmusicalarm.base.di.scope.ActivityScope
+import com.orogersilva.spotmusicalarm.base.scheduler.SchedulerProvider
 import com.orogersilva.spotmusicalarm.dashboarddata.BuildConfig
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.PlaylistDataContract
-import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
+import com.orogersilva.spotmusicalarm.dashboarddata.factory.PlaylistDataSourceFactory
+import com.orogersilva.spotmusicalarm.dashboarddata.pagination.PlaylistPaginationDataSource
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.PlaylistRemoteDataSource
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.PlaylistApiClient
-import com.orogersilva.spotmusicalarm.dashboarddata.repository.PlaylistDataRepository
 import com.orogersilva.spotmusicalarm.dashboarddomain.repository.PlaylistRepository
 import dagger.Module
 import dagger.Provides
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-open class PlaylistRepositoryModule {
+open class PlaylistDataSourceModule {
 
     // region PROVIDERS
 
@@ -38,8 +36,12 @@ open class PlaylistRepositoryModule {
     @Provides @ActivityScope open fun providePlaylistRemoteDataSource(playlistApiClient: PlaylistApiClient): PlaylistDataContract.Remote =
             PlaylistRemoteDataSource(playlistApiClient)
 
-    @Provides @ActivityScope open fun providePlaylistRepository(playlistRemoteDataSource: PlaylistDataContract.Remote): PlaylistRepository =
-            PlaylistDataRepository(playlistRemoteDataSource)
+    @Provides @ActivityScope open fun providePlaylistPaginationDataSource(playlistRemoteDataSource: PlaylistRemoteDataSource,
+                                                                          schedulerProvider: SchedulerProvider): PlaylistPaginationDataSource =
+            PlaylistPaginationDataSource(playlistRemoteDataSource, schedulerProvider)
+
+    @Provides @ActivityScope open fun providePlaylistDataSourceFactory(playlistPaginationDataSource: PlaylistPaginationDataSource): PlaylistDataSourceFactory =
+            PlaylistDataSourceFactory(playlistPaginationDataSource)
 
     // endregion
 }

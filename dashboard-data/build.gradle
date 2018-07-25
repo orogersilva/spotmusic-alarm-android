@@ -39,6 +39,7 @@ dependencies {
 
     implementation deps.kotlin.stdlib.jdk
 
+    implementation deps.android.arch.paging
     kapt deps.android.arch.room.compiler
     implementation deps.android.arch.room.runtime
     implementation deps.android.arch.room.rxjava
@@ -52,6 +53,7 @@ dependencies {
     implementation deps.rx.java
 
     kaptTest deps.dagger.compiler
+    testImplementation project(':test-utils')
     testImplementation deps.kotlin.test.jdk
     testImplementation deps.mockitokotlin.core
     testImplementation deps.okhttp.test.mockwebserver

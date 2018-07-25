@@ -8,5 +8,6 @@
     <color name="almost_black">#2B2929</color>
     <color name="black">#000000</color>
     <color name="gray">#CFCFCF</color>
+    <color name="white">#FFFFFF</color>
 
 </resources>

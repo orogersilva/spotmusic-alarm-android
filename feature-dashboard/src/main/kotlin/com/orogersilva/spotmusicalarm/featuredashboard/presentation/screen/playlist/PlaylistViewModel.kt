@@ -1,20 +1,25 @@
 package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.playlist
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.Transformations
 import android.arch.lifecycle.ViewModel
-import com.orogersilva.spotmusicalarm.base.scheduler.SchedulerProvider
-import com.orogersilva.spotmusicalarm.dashboarddomain.repository.PlaylistRepository
-import com.orogersilva.spotmusicalarm.dashboarddomain.repository.UserRepository
-import com.orogersilva.spotmusicalarm.featuredashboard.shared.SingleLiveEvent
+import android.arch.paging.LivePagedListBuilder
+import android.arch.paging.PagedList
+import com.orogersilva.spotmusicalarm.dashboarddata.factory.PlaylistDataSourceFactory
+import com.orogersilva.spotmusicalarm.dashboarddata.shared.SingleLiveEvent
+import com.orogersilva.spotmusicalarm.dashboarddomain.enums.NetworkState
+import com.orogersilva.spotmusicalarm.dashboarddomain.model.Playlist
 import javax.inject.Inject
 
-class PlaylistViewModel @Inject constructor(private val playlistRepository: PlaylistRepository,
-                                            private val userRepository: UserRepository,
-                                            private val schedulerProvider: SchedulerProvider) : ViewModel() {
+class PlaylistViewModel @Inject constructor(playlistDataSourceFactory: PlaylistDataSourceFactory) : ViewModel() {
 
     // region PROPERTIES
 
-    val selectedPlaylistEvent = SingleLiveEvent<String>()
-    val isShowingPlaylistsLoadingIndicator = SingleLiveEvent<Boolean>()
+    val initialLoadingLiveData: LiveData<NetworkState>
+    val networkStateLiveData: LiveData<NetworkState>
+    val playlistPagedListLiveData: LiveData<PagedList<Playlist>>
+
+    val selectedPlaylistSingleEvent = SingleLiveEvent<String>()
 
     // endregion
 
@@ -22,7 +27,22 @@ class PlaylistViewModel @Inject constructor(private val playlistRepository: Play
 
     init {
 
-        isShowingPlaylistsLoadingIndicator.value = true
+        initialLoadingLiveData = Transformations.switchMap(playlistDataSourceFactory.playlistPaginationDataSourceLiveData) {
+            playlistPaginationDataSource -> playlistPaginationDataSource.initialLoadingLiveData
+        }
+
+        networkStateLiveData = Transformations.switchMap(playlistDataSourceFactory.playlistPaginationDataSourceLiveData) {
+            playlistPaginationDataSource -> playlistPaginationDataSource.networkStateLiveData
+        }
+
+        val playlistPagingConfig = PagedList.Config.Builder()
+                .setEnablePlaceholders(false)
+                .setPageSize(10)
+                .setInitialLoadSizeHint(20)
+                .build()
+
+        playlistPagedListLiveData = LivePagedListBuilder(playlistDataSourceFactory, playlistPagingConfig)
+                .build()
     }
 
     // endregion
@@ -30,33 +50,11 @@ class PlaylistViewModel @Inject constructor(private val playlistRepository: Play
     // region PUBLIC METHODS
 
     fun resume() {
-
-        loadPlaylists()
     }
 
     fun selectPlaylist(id: String) {
 
-        selectedPlaylistEvent.value = id
-    }
-
-    fun loadPlaylists() {
-
-        userRepository.getMe()
-                .flatMap { user -> playlistRepository.getPagedUserPlaylists(user.id) }
-                .subscribeOn(schedulerProvider.io())
-                .observeOn(schedulerProvider.ui())
-                .subscribe({ user ->
-
-                    var i = 1
-
-                    i++
-
-                }, {
-
-                    var i = 1
-
-                    i++
-                })
+        selectedPlaylistSingleEvent.value = id
     }
 
     // endregion

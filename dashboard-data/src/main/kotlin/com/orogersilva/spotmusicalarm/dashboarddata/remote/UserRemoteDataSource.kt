@@ -16,9 +16,8 @@ class UserRemoteDataSource @Inject constructor(private val userApiClient: UserAp
 
     // region OVERRIDED METHODS
 
-    override fun getMe(): Single<UserEntity> {
-
-        return userApiClient.getMe()
+    override fun getMe(): Single<UserEntity> =
+            userApiClient.getMe()
                 .flatMap { userHttpResponse ->
 
                     when (userHttpResponse.code()) {
@@ -51,7 +50,6 @@ class UserRemoteDataSource @Inject constructor(private val userApiClient: UserAp
                         }
                     }
                 }
-    }
 
     // endregion
 }

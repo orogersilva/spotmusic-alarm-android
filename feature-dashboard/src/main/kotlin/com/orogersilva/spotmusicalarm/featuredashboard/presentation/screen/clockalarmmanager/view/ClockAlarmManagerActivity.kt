@@ -82,7 +82,7 @@ class ClockAlarmManagerActivity : BaseActivity() {
 
         clockAlarmManagerViewModel.apply {
 
-            newClockAlarmEvent.observe(this@ClockAlarmManagerActivity, Observer<Void> {
+            newClockAlarmLiveData.observe(this@ClockAlarmManagerActivity, Observer<Void> {
                 redirectToNewClockAlarmScreen()
             })
         }

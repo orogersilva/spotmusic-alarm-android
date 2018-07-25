@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import com.orogersilva.spotmusicalarm.base.SpotmusicAlarmApplication
 import com.orogersilva.spotmusicalarm.base.shared.app
 import com.orogersilva.spotmusicalarm.dashboarddata.di.module.UserRepositoryModule
 import com.orogersilva.spotmusicalarm.featuredashboard.R
@@ -117,7 +116,7 @@ class NewClockAlarmActivity : BaseActivity() {
 
         newClockAlarmViewModel.apply {
 
-            setClockAlarmMusicEvent.observe(this@NewClockAlarmActivity, Observer<Void> {
+            setClockAlarmMusicLiveData.observe(this@NewClockAlarmActivity, Observer<Void> {
 
                 spotifyAdapterHelper.openLoginScreen(this@NewClockAlarmActivity, SPOTIFY_AUTH_REQUEST_CODE)
             })

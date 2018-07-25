@@ -1,4 +1,4 @@
-package com.orogersilva.spotmusicalarm.featuredashboard.shared
+package com.orogersilva.spotmusicalarm.dashboarddata.shared
 
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData

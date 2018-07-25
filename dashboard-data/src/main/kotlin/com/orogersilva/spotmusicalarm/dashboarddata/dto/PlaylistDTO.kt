@@ -9,7 +9,7 @@ data class PlaylistDTO(@SerializedName("collaborative") val isCollaborative: Boo
                        @SerializedName("name") val name: String,
                        @SerializedName("owner") val owner: User,
                        @SerializedName("public") val isPublic: Boolean?,
-                       @SerializedName("tracks") val tracks: List<Track>,
+                       @SerializedName("track") val track: Track,
                        @SerializedName("type") val type: String,
                        @SerializedName("uri") val uri: String) {
 
@@ -19,11 +19,14 @@ data class PlaylistDTO(@SerializedName("collaborative") val isCollaborative: Boo
                       @SerializedName("width") val width: Int?,
                       @SerializedName("height") val height: Int?)
 
-    inner class Track(@SerializedName("id") val id: String,
+    /*inner class Track(@SerializedName("id") val id: String,
                       @SerializedName("name") val name: String,
                       @SerializedName("preview_url") val previewUrl: String,
                       @SerializedName("type") val type: String,
-                      @SerializedName("uri") val uri: String)
+                      @SerializedName("uri") val uri: String)*/
+
+    inner class Track(@SerializedName("href") val href: String,
+                      @SerializedName("total") val total: Int)
 
     inner class User(@SerializedName("display_name") val displayName: String?,
                      @SerializedName("id") val id: String,

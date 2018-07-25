@@ -3,7 +3,7 @@ package com.orogersilva.spotmusicalarm.dashboarddata.remote
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
-import com.orogersilva.spotmusicalarm.dashboarddata.di.component.DaggerTestComponent
+import com.orogersilva.spotmusicalarm.dashboarddata.di.component.DaggerTestUserRepositoryComponent
 import com.orogersilva.spotmusicalarm.dashboarddata.di.module.TestUserRepositoryModule
 import com.orogersilva.spotmusicalarm.dashboarddata.entity.UserEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.server.BaseRemoteClientTest
@@ -87,7 +87,7 @@ class UserRemoteDataSourceTest : BaseRemoteClientTest() {
 
     override fun injectDependencies() {
 
-        val testComponent = DaggerTestComponent.builder()
+        val testComponent = DaggerTestUserRepositoryComponent.builder()
                 .testUserRepositoryModule(TestUserRepositoryModule(mockWebServer))
                 .build()
 

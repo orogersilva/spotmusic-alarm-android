@@ -1,16 +1,16 @@
 package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.newclockalarm
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.orogersilva.spotmusicalarm.base.scheduler.SchedulerProvider
 import com.orogersilva.spotmusicalarm.dashboarddomain.repository.UserRepository
-import com.orogersilva.spotmusicalarm.featuredashboard.shared.SingleLiveEvent
+import com.orogersilva.spotmusicalarm.dashboarddata.shared.SingleLiveEvent
 import javax.inject.Inject
 
 class NewClockAlarmViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
 
     // region PROPERTIES
 
-    val setClockAlarmMusicEvent = SingleLiveEvent<Void>()
+    val setClockAlarmMusicLiveData = SingleLiveEvent<Void>()
 
     // endregion
 
@@ -28,7 +28,7 @@ class NewClockAlarmViewModel @Inject constructor(private val userRepository: Use
 
     fun setClockAlarmMusic() {
 
-        setClockAlarmMusicEvent.call()
+        setClockAlarmMusicLiveData.call()
     }
 
     fun saveClockAlarmSettings() {

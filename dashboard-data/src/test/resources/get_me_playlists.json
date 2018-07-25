@@ -1,0 +1,115 @@
+{
+  "href": "https://api.spotify.com/v1/users/12153689768/playlists?offset=0&limit=3",
+  "items": [
+    {
+      "collaborative": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DXbOVU4mpMJjh"
+      },
+      "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DXbOVU4mpMJjh",
+      "id": "37i9dQZF1DXbOVU4mpMJjh",
+      "images": [
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ffa7074575ed8018f24f056992c4870716fd6501",
+          "width": 300
+        }
+      ],
+      "name": "Deixa o Jazz Rolar",
+      "owner": {
+        "display_name": "Spotify",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/spotify"
+        },
+        "href": "https://api.spotify.com/v1/users/spotify",
+        "id": "spotify",
+        "type": "user",
+        "uri": "spotify:user:spotify"
+      },
+      "primary_color": null,
+      "public": false,
+      "snapshot_id": "MTUzMjQ4Njc1NiwwMDAwMDAxOTAwMDAwMTVmNzg4NmU2MWEwMDAwMDE2MmYyYjBlOGQ4",
+      "tracks": {
+        "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DXbOVU4mpMJjh/tracks",
+        "total": 52
+      },
+      "type": "playlist",
+      "uri": "spotify:user:spotify:playlist:37i9dQZF1DXbOVU4mpMJjh"
+    },
+    {
+      "collaborative": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/ddelapp/playlist/0HM6i5SUouetTNY9dslhtC"
+      },
+      "href": "https://api.spotify.com/v1/users/ddelapp/playlists/0HM6i5SUouetTNY9dslhtC",
+      "id": "0HM6i5SUouetTNY9dslhtC",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/536de2f53ecb1a188d09034b20199a2a97c9b361",
+          "width": 640
+        }
+      ],
+      "name": "Donkey Kong Country",
+      "owner": {
+        "display_name": null,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/ddelapp"
+        },
+        "href": "https://api.spotify.com/v1/users/ddelapp",
+        "id": "ddelapp",
+        "type": "user",
+        "uri": "spotify:user:ddelapp"
+      },
+      "primary_color": null,
+      "public": false,
+      "snapshot_id": "NSw1ODlkZDVmMjdlMzk3Y2FjNDFhNDIzMjQxMGIxZWNkOGMyOTg0NzI5",
+      "tracks": {
+        "href": "https://api.spotify.com/v1/users/ddelapp/playlists/0HM6i5SUouetTNY9dslhtC/tracks",
+        "total": 84
+      },
+      "type": "playlist",
+      "uri": "spotify:user:ddelapp:playlist:0HM6i5SUouetTNY9dslhtC"
+    },
+    {
+      "collaborative": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/espn_brasil/playlist/4JFZ4dcs1AjmCM6u3QwK3q"
+      },
+      "href": "https://api.spotify.com/v1/users/espn_brasil/playlists/4JFZ4dcs1AjmCM6u3QwK3q",
+      "id": "4JFZ4dcs1AjmCM6u3QwK3q",
+      "images": [
+        {
+          "height": null,
+          "url": "https://pl.scdn.co/images/pl/default/6b117269a3a09ff5c631ce6644ad37dae0b5d9ea",
+          "width": null
+        }
+      ],
+      "name": "O Som Das Quadras",
+      "owner": {
+        "display_name": "ESPN Brasil",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/espn_brasil"
+        },
+        "href": "https://api.spotify.com/v1/users/espn_brasil",
+        "id": "espn_brasil",
+        "type": "user",
+        "uri": "spotify:user:espn_brasil"
+      },
+      "primary_color": null,
+      "public": false,
+      "snapshot_id": "MzYsNjk0ODUwYmRmOGYyNDJlMWFkMjYwNGFmZjlkYjE3NmE1NmQ4YjhmMg==",
+      "tracks": {
+        "href": "https://api.spotify.com/v1/users/espn_brasil/playlists/4JFZ4dcs1AjmCM6u3QwK3q/tracks",
+        "total": 27
+      },
+      "type": "playlist",
+      "uri": "spotify:user:espn_brasil:playlist:4JFZ4dcs1AjmCM6u3QwK3q"
+    }
+  ],
+  "limit": 3,
+  "next": "https://api.spotify.com/v1/users/12153689768/playlists?offset=3&limit=3",
+  "offset": 0,
+  "previous": null,
+  "total": 14
+}

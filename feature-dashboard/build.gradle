@@ -42,6 +42,7 @@ dependencies {
     implementation project(':spotify-sdk-wrapper')
 
     api deps.android.arch.extensions
+    implementation deps.android.arch.paging
     implementation deps.android.arch.viewmodel
     kapt deps.android.databinding.compiler
     implementation deps.android.support.appCompat
