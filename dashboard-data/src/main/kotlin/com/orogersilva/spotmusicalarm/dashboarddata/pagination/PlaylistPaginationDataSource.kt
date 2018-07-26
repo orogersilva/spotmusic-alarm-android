@@ -4,6 +4,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.paging.ItemKeyedDataSource
 import com.orogersilva.spotmusicalarm.base.scheduler.SchedulerProvider
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.PlaylistDataContract
+import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.entity.PlaylistEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.mapper.PlaylistMapper
 import com.orogersilva.spotmusicalarm.dashboarddomain.enums.NetworkState
@@ -12,6 +13,7 @@ import com.orogersilva.spotmusicalarm.dashboarddomain.model.Playlist
 import javax.inject.Inject
 
 class PlaylistPaginationDataSource @Inject constructor(private val playlistRemoteDataSource: PlaylistDataContract.Remote,
+                                                       private val userRemoteDataSource: UserDataContract.Remote,
                                                        private val schedulerProvider: SchedulerProvider)
     : ItemKeyedDataSource<Long, Playlist>() {
 
@@ -32,7 +34,11 @@ class PlaylistPaginationDataSource @Inject constructor(private val playlistRemot
         networkStateLiveData.postValue(NetworkState.LOADING)
         initialLoadingLiveData.postValue(NetworkState.LOADING)
 
-        playlistRemoteDataSource.getPagedPlaylists(params.requestedLoadSize, currentOffset.toInt())
+        userRemoteDataSource.getMe()
+                .flatMap { userEntity ->
+                    playlistRemoteDataSource.getPagedPlaylistsByUserId(
+                            userEntity.id, params.requestedLoadSize, currentOffset.toInt())
+                }
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribe(
@@ -47,13 +53,21 @@ class PlaylistPaginationDataSource @Inject constructor(private val playlistRemot
 
             networkStateLiveData.postValue(NetworkState.LOADING)
 
-            playlistRemoteDataSource.getPagedPlaylists(params.requestedLoadSize, currentOffset.toInt())
+            userRemoteDataSource.getMe()
+                    .flatMap { userEntity ->
+                        playlistRemoteDataSource.getPagedPlaylistsByUserId(
+                                userEntity.id, params.requestedLoadSize, currentOffset.toInt())
+                    }
                     .subscribeOn(schedulerProvider.io())
                     .observeOn(schedulerProvider.ui())
                     .subscribe(
                             { paging -> onMorePlaylistsFetched(paging, callback) },
                             { throwable -> onPaginationError(throwable) }
                     )
+
+        } else {
+
+            networkStateLiveData.postValue(NetworkState.SUCCESS)
         }
     }
 

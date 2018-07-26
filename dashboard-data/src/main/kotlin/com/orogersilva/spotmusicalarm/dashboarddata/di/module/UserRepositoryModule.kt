@@ -38,7 +38,7 @@ open class UserRepositoryModule {
 
                         val accessToken = userLocalDataSource.getAccessToken()
 
-                        var request: Request? = null
+                        var request: Request?
 
                         if (accessToken == null) {
 

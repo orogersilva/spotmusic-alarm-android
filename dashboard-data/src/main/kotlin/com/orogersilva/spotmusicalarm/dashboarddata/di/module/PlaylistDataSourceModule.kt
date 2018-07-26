@@ -4,6 +4,7 @@ import com.orogersilva.spotmusicalarm.base.di.scope.ActivityScope
 import com.orogersilva.spotmusicalarm.base.scheduler.SchedulerProvider
 import com.orogersilva.spotmusicalarm.dashboarddata.BuildConfig
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.PlaylistDataContract
+import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.factory.PlaylistDataSourceFactory
 import com.orogersilva.spotmusicalarm.dashboarddata.pagination.PlaylistPaginationDataSource
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.PlaylistRemoteDataSource
@@ -35,9 +36,10 @@ open class PlaylistDataSourceModule {
     @Provides @ActivityScope open fun providePlaylistRemoteDataSource(playlistApiClient: PlaylistApiClient): PlaylistDataContract.Remote =
             PlaylistRemoteDataSource(playlistApiClient)
 
-    @Provides @ActivityScope open fun providePlaylistPaginationDataSource(playlistRemoteDataSource: PlaylistRemoteDataSource,
+    @Provides @ActivityScope open fun providePlaylistPaginationDataSource(playlistRemoteDataSource: PlaylistDataContract.Remote,
+                                                                          userRemoteDataSource: UserDataContract.Remote,
                                                                           schedulerProvider: SchedulerProvider): PlaylistPaginationDataSource =
-            PlaylistPaginationDataSource(playlistRemoteDataSource, schedulerProvider)
+            PlaylistPaginationDataSource(playlistRemoteDataSource, userRemoteDataSource, schedulerProvider)
 
     @Provides @ActivityScope open fun providePlaylistDataSourceFactory(playlistPaginationDataSource: PlaylistPaginationDataSource): PlaylistDataSourceFactory =
             PlaylistDataSourceFactory(playlistPaginationDataSource)

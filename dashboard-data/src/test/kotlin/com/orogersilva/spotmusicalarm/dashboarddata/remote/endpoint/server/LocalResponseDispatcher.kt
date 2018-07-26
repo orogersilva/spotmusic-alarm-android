@@ -36,7 +36,13 @@ class LocalResponseDispatcher : QueueDispatcher() {
 
                 mockResponse.setBody(FileUtils.readFile(it))
 
-                val path = "/" + request.requestUrl.pathSegments().joinTo(buffer = StringBuilder(), separator = "/")
+                val pathSegments = mutableListOf<String>()
+
+                pathSegments.addAll(request.requestUrl.pathSegments())
+
+                pathSegments.removeIf { it.toLongOrNull() != null }
+
+                val path = "/" + pathSegments.joinTo(buffer = StringBuilder(), separator = "/")
 
                 when (path) {
 
@@ -45,6 +51,11 @@ class LocalResponseDispatcher : QueueDispatcher() {
                     }
 
                     "/me/playlists" -> {
+
+                        mockResponse.setResponseCode(OK_STATUS_CODE)
+                    }
+
+                    "/users/playlists" -> {
 
                         mockResponse.setResponseCode(OK_STATUS_CODE)
                     }
@@ -80,7 +91,11 @@ class LocalResponseDispatcher : QueueDispatcher() {
                 if (path.isEmpty()) {
                     path = pathSegment
                 } else {
-                    path += "_" + pathSegment
+
+                    if (pathSegment.toLongOrNull() == null) {
+
+                        path += "_" + pathSegment
+                    }
                 }
             }
 

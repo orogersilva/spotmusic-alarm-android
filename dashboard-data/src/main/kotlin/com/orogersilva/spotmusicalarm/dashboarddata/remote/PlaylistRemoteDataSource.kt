@@ -55,5 +55,42 @@ class PlaylistRemoteDataSource @Inject constructor(private val playlistApiClient
                 }
     }
 
+    override fun getPagedPlaylistsByUserId(userId: String, limit: Int, offset: Int): Single<Paging<PlaylistEntity>> {
+
+        return playlistApiClient.getPagedPlaylistsByUserId(userId, limit, offset)
+                .flatMap { pagedPlaylistDTOsHttpResponse ->
+
+                    when (pagedPlaylistDTOsHttpResponse.code()) {
+
+                        OK_STATUS_CODE -> {
+
+                            val content = pagedPlaylistDTOsHttpResponse.body()?.string()
+
+                            val type = object : TypeToken<PagingDTO<PlaylistDTO>>(){}.type
+
+                            val pagingDTO = Gson().fromJson<PagingDTO<PlaylistDTO>>(content, type)
+
+                            Single.just(PlaylistMapper.transformPagedPlaylistDTOsToPagedPlaylistEntities(pagingDTO))
+                        }
+
+                        else -> {
+
+                            val content = pagedPlaylistDTOsHttpResponse.errorBody()?.string()
+
+                            val type = object : TypeToken<SpotifyRegularErrorDTO>(){}.type
+
+                            val spotifyRegularErrorDTO = Gson().fromJson<SpotifyRegularErrorDTO>(content, type)
+
+                            Single.error(
+                                    SpotifyRegularErrorException(
+                                            spotifyRegularErrorDTO.error.status,
+                                            spotifyRegularErrorDTO.error.message
+                                    )
+                            )
+                        }
+                    }
+                }
+    }
+
     // endregion
 }
