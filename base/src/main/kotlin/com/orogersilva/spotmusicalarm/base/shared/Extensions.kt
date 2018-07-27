@@ -8,3 +8,11 @@ import com.orogersilva.spotmusicalarm.base.SpotmusicAlarmApplication
 fun AppCompatActivity.app(): SpotmusicAlarmApplication = application as SpotmusicAlarmApplication
 
 // endregion
+
+// region STRING EXTENSIONS METHODS
+
+fun String.containsAtLeastOneNotNumericalCharacter(): Boolean = this.toLongOrNull() == null
+
+fun String.allCharactersAreLowercase(): Boolean = this == this.toLowerCase()
+
+// endregion

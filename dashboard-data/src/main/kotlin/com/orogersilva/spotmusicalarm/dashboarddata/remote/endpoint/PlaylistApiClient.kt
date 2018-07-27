@@ -27,5 +27,14 @@ interface PlaylistApiClient {
                                                             @Query("limit") limit: Int,
                                                             @Query("offset") offset: Int): Single<Response<ResponseBody>>
 
+    @Headers(
+            "Accept: application/json",
+            "Content-Type: application/json"
+    )
+    @GET("users/{user_id}/playlists/{playlist_id}/tracks") fun getPagedTracksFromPlaylist(@Path("user_id") userId: String,
+                                                                                          @Path("playlist_id") playlistId: String,
+                                                                                          @Query("limit") limit: Int,
+                                                                                          @Query("offset") offset: Int): Single<Response<ResponseBody>>
+
     // endregion
 }

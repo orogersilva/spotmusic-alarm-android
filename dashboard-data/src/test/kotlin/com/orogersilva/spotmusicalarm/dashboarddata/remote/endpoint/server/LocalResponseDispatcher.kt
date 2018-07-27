@@ -1,5 +1,7 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.server
 
+import com.orogersilva.spotmusicalarm.base.shared.containsAtLeastOneNotNumericalCharacter
+import com.orogersilva.spotmusicalarm.base.shared.allCharactersAreLowercase
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.FORBIDDEN_STATUS_CODE
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.NOT_FOUND_STATUS_CODE
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.OK_STATUS_CODE
@@ -40,27 +42,23 @@ class LocalResponseDispatcher : QueueDispatcher() {
 
                 pathSegments.addAll(request.requestUrl.pathSegments())
 
-                pathSegments.removeIf { it.toLongOrNull() != null }
+                pathSegments.removeIf { !it.containsAtLeastOneNotNumericalCharacter() }
+                pathSegments.removeIf { !it.allCharactersAreLowercase() }
 
                 val path = "/" + pathSegments.joinTo(buffer = StringBuilder(), separator = "/")
 
                 when (path) {
 
-                    "/me" -> {
-                        mockResponse.setResponseCode(OK_STATUS_CODE)
-                    }
-
-                    "/me/playlists" -> {
-
-                        mockResponse.setResponseCode(OK_STATUS_CODE)
-                    }
-
-                    "/users/playlists" -> {
+                    "/me",
+                    "/me/playlists",
+                    "/users/playlists",
+                    "/users/playlists/tracks" -> {
 
                         mockResponse.setResponseCode(OK_STATUS_CODE)
                     }
 
                     else -> {
+
                         mockResponse.setResponseCode(NOT_FOUND_STATUS_CODE)
                     }
                 }
@@ -92,7 +90,11 @@ class LocalResponseDispatcher : QueueDispatcher() {
                     path = pathSegment
                 } else {
 
-                    if (pathSegment.toLongOrNull() == null) {
+                    val a = pathSegment.containsAtLeastOneNotNumericalCharacter()
+                    val b = pathSegment.allCharactersAreLowercase()
+
+                    if (pathSegment.containsAtLeastOneNotNumericalCharacter() &&
+                            pathSegment.allCharactersAreLowercase()) {
 
                         path += "_" + pathSegment
                     }

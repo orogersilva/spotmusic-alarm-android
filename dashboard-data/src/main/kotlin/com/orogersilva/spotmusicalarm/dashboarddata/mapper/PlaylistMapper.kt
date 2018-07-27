@@ -2,7 +2,10 @@ package com.orogersilva.spotmusicalarm.dashboarddata.mapper
 
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.PagingDTO
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.PlaylistDTO
+import com.orogersilva.spotmusicalarm.dashboarddata.dto.PlaylistTrackDTO
+import com.orogersilva.spotmusicalarm.dashboarddata.dto.TrackDTO
 import com.orogersilva.spotmusicalarm.dashboarddata.entity.PlaylistEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.relation.TrackAndAllArtists
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Paging
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Playlist
 
@@ -40,6 +43,16 @@ object PlaylistMapper {
                 pagedPlaylistDTOs.previous,
                 pagedPlaylistDTOs.total)
 
+    fun transformPagedPlaylistTrackDTOsToPagedTrackAndAllArtistsSupportedByPlaylistId(pagedPlaylistTrackDTOs: PagingDTO<PlaylistTrackDTO>,
+                                                                                      playlistId: String): Paging<TrackAndAllArtists> =
+            Paging(TrackMapper.transformTrackDTOsToTrackAndAllArtistsListSupportedByPlaylistId(
+                transformPlaylistTrackDTOsToTrackDTOs(pagedPlaylistTrackDTOs.items), playlistId),
+                pagedPlaylistTrackDTOs.limit,
+                pagedPlaylistTrackDTOs.next,
+                pagedPlaylistTrackDTOs.offset,
+                pagedPlaylistTrackDTOs.previous,
+                pagedPlaylistTrackDTOs.total)
+
     // endregion
 
     // region UTILITY METHODS
@@ -49,6 +62,17 @@ object PlaylistMapper {
 
     private fun transformPlaylistEntityToPlaylist(playlistEntity: PlaylistEntity): Playlist =
             Playlist(playlistEntity.id, playlistEntity.name)
+
+    private fun transformPlaylistTrackDTOsToTrackDTOs(playlistTrackDTOs: List<PlaylistTrackDTO>): List<TrackDTO> {
+
+        val trackDTOs = mutableListOf<TrackDTO>()
+
+        playlistTrackDTOs.forEach {
+            trackDTOs.add(it.trackDTO)
+        }
+
+        return trackDTOs
+    }
 
     // endregion
 }
