@@ -4,6 +4,7 @@ import com.orogersilva.spotmusicalarm.dashboarddata.dto.TrackDTO
 import com.orogersilva.spotmusicalarm.dashboarddata.entity.ArtistEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.entity.TrackEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.relation.TrackAndAllArtists
+import com.orogersilva.spotmusicalarm.dashboarddomain.model.Track
 
 object TrackMapper {
 
@@ -35,6 +36,17 @@ object TrackMapper {
         return trackAndAllArtistsList
     }
 
+    fun transformTrackAndAllArtistsListToTracks(trackAndAllArtistsList: List<TrackAndAllArtists>): List<Track> {
+
+        val tracks = mutableListOf<Track>()
+
+        trackAndAllArtistsList.forEach {
+            tracks.add(transformTrackAndAllArtistsToTrack(it))
+        }
+
+        return tracks
+    }
+
     // endregion
 
     // region UTILITY METHODS
@@ -42,6 +54,10 @@ object TrackMapper {
     private fun transformTrackDTOToTrackEntitySupportedByPlaylistId(trackDTO: TrackDTO,
                                                                     playlistId: String): TrackEntity =
             TrackEntity(trackDTO.id, trackDTO.name, playlistId)
+
+    private fun transformTrackAndAllArtistsToTrack(trackAndAllArtists: TrackAndAllArtists): Track =
+            Track(trackAndAllArtists.trackEntity?.id!!, trackAndAllArtists.trackEntity?.name!!,
+                ArtistMapper.transformArtistEntitiesToArtists(trackAndAllArtists.artistEntities))
 
     // endregion
 }

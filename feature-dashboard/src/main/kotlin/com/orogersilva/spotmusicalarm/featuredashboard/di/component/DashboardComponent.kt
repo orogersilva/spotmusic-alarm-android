@@ -2,17 +2,20 @@ package com.orogersilva.spotmusicalarm.featuredashboard.di.component
 
 import com.orogersilva.spotmusicalarm.base.di.component.ApplicationComponent
 import com.orogersilva.spotmusicalarm.dashboarddata.di.module.PlaylistDataSourceModule
+import com.orogersilva.spotmusicalarm.dashboarddata.di.module.TrackDataSourceModule
 import com.orogersilva.spotmusicalarm.dashboarddata.di.module.UserRepositoryModule
 import com.orogersilva.spotmusicalarm.dashboarddomain.di.scope.DashboardScope
 import com.orogersilva.spotmusicalarm.featuredashboard.di.module.ClockAlarmManagerViewModelModule
 import com.orogersilva.spotmusicalarm.featuredashboard.di.module.NewClockAlarmViewModelModule
 import com.orogersilva.spotmusicalarm.featuredashboard.di.module.PlaylistViewModelModule
+import com.orogersilva.spotmusicalarm.featuredashboard.di.module.TrackListViewModelModule
 import com.orogersilva.spotmusicalarm.spotifyapi.di.module.SpotifyModule
 import dagger.Component
 
 @DashboardScope
 @Component(
         modules = [
+            PlaylistDataSourceModule::class,
             UserRepositoryModule::class
         ],
         dependencies = [ApplicationComponent::class]
@@ -26,8 +29,10 @@ interface DashboardComponent {
     fun plusNewClockAlarmViewComponent(newClockAlarmViewModelModule: NewClockAlarmViewModelModule,
                                        spotifyModule: SpotifyModule): NewClockAlarmViewComponent
 
-    fun plusPlaylistViewComponent(playlistDataSourceModule: PlaylistDataSourceModule,
-                                  playlistViewModelModule: PlaylistViewModelModule): PlaylistViewComponent
+    fun plusPlaylistViewComponent(playlistViewModelModule: PlaylistViewModelModule): PlaylistViewComponent
+
+    fun plusTrackListViewComponent(trackDataSourceModule: TrackDataSourceModule,
+                                   trackListViewModelModule: TrackListViewModelModule): TrackListViewComponent
 
     // endregion
 }

@@ -66,7 +66,7 @@ class PlaylistActivity : BaseActivity() {
                 .build()
 
         playlistViewComponent = dashboardComponent
-                .plusPlaylistViewComponent(PlaylistDataSourceModule(), PlaylistViewModelModule(this))
+                .plusPlaylistViewComponent(PlaylistViewModelModule(this))
 
         playlistViewComponent.inject(this)
     }

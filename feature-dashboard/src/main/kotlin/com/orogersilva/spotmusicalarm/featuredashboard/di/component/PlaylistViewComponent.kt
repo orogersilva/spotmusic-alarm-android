@@ -9,7 +9,6 @@ import dagger.Subcomponent
 @ActivityScope
 @Subcomponent(
         modules = [
-            PlaylistDataSourceModule::class,
             PlaylistViewModelModule::class
         ]
 )

@@ -6,7 +6,7 @@ import com.orogersilva.spotmusicalarm.dashboarddata.pagination.PlaylistPaginatio
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Playlist
 import javax.inject.Inject
 
-class PlaylistDataSourceFactory @Inject constructor(val playlistPaginationDataSource: PlaylistPaginationDataSource)
+class PlaylistDataSourceFactory @Inject constructor(private val playlistPaginationDataSource: PlaylistPaginationDataSource)
     : DataSource.Factory<Long, Playlist>() {
 
     // region PROPERTIES

@@ -1,4 +1,4 @@
-package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.playlist.adapter
+package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.tracklist.adapter
 
 import android.arch.paging.PagedListAdapter
 import android.databinding.DataBindingUtil
@@ -8,15 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.orogersilva.spotmusicalarm.dashboarddomain.enums.NetworkState
-import com.orogersilva.spotmusicalarm.dashboarddomain.model.Playlist
+import com.orogersilva.spotmusicalarm.dashboarddomain.model.Track
 import com.orogersilva.spotmusicalarm.featuredashboard.R
 import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ItemLoadingBinding
-import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ItemPlaylistBinding
-import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.playlist.PlaylistViewModel
+import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ItemTrackBinding
+import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.tracklist.TrackListViewModel
 import javax.inject.Inject
 
-class PlaylistPagedAdapter @Inject constructor(private val playlistViewModel: PlaylistViewModel)
-    : PagedListAdapter<Playlist, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
+class TrackListPagedAdapter @Inject constructor(private val trackListViewModel: TrackListViewModel)
+    : PagedListAdapter<Track, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
 
     // region PROPERTIES
 
@@ -60,8 +60,8 @@ class PlaylistPagedAdapter @Inject constructor(private val playlistViewModel: Pl
 
         if (viewType == ITEM_TYPE) {
 
-            return PlaylistViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context),
-                    R.layout.item_playlist, parent, false))
+            return TrackViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context),
+                    R.layout.item_track, parent, false))
 
         } else {
 
@@ -72,7 +72,7 @@ class PlaylistPagedAdapter @Inject constructor(private val playlistViewModel: Pl
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        if (holder is PlaylistViewHolder) {
+        if (holder is TrackViewHolder) {
 
             holder.bind(getItem(position))
 
@@ -96,18 +96,17 @@ class PlaylistPagedAdapter @Inject constructor(private val playlistViewModel: Pl
 
     // region VIEW HOLDERS
 
-    inner class PlaylistViewHolder(private val binding: ItemPlaylistBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TrackViewHolder(private val binding: ItemTrackBinding): RecyclerView.ViewHolder(binding.root) {
 
         // region PUBLIC METHODS
 
-        fun bind(playlist: Playlist?) {
+        fun bind(track: Track?) {
 
-            playlist?.let { pl ->
+            track?.let { tr ->
 
-                binding.playlist = pl
-
-                binding.playlistConstraintLayout.setOnClickListener {
-                    playlistViewModel.selectPlaylist(pl.id)
+                binding.track = tr
+                binding.trackConstraintLayout.setOnClickListener {
+                    trackListViewModel.selectTrack(tr.id)
                 }
             }
         }
@@ -115,7 +114,7 @@ class PlaylistPagedAdapter @Inject constructor(private val playlistViewModel: Pl
         // endregion
     }
 
-    inner class LoadingViewHolder(private val binding: ItemLoadingBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class LoadingViewHolder(private val binding: ItemLoadingBinding): RecyclerView.ViewHolder(binding.root) {
 
         // region PUBLIC METHODS
 
@@ -129,36 +128,12 @@ class PlaylistPagedAdapter @Inject constructor(private val playlistViewModel: Pl
 
             if (networkState != null && networkState == NetworkState.FAILED) {
 
-                // TODO: To implement.
+                // TODO: To Implement.
             }
         }
 
         // endregion
     }
-
-    /*public class NetworkStateItemViewHolder extends RecyclerView.ViewHolder {
-
-        private NetworkItemBinding binding;
-        public NetworkStateItemViewHolder(NetworkItemBinding binding) {
-            super(binding.getRoot());
-            this.binding = binding;
-        }
-
-        public void bindView(NetworkState networkState) {
-            if (networkState != null && networkState.getStatus() == NetworkState.Status.RUNNING) {
-                binding.progressBar.setVisibility(View.VISIBLE);
-            } else {
-                binding.progressBar.setVisibility(View.GONE);
-            }
-
-            if (networkState != null && networkState.getStatus() == NetworkState.Status.FAILED) {
-                binding.errorMsg.setVisibility(View.VISIBLE);
-                binding.errorMsg.setText(networkState.getMsg());
-            } else {
-                binding.errorMsg.setVisibility(View.GONE);
-            }
-        }
-    }*/
 
     // endregion
 
@@ -166,17 +141,13 @@ class PlaylistPagedAdapter @Inject constructor(private val playlistViewModel: Pl
 
     companion object {
 
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Playlist>() {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Track>() {
 
-            // region OVERRIDED METHODS
-
-            override fun areItemsTheSame(oldItem: Playlist, newItem: Playlist): Boolean =
+            override fun areItemsTheSame(oldItem: Track, newItem: Track): Boolean =
                     oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: Playlist, newItem: Playlist): Boolean =
+            override fun areContentsTheSame(oldItem: Track, newItem: Track): Boolean =
                     oldItem == newItem
-
-            // endregion
         }
     }
 

@@ -87,11 +87,10 @@ class LocalResponseDispatcher : QueueDispatcher() {
             pathSegments.forEach { pathSegment ->
 
                 if (path.isEmpty()) {
-                    path = pathSegment
-                } else {
 
-                    val a = pathSegment.containsAtLeastOneNotNumericalCharacter()
-                    val b = pathSegment.allCharactersAreLowercase()
+                    path = pathSegment
+
+                } else {
 
                     if (pathSegment.containsAtLeastOneNotNumericalCharacter() &&
                             pathSegment.allCharactersAreLowercase()) {

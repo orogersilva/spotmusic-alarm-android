@@ -10,30 +10,36 @@
             type="com.orogersilva.spotmusicalarm.dashboarddomain.model.Playlist"
             />
 
+        <variable
+            name="playlistViewModel"
+            type="com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.playlist.PlaylistViewModel"
+            />
+
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/playlistConstraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:background="@color/gray"
         >
 
         <TextView
             android:id="@+id/playlistNameTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="24dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:text="@{playlist.name}"
-            android:textSize="20sp"
             android:textColor="@color/black"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@sample/playlist.json/data/playlistName"
-            />
+            tools:text="@sample/playlist.json/data/playlistName" />
 
     </android.support.constraint.ConstraintLayout>
 
