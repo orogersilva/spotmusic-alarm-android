@@ -1,11 +1,13 @@
 package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.newclockalarm.view
 
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import com.orogersilva.spotmusicalarm.base.shared.app
 import com.orogersilva.spotmusicalarm.dashboarddata.di.module.UserRepositoryModule
+import com.orogersilva.spotmusicalarm.dashboarddomain.model.Track
 import com.orogersilva.spotmusicalarm.featuredashboard.R
 import com.orogersilva.spotmusicalarm.featuredashboard.databinding.ActivityNewClockAlarmBinding
 import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerDashboardComponent
@@ -30,7 +32,27 @@ class NewClockAlarmActivity : BaseActivity() {
     @Inject lateinit var newClockAlarmViewModel: NewClockAlarmViewModel
     @Inject lateinit var spotifyAdapterHelper: SpotifyAdapterHelper
 
-    private val SPOTIFY_AUTH_REQUEST_CODE = 1
+    private var selectedTrack: Track? = null
+
+    // endregion
+
+    // region COMPANION OBJECT
+
+    companion object RequestCode {
+
+        // region REQUEST CODES
+
+        val SPOTIFY_AUTH_REQUEST_CODE = 1
+        val TRACK_REQUEST_CODE = 2
+
+        // endregion
+
+        // region INTENT KEYS
+
+        val ARG_TRACK = "com.orogersilva.spotmusicalarm.ARG_TRACK"
+
+        // endregion
+    }
 
     // endregion
 
@@ -70,8 +92,6 @@ class NewClockAlarmActivity : BaseActivity() {
 
         if (requestCode == SPOTIFY_AUTH_REQUEST_CODE) {
 
-            // spotifyAdapterHelper.tryPreparePlayer(this, resultCode, data)
-
             val accessToken = spotifyAdapterHelper.getAccessToken(resultCode, data)
 
             accessToken?.let {
@@ -80,6 +100,14 @@ class NewClockAlarmActivity : BaseActivity() {
 
                 redirectToPlaylistScreen()
             }
+        }
+
+        if (requestCode == TRACK_REQUEST_CODE &&
+                resultCode == RESULT_OK) {
+
+            selectedTrack = data?.getSerializableExtra(ARG_TRACK) as Track
+
+            trackTextInputEditText.setText(selectedTrack?.name)
         }
     }
 
@@ -130,7 +158,7 @@ class NewClockAlarmActivity : BaseActivity() {
 
         val playlistIntent = Intent(this, PlaylistActivity::class.java)
 
-        startActivity(playlistIntent)
+        startActivityForResult(playlistIntent, TRACK_REQUEST_CODE)
     }
 
     // endregion

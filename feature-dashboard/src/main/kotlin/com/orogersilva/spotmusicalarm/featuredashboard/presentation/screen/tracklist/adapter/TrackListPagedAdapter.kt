@@ -105,8 +105,9 @@ class TrackListPagedAdapter @Inject constructor(private val trackListViewModel: 
             track?.let { tr ->
 
                 binding.track = tr
+
                 binding.trackConstraintLayout.setOnClickListener {
-                    trackListViewModel.selectTrack(tr.id)
+                    trackListViewModel.selectTrack(tr)
                 }
             }
         }

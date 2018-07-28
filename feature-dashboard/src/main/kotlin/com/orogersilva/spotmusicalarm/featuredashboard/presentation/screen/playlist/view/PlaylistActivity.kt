@@ -9,7 +9,6 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.orogersilva.spotmusicalarm.base.shared.app
-import com.orogersilva.spotmusicalarm.dashboarddata.di.module.PlaylistDataSourceModule
 import com.orogersilva.spotmusicalarm.dashboarddata.di.module.UserRepositoryModule
 import com.orogersilva.spotmusicalarm.dashboarddomain.enums.NetworkState
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Playlist
@@ -19,6 +18,7 @@ import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerDashbo
 import com.orogersilva.spotmusicalarm.featuredashboard.di.component.PlaylistViewComponent
 import com.orogersilva.spotmusicalarm.featuredashboard.di.module.PlaylistViewModelModule
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.BaseActivity
+import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.newclockalarm.view.NewClockAlarmActivity
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.playlist.PlaylistViewModel
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.playlist.adapter.PlaylistPagedAdapter
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.tracklist.view.TrackListActivity
@@ -54,6 +54,19 @@ class PlaylistActivity : BaseActivity() {
         super.onResume()
 
         playlistViewModel.resume()
+    }
+
+    // endregion
+
+    // region OVERRIDED METHODS
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        super.onActivityResult(requestCode, resultCode, data)
+
+        setResult(resultCode, data)
+
+        finish()
     }
 
     // endregion
@@ -114,7 +127,7 @@ class PlaylistActivity : BaseActivity() {
             selectedPlaylistSingleEvent.observe(this@PlaylistActivity, Observer<String> { playlistId ->
 
                 playlistId?.let {
-                    redirectToTrackListActivity(it)
+                    redirectToTrackListScreen(it)
                 }
             })
         }
@@ -124,12 +137,12 @@ class PlaylistActivity : BaseActivity() {
 
     // endregion
 
-    private fun redirectToTrackListActivity(playlistId: String) {
+    private fun redirectToTrackListScreen(playlistId: String) {
 
         val trackListIntent = Intent(this, TrackListActivity::class.java)
 
         trackListIntent.putExtra(TrackListActivity.ARG_PLAYLIST_ID, playlistId)
 
-        startActivity(trackListIntent)
+        startActivityForResult(trackListIntent, NewClockAlarmActivity.TRACK_REQUEST_CODE)
     }
 }

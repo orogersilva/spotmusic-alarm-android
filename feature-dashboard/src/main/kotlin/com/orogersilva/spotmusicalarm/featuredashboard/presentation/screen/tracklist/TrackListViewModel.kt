@@ -21,7 +21,7 @@ class TrackListViewModel @Inject constructor(private val trackDataSourceFactory:
     val networkStateLiveData: LiveData<NetworkState>
     val trackPagedListLiveData: LiveData<PagedList<Track>>
 
-    val selectedTrackSingleEvent = SingleLiveEvent<String>()
+    val selectedTrackSingleEvent = SingleLiveEvent<Track>()
 
     // endregion
 
@@ -51,9 +51,9 @@ class TrackListViewModel @Inject constructor(private val trackDataSourceFactory:
 
     // region PUBLIC METHODS
 
-    fun selectTrack(id: String) {
+    fun selectTrack(track: Track) {
 
-        selectedTrackSingleEvent.value = id
+        selectedTrackSingleEvent.value = track
     }
 
     // endregion

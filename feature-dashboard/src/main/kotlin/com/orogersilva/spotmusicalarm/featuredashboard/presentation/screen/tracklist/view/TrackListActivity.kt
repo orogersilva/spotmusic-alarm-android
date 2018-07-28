@@ -1,7 +1,10 @@
 package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.tracklist.view
 
+import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.arch.lifecycle.Observer
 import android.arch.paging.PagedList
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
@@ -18,6 +21,7 @@ import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerDashbo
 import com.orogersilva.spotmusicalarm.featuredashboard.di.component.TrackListViewComponent
 import com.orogersilva.spotmusicalarm.featuredashboard.di.module.TrackListViewModelModule
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.BaseActivity
+import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.newclockalarm.view.NewClockAlarmActivity
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.tracklist.TrackListViewModel
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.tracklist.adapter.TrackListPagedAdapter
 import kotlinx.android.synthetic.main.activity_track_list.*
@@ -116,10 +120,10 @@ class TrackListActivity : BaseActivity() {
                 }
             })
 
-            selectedTrackSingleEvent.observe(this@TrackListActivity, Observer<String> { trackId ->
+            selectedTrackSingleEvent.observe(this@TrackListActivity, Observer<Track> { track ->
 
-                trackId?.let {
-                    goBackToNewClockAlarmActivity()
+                track?.let {
+                    goBackToNewClockAlarmScreen(it)
                 }
             })
         }
@@ -127,9 +131,15 @@ class TrackListActivity : BaseActivity() {
         trackListBinding.setLifecycleOwner(this)
     }
 
-    private fun goBackToNewClockAlarmActivity() {
+    private fun goBackToNewClockAlarmScreen(track: Track) {
 
+        val newClockAlarmIntent = Intent()
 
+        newClockAlarmIntent.putExtra(NewClockAlarmActivity.ARG_TRACK, track)
+
+        setResult(RESULT_OK, newClockAlarmIntent)
+
+        finish()
     }
 
     private fun getPassedPlaylistId(): String? {
