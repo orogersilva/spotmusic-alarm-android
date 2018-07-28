@@ -5,6 +5,7 @@ import android.arch.paging.PagedList
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.orogersilva.spotmusicalarm.base.shared.app
 import com.orogersilva.spotmusicalarm.dashboarddata.di.module.TrackDataSourceModule
 import com.orogersilva.spotmusicalarm.dashboarddata.di.module.UserRepositoryModule
@@ -94,6 +95,14 @@ class TrackListActivity : BaseActivity() {
 
                 trackPagedList?.let {
                     trackListPagedAdapter.submitList(it)
+                }
+            })
+
+            initialLoadingLiveData.observe(this@TrackListActivity, Observer<NetworkState> { networkState ->
+
+                networkState?.let {
+                    loadTracksProgressBar.visibility =
+                            if (it == NetworkState.LOADING) View.VISIBLE else View.INVISIBLE
                 }
             })
 

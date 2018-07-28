@@ -6,6 +6,7 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.orogersilva.spotmusicalarm.base.shared.app
 import com.orogersilva.spotmusicalarm.dashboarddata.di.module.PlaylistDataSourceModule
 import com.orogersilva.spotmusicalarm.dashboarddata.di.module.UserRepositoryModule
@@ -89,6 +90,14 @@ class PlaylistActivity : BaseActivity() {
 
                 playlistPagedList?.let {
                     playlistPagedAdapter.submitList(it)
+                }
+            })
+
+            initialLoadingLiveData.observe(this@PlaylistActivity, Observer<NetworkState> { networkState ->
+
+                networkState?.let {
+                    loadPlaylistsProgressBar.visibility =
+                            if (it == NetworkState.LOADING) View.VISIBLE else View.INVISIBLE
                 }
             })
 
