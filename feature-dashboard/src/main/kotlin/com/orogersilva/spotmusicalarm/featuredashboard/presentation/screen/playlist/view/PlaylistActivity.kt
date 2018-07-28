@@ -5,6 +5,7 @@ import android.arch.paging.PagedList
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.orogersilva.spotmusicalarm.base.shared.app
@@ -80,6 +81,8 @@ class PlaylistActivity : BaseActivity() {
 
         playlistRecyclerView.adapter = playlistPagedAdapter
         playlistRecyclerView.layoutManager = linearLayoutManager
+        playlistRecyclerView.addItemDecoration(DividerItemDecoration(
+                this, DividerItemDecoration.VERTICAL))
     }
 
     private fun prepareViewModel() {

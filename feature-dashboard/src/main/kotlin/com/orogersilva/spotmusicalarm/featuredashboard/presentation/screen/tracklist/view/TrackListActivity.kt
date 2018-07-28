@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.paging.PagedList
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.orogersilva.spotmusicalarm.base.shared.app
@@ -85,6 +86,8 @@ class TrackListActivity : BaseActivity() {
 
         trackRecyclerView.adapter = trackListPagedAdapter
         trackRecyclerView.layoutManager = linearLayoutManager
+        trackRecyclerView.addItemDecoration(DividerItemDecoration(
+                this, DividerItemDecoration.VERTICAL))
     }
 
     private fun prepareViewModel() {
