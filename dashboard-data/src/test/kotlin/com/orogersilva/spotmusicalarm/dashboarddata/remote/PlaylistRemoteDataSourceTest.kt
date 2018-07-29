@@ -49,6 +49,8 @@ class PlaylistRemoteDataSourceTest : BaseRemoteClientTest() {
 
         // ASSERT
 
+        testObserver.awaitTerminalEvent()
+
         testObserver.assertNotComplete()
                 .assertError(SpotifyRegularErrorException::class.java)
                 .assertErrorMessage(UNAUTHORIZED_STATUS_MESSAGE)
@@ -80,6 +82,8 @@ class PlaylistRemoteDataSourceTest : BaseRemoteClientTest() {
 
         // ASSERT
 
+        testObserver.awaitTerminalEvent()
+
         testObserver
                 .assertNoErrors()
                 .assertComplete()
@@ -109,6 +113,8 @@ class PlaylistRemoteDataSourceTest : BaseRemoteClientTest() {
                 .subscribe(testObserver)
 
         // ASSERT
+
+        testObserver.awaitTerminalEvent()
 
         testObserver.assertNotComplete()
                 .assertError(SpotifyRegularErrorException::class.java)
@@ -142,6 +148,8 @@ class PlaylistRemoteDataSourceTest : BaseRemoteClientTest() {
 
         // ASSERT
 
+        testObserver.awaitTerminalEvent()
+
         testObserver
                 .assertNoErrors()
                 .assertComplete()
@@ -172,6 +180,8 @@ class PlaylistRemoteDataSourceTest : BaseRemoteClientTest() {
                 .subscribe(testObserver)
 
         // ASSERT
+
+        testObserver.awaitTerminalEvent()
 
         testObserver.assertNotComplete()
                 .assertError(SpotifyRegularErrorException::class.java)
@@ -205,6 +215,8 @@ class PlaylistRemoteDataSourceTest : BaseRemoteClientTest() {
                 .subscribe(testObserver)
 
         // ASSERT
+
+        testObserver.awaitTerminalEvent()
 
         testObserver
                 .assertNoErrors()

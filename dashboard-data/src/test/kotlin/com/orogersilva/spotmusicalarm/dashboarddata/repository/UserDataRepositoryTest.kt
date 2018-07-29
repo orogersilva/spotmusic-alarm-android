@@ -60,6 +60,8 @@ class UserDataRepositoryTest {
 
         // ASSERT
 
+        testObserver.awaitTerminalEvent()
+
         testObserver
                 .assertNotComplete()
                 .assertError(expectedSpotifyException)
@@ -88,6 +90,8 @@ class UserDataRepositoryTest {
                 .subscribe(testObserver)
 
         // ASSERT
+
+        testObserver.awaitTerminalEvent()
 
         testObserver
                 .assertComplete()

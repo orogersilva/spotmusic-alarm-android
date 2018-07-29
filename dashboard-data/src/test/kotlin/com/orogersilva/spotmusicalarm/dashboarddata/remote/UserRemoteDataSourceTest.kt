@@ -41,6 +41,8 @@ class UserRemoteDataSourceTest : BaseRemoteClientTest() {
 
         // ASSERT
 
+        testObserver.awaitTerminalEvent()
+
         testObserver
                 .assertNotComplete()
                 .assertError(SpotifyRegularErrorException::class.java)
@@ -70,6 +72,8 @@ class UserRemoteDataSourceTest : BaseRemoteClientTest() {
                 .subscribe(testObserver)
 
         // ASSERT
+
+        testObserver.awaitTerminalEvent()
 
         testObserver
                 .assertNoErrors()
