@@ -1,6 +1,6 @@
 package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.newclockalarm.view
 
-import android.app.Activity
+import android.app.TimePickerDialog
 import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -19,6 +19,8 @@ import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.playl
 import com.orogersilva.spotmusicalarm.spotifyapi.SpotifyAdapterHelper
 import com.orogersilva.spotmusicalarm.spotifyapi.di.module.SpotifyModule
 import kotlinx.android.synthetic.main.activity_new_clock_alarm.*
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 class NewClockAlarmActivity : BaseActivity() {
@@ -144,9 +146,49 @@ class NewClockAlarmActivity : BaseActivity() {
 
         newClockAlarmViewModel.apply {
 
-            setClockAlarmMusicLiveData.observe(this@NewClockAlarmActivity, Observer<Void> {
+            clockAlarmTimeConfigEvent.observe(this@NewClockAlarmActivity, Observer<Void> {
+
+                val calendar = Calendar.getInstance()
+
+                val TIME_FORMAT = "HH:mm"
+
+                val simpleTimeFormat = SimpleDateFormat(TIME_FORMAT, Locale.getDefault())
+
+                val setCurrentTimeStr = timeTextInputEditText.text.toString()
+
+                if (setCurrentTimeStr.isNotEmpty()) {
+
+                    val setCurrentDate = simpleTimeFormat.parse(timeTextInputEditText.text.toString())
+
+                    calendar.time = setCurrentDate
+                }
+
+                val timeSetListener = TimePickerDialog.OnTimeSetListener {
+                    _, hourOfDay, minute ->
+
+                    calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                    calendar.set(Calendar.MINUTE, minute)
+
+                    timeTextInputEditText.setText(simpleTimeFormat.format(calendar.time))
+                }
+
+                val timePickerDialog = TimePickerDialog(this@NewClockAlarmActivity,
+                        timeSetListener, calendar.get(Calendar.HOUR_OF_DAY),
+                        calendar.get(Calendar.MINUTE), true)
+
+                timePickerDialog.show()
+            })
+
+            clockAlarmMusicConfigEvent.observe(this@NewClockAlarmActivity, Observer<Void> {
 
                 spotifyAdapterHelper.openLoginScreen(this@NewClockAlarmActivity, SPOTIFY_AUTH_REQUEST_CODE)
+            })
+
+            definedClockAlarmConfigEvent.observe(this@NewClockAlarmActivity, Observer<Void> {
+
+                saveClockAlarmSettingsButton.isEnabled =
+                        timeTextInputEditText.text.isNotEmpty() &&
+                        trackTextInputEditText.text.isNotEmpty()
             })
         }
 

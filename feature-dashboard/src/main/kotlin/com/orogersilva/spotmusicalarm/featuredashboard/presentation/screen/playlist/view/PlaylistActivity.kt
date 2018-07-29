@@ -1,5 +1,7 @@
 package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.playlist.view
 
+import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.arch.lifecycle.Observer
 import android.arch.paging.PagedList
 import android.content.Intent
@@ -64,9 +66,13 @@ class PlaylistActivity : BaseActivity() {
 
         super.onActivityResult(requestCode, resultCode, data)
 
-        setResult(resultCode, data)
+        if (requestCode == NewClockAlarmActivity.TRACK_REQUEST_CODE &&
+                resultCode == RESULT_OK) {
 
-        finish()
+            setResult(resultCode, data)
+
+            finish()
+        }
     }
 
     // endregion
