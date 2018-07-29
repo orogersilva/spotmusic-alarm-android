@@ -4,7 +4,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.di.component.DaggerTestUserRepositoryComponent
 import com.orogersilva.spotmusicalarm.dashboarddata.di.module.TestUserRepositoryModule
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.UserEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.UserEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.server.BaseRemoteClientTest
 import com.orogersilva.spotmusicalarm.dashboarddomain.SpotifyRegularErrorException
 import io.reactivex.Single

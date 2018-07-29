@@ -11,7 +11,8 @@ class NewClockAlarmViewModel @Inject constructor(private val userRepository: Use
 
     val clockAlarmTimeConfigEvent = SingleLiveEvent<Void>()
     val clockAlarmMusicConfigEvent = SingleLiveEvent<Void>()
-    val definedClockAlarmConfigEvent = SingleLiveEvent<Void>()
+    val changedClockAlarmConfigEvent = SingleLiveEvent<Void>()
+    val savedClockAlarmConfigEvent = SingleLiveEvent<Void>()
 
     // endregion
 
@@ -30,15 +31,15 @@ class NewClockAlarmViewModel @Inject constructor(private val userRepository: Use
         clockAlarmMusicConfigEvent.call()
     }
 
-    fun onDefinedClockAlarmConfigEvent() {
+    fun onChangedClockAlarmConfigEvent() {
 
-        definedClockAlarmConfigEvent.call()
+        changedClockAlarmConfigEvent.call()
     }
 
 
     fun saveClockAlarmSettings() {
 
-
+        savedClockAlarmConfigEvent.call()
     }
 
     fun saveAccessToken(accessToken: String) {

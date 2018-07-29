@@ -1,9 +1,9 @@
-package com.orogersilva.spotmusicalarm.dashboarddata.relation
+package com.orogersilva.spotmusicalarm.dashboarddata.local.relation
 
 import android.arch.persistence.room.Embedded
 import android.arch.persistence.room.Relation
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.ArtistEntity
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.TrackEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.ArtistEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.TrackEntity
 
 class TrackAndAllArtists {
 

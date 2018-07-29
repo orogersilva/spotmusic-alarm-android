@@ -1,7 +1,7 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.contract
 
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.PlaylistEntity
-import com.orogersilva.spotmusicalarm.dashboarddata.relation.TrackAndAllArtists
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.PlaylistEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.local.relation.TrackAndAllArtists
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Paging
 import io.reactivex.Single
 

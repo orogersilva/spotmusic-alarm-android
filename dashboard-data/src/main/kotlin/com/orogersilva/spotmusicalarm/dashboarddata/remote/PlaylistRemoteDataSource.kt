@@ -7,9 +7,9 @@ import com.orogersilva.spotmusicalarm.dashboarddata.dto.PagingDTO
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.PlaylistDTO
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.PlaylistTrackDTO
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.SpotifyRegularErrorDTO
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.PlaylistEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.PlaylistEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.mapper.PlaylistMapper
-import com.orogersilva.spotmusicalarm.dashboarddata.relation.TrackAndAllArtists
+import com.orogersilva.spotmusicalarm.dashboarddata.local.relation.TrackAndAllArtists
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.PlaylistApiClient
 import com.orogersilva.spotmusicalarm.dashboarddomain.SpotifyRegularErrorException
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Paging

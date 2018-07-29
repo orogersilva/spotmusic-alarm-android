@@ -4,8 +4,8 @@ import com.orogersilva.spotmusicalarm.dashboarddata.dto.PagingDTO
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.PlaylistDTO
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.PlaylistTrackDTO
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.TrackDTO
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.PlaylistEntity
-import com.orogersilva.spotmusicalarm.dashboarddata.relation.TrackAndAllArtists
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.PlaylistEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.local.relation.TrackAndAllArtists
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Paging
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Playlist
 

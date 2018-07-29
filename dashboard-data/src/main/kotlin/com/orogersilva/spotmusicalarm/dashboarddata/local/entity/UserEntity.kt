@@ -1,4 +1,4 @@
-package com.orogersilva.spotmusicalarm.dashboarddata.entity
+package com.orogersilva.spotmusicalarm.dashboarddata.local.entity
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity

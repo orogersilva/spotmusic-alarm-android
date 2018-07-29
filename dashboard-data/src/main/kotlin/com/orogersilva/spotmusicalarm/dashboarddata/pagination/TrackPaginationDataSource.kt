@@ -6,7 +6,7 @@ import com.orogersilva.spotmusicalarm.base.scheduler.SchedulerProvider
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.PlaylistDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.mapper.TrackMapper
-import com.orogersilva.spotmusicalarm.dashboarddata.relation.TrackAndAllArtists
+import com.orogersilva.spotmusicalarm.dashboarddata.local.relation.TrackAndAllArtists
 import com.orogersilva.spotmusicalarm.dashboarddomain.enums.NetworkState
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Paging
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Track

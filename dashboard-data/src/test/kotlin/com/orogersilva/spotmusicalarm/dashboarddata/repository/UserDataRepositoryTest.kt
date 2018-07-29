@@ -4,7 +4,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.UserEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.UserEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.UNAUTHORIZED_STATUS_CODE
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.UNAUTHORIZED_STATUS_MESSAGE
 import com.orogersilva.spotmusicalarm.dashboarddomain.SpotifyRegularErrorException

@@ -184,11 +184,16 @@ class NewClockAlarmActivity : BaseActivity() {
                 spotifyAdapterHelper.openLoginScreen(this@NewClockAlarmActivity, SPOTIFY_AUTH_REQUEST_CODE)
             })
 
-            definedClockAlarmConfigEvent.observe(this@NewClockAlarmActivity, Observer<Void> {
+            changedClockAlarmConfigEvent.observe(this@NewClockAlarmActivity, Observer<Void> {
 
                 saveClockAlarmSettingsButton.isEnabled =
                         timeTextInputEditText.text.isNotEmpty() &&
                         trackTextInputEditText.text.isNotEmpty()
+            })
+
+            savedClockAlarmConfigEvent.observe(this@NewClockAlarmActivity, Observer<Void> {
+
+
             })
         }
 

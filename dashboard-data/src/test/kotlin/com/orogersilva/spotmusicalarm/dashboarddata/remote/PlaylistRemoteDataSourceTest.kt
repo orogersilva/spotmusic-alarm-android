@@ -6,8 +6,8 @@ import com.orogersilva.spotmusicalarm.dashboarddata.contract.PlaylistDataContrac
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.di.component.DaggerTestPlaylistDataSourceComponent
 import com.orogersilva.spotmusicalarm.dashboarddata.di.module.TestPlaylistDataSourceModule
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.PlaylistEntity
-import com.orogersilva.spotmusicalarm.dashboarddata.relation.TrackAndAllArtists
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.PlaylistEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.local.relation.TrackAndAllArtists
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.server.BaseRemoteClientTest
 import com.orogersilva.spotmusicalarm.dashboarddomain.SpotifyRegularErrorException
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Paging

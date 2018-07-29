@@ -1,6 +1,6 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.contract
 
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.UserEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.UserEntity
 import io.reactivex.Single
 
 interface UserDataContract {

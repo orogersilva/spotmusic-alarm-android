@@ -5,7 +5,7 @@ import com.google.gson.reflect.TypeToken
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.SpotifyRegularErrorDTO
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.UserDTO
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.UserEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.UserEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.mapper.UserMapper
 import com.orogersilva.spotmusicalarm.dashboarddata.remote.endpoint.UserApiClient
 import com.orogersilva.spotmusicalarm.dashboarddomain.SpotifyRegularErrorException

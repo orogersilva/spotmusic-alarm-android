@@ -1,7 +1,7 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.mapper
 
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.ArtistDTO
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.ArtistEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.ArtistEntity
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Artist
 
 object ArtistMapper {

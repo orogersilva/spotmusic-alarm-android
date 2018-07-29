@@ -1,9 +1,9 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.mapper
 
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.TrackDTO
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.ArtistEntity
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.TrackEntity
-import com.orogersilva.spotmusicalarm.dashboarddata.relation.TrackAndAllArtists
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.ArtistEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.TrackEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.local.relation.TrackAndAllArtists
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Track
 
 object TrackMapper {

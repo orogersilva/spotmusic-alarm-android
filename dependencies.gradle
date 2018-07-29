@@ -26,6 +26,7 @@ ext.versions = [
         'databindingVersion': '3.1.3',
         'espressoVersion': '3.0.2',
         'gsonVersion': '2.8.5',
+        'hamcrestVersion': '1.3',
         'junitVersion': '4.12',
         'kotlinVersion': '1.2.51',
         'lifecycleVersion': '1.1.1',
@@ -44,12 +45,16 @@ ext.versions = [
 ext.deps = [
         'android': [
                 'arch': [
+                        'core': [
+                                'test': "android.arch.core:core-testing:${versions.lifecycleVersion}"
+                        ],
                         'extensions': "android.arch.lifecycle:extensions:${versions.lifecycleVersion}",
                         'paging': "android.arch.paging:runtime:${versions.pagingVersion}",
                         'room': [
                                 'compiler': "android.arch.persistence.room:compiler:${versions.roomVersion}",
                                 'runtime': "android.arch.persistence.room:runtime:${versions.roomVersion}",
-                                'rxjava': "android.arch.persistence.room:rxjava2:${versions.roomVersion}"
+                                'rxjava': "android.arch.persistence.room:rxjava2:${versions.roomVersion}",
+                                'test': "android.arch.persistence.room:testing:${versions.roomVersion}"
                         ],
                         'viewmodel': "android.arch.lifecycle:viewmodel:${versions.lifecycleVersion}"
                 ],
@@ -72,6 +77,9 @@ ext.deps = [
         ],
         'gson': [
                 'core': "com.google.code.gson:gson:${versions.gsonVersion}"
+        ],
+        'hamcrest': [
+                'core': "org.hamcrest:hamcrest-library:${versions.hamcrestVersion}"
         ],
         'kotlin': [
                 'stdlib': [

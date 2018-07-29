@@ -36,7 +36,7 @@
                 android:padding="12dp"
                 android:hint="@string/uppercase_time"
                 android:onClick="@{() -> newClockAlarmViewModel.onClockAlarmTimeConfigEvent()}"
-                android:onTextChanged="@{() -> newClockAlarmViewModel.onDefinedClockAlarmConfigEvent()}"
+                android:onTextChanged="@{() -> newClockAlarmViewModel.onChangedClockAlarmConfigEvent()}"
                 />
 
         </android.support.design.widget.TextInputLayout>
@@ -61,7 +61,7 @@
                 android:padding="12dp"
                 android:hint="@string/uppercase_track"
                 android:onClick="@{() -> newClockAlarmViewModel.onClockAlarmMusicConfigEvent()}"
-                android:onTextChanged="@{() -> newClockAlarmViewModel.onDefinedClockAlarmConfigEvent()}"
+                android:onTextChanged="@{() -> newClockAlarmViewModel.onChangedClockAlarmConfigEvent()}"
                 />
 
         </android.support.design.widget.TextInputLayout>

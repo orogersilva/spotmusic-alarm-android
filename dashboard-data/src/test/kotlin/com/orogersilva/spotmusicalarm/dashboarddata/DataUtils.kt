@@ -4,9 +4,9 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.PagingDTO
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.PlaylistTrackDTO
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.PlaylistEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.PlaylistEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.mapper.PlaylistMapper
-import com.orogersilva.spotmusicalarm.dashboarddata.relation.TrackAndAllArtists
+import com.orogersilva.spotmusicalarm.dashboarddata.local.relation.TrackAndAllArtists
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Paging
 
 object DataUtils {

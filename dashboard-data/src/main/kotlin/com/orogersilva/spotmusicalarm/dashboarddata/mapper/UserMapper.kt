@@ -1,7 +1,7 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.mapper
 
 import com.orogersilva.spotmusicalarm.dashboarddata.dto.UserDTO
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.UserEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.UserEntity
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.User
 
 object UserMapper {

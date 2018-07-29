@@ -5,7 +5,7 @@ import android.arch.paging.ItemKeyedDataSource
 import com.orogersilva.spotmusicalarm.base.scheduler.SchedulerProvider
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.PlaylistDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
-import com.orogersilva.spotmusicalarm.dashboarddata.entity.PlaylistEntity
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.PlaylistEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.mapper.PlaylistMapper
 import com.orogersilva.spotmusicalarm.dashboarddomain.enums.NetworkState
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Paging

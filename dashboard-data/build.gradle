@@ -13,6 +13,8 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        buildConfigField "int", "DASHBOARD_DATABASE_VERSION", '1'
+
         buildConfigField "String", "SPOTIFY_API_URL",
                 "\"https://api.spotify.com/v1/\""
     }
@@ -54,7 +56,12 @@ dependencies {
 
     kaptTest deps.dagger.compiler
     testImplementation project(':test-utils')
+    testImplementation deps.android.arch.room.test
     testImplementation deps.kotlin.test.jdk
     testImplementation deps.mockitokotlin.core
     testImplementation deps.okhttp.test.mockwebserver
+
+    androidTestImplementation deps.android.arch.core.test
+    androidTestImplementation deps.android.test.runner
+    androidTestImplementation deps.hamcrest.core
 }
