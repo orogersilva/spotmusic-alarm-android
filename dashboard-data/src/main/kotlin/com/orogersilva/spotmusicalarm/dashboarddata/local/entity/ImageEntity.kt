@@ -15,7 +15,7 @@ import android.arch.persistence.room.PrimaryKey
                     onDelete = CASCADE)
         ]
 )
-data class ImageEntity(@PrimaryKey(autoGenerate = true) val id: Int,
+data class ImageEntity(@PrimaryKey(autoGenerate = true) val id: Long,
                        @ColumnInfo(name = "url") val url: String,
                        @ColumnInfo(name = "width") val width: Int?,
                        @ColumnInfo(name = "height") val height: Int?,
