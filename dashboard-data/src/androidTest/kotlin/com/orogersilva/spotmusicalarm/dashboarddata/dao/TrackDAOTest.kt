@@ -9,12 +9,12 @@ import com.orogersilva.spotmusicalarm.dashboarddata.local.dao.PlaylistDAO
 import com.orogersilva.spotmusicalarm.dashboarddata.local.dao.TrackDAO
 import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.PlaylistEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.TrackEntity
-import io.reactivex.Flowable
-import io.reactivex.Single
+import io.reactivex.Maybe
 import io.reactivex.observers.TestObserver
+import org.hamcrest.Matchers
 import org.hamcrest.Matchers.`is`
 import org.junit.After
-import org.junit.Assert.assertThat
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -59,8 +59,6 @@ class TrackDAOTest {
         val EXPECTED_INSERTED_PLAYLIST_ROW_ID = 1L
         val EXPECTED_INSERTED_TRACK_ROW_ID = 1L
 
-        val EMITTED_VALUE_COUNT = 1
-
         val PLAYLIST_ID = "0HM6i5SUouetTNY9dslhtC"
         val PLAYLIST_NAME = "Donkey Kong Country"
 
@@ -81,19 +79,6 @@ class TrackDAOTest {
 
         assertThat(insertedPlaylistRowId, `is`(EXPECTED_INSERTED_PLAYLIST_ROW_ID))
         assertThat(insertedTrackRowId, `is`(EXPECTED_INSERTED_TRACK_ROW_ID))
-
-        val testObserver = TestObserver<TrackEntity>()
-
-        trackDAO.getTrack(trackEntity.id)
-                .subscribe(testObserver)
-
-        testObserver
-                .assertNoErrors()
-                .assertComplete()
-                .assertValueCount(EMITTED_VALUE_COUNT)
-                .assertOf { retrievedTrackEntity ->
-                    (retrievedTrackEntity == Single.just(trackEntity))
-                }
     }
 
     @Test fun insertTrackWhenASingleTrackIsInsertedTwiceThenItMustBePersistedOnceSuccessfully() {
@@ -131,11 +116,201 @@ class TrackDAOTest {
         assertThat(insertedPlaylistRowId, `is`(EXPECTED_INSERTED_PLAYLIST_ROW_ID))
         assertThat(insertedTrackRowId, `is`(EXPECTED_SAME_INSERTED_TRACK_BY_SECOND_TIME_ROW_ID))
 
-        trackDAO.getTracks()
-                .test()
+        val testObserver = trackDAO.getTracks().test()
+
+        testObserver
+                .assertNoErrors()
+                .assertComplete()
                 .assertValueCount(EMITTED_VALUE_COUNT)
-                .assertOf { retrievedTrackEntity ->
-                    (retrievedTrackEntity == Flowable.just(trackEntity))
+                .assertValue { trackEntities -> (trackEntities.size == 1) }
+    }
+
+    @Test fun insertTracksWhenTrackListIsEmptyThenNoneTrackIsInsertedOnDb() {
+
+        // ARRANGE
+
+        val EMITTED_VALUE_COUNT = 1
+
+        val expectedTrackEntities = listOf<TrackEntity>()
+
+        // ACT
+
+        val rowIds = trackDAO.insertTracks(expectedTrackEntities)
+
+        // ASSERT
+
+        assertTrue(rowIds.size == 0)
+    }
+
+    @Test fun insertTracksWhenThereAreTracksToBeInsertedThenTheseTracksArePersistedOnDb() {
+
+        // ARRANGE
+
+        val TRACK_1_ROW_ID = 1L
+        val TRACK_2_ROW_ID = 2L
+        val TRACK_3_ROW_ID = 3L
+
+        val expectedRowIds = listOf(TRACK_1_ROW_ID, TRACK_2_ROW_ID, TRACK_3_ROW_ID)
+
+        val PLAYLIST_ID = "0HM6i5SUouetTNY9dslhtC"
+        val PLAYLIST_NAME = "Donkey Kong Country"
+
+        val playlistEntity = PlaylistEntity(PLAYLIST_ID, PLAYLIST_NAME)
+
+        playlistDAO.insertPlaylist(playlistEntity)
+
+        // TRACK 1
+
+        val TRACK_ID_1 = "325S3FzTRw7jWAWup9n2vF"
+        val TRACK_NAME_1 = "DKC - Theme"
+
+        val trackEntity1 = TrackEntity(TRACK_ID_1, TRACK_NAME_1, PLAYLIST_ID)
+
+        // TRACK 2
+
+        val TRACK_ID_2 = "0oI62zS46c7zIHMj7BJyBv"
+        val TRACK_NAME_2 = "Donkey Kong Country Vol.1"
+
+        val trackEntity2 = TrackEntity(TRACK_ID_2, TRACK_NAME_2, PLAYLIST_ID)
+
+        // TRACK 3
+
+        val TRACK_ID_3 = "1KGjO8rHK7LaJ2QSrpZlPF"
+        val TRACK_NAME_3 = "DKC - Island Swing"
+
+        val trackEntity3 = TrackEntity(TRACK_ID_3, TRACK_NAME_3, PLAYLIST_ID)
+
+        val expectedTrackEntities = listOf(trackEntity1, trackEntity2, trackEntity3)
+
+        // ACT
+
+        val rowIds = trackDAO.insertTracks(expectedTrackEntities)
+
+        // ASSERT
+
+        assertTrue(expectedRowIds.toTypedArray() contentEquals rowIds.toTypedArray())
+    }
+
+    @Test fun getTrackWhenThereIsNotTrackOnDbThenNoneTrackIsRetrieved() {
+
+        // ARRANGE
+
+        val TRACK_ID = "325S3FzTRw7jWAWup9n2vF"
+
+        // ACT
+
+        val testObserver = trackDAO.getTrack(TRACK_ID).test()
+
+        // ASSERT
+
+        testObserver
+                .assertNoErrors()
+                .assertComplete()
+                .assertNoValues()
+    }
+
+    @Test fun getTrackWhenThereIsTrackWithWantedIdOnDbThenTrackIsRetrieved() {
+
+        // ARRANGE
+
+        val EMITTED_VALUE_COUNT = 1
+
+        val PLAYLIST_ID = "0HM6i5SUouetTNY9dslhtC"
+        val PLAYLIST_NAME = "Donkey Kong Country"
+
+        val playlistEntity = PlaylistEntity(PLAYLIST_ID, PLAYLIST_NAME)
+
+        playlistDAO.insertPlaylist(playlistEntity)
+
+        val TRACK_ID = "325S3FzTRw7jWAWup9n2vF"
+        val TRACK_NAME = "DKC - Theme"
+
+        val expectedTrackEntity = TrackEntity(TRACK_ID, TRACK_NAME, PLAYLIST_ID)
+
+        trackDAO.insertTrack(expectedTrackEntity)
+
+        // ACT
+
+        val testObserver = trackDAO.getTrack(TRACK_ID).test()
+
+        // ASSERT
+
+        testObserver
+                .assertNoErrors()
+                .assertComplete()
+                .assertValueCount(EMITTED_VALUE_COUNT)
+                .assertValue { trackEntity -> (trackEntity == expectedTrackEntity) }
+    }
+
+    @Test fun getTracksWhenThereIsNotTracksOnDbThenNoneTrackIsRetrieved() {
+
+        // ARRANGE
+
+        val EMITTED_VALUE_COUNT = 1
+
+        // ARRANGE / ACT
+
+        val testObserver = trackDAO.getTracks().test()
+
+        // ASSERT
+
+        testObserver
+                .assertNoErrors()
+                .assertComplete()
+                .assertValueCount(EMITTED_VALUE_COUNT)
+                .assertValue { trackEntities -> (trackEntities.size == 0) }
+    }
+
+    @Test fun getTracksWhenThereIsTracksOnDbThenReturnAllTracks() {
+
+        // ARRANGE
+
+        val EMITTED_VALUE_COUNT = 1
+
+        val PLAYLIST_ID = "0HM6i5SUouetTNY9dslhtC"
+        val PLAYLIST_NAME = "Donkey Kong Country"
+
+        val playlistEntity = PlaylistEntity(PLAYLIST_ID, PLAYLIST_NAME)
+
+        playlistDAO.insertPlaylist(playlistEntity)
+
+        // TRACK 1
+
+        val TRACK_ID_1 = "325S3FzTRw7jWAWup9n2vF"
+        val TRACK_NAME_1 = "DKC - Theme"
+
+        val trackEntity1 = TrackEntity(TRACK_ID_1, TRACK_NAME_1, PLAYLIST_ID)
+
+        // TRACK 2
+
+        val TRACK_ID_2 = "0oI62zS46c7zIHMj7BJyBv"
+        val TRACK_NAME_2 = "Donkey Kong Country Vol.1"
+
+        val trackEntity2 = TrackEntity(TRACK_ID_2, TRACK_NAME_2, PLAYLIST_ID)
+
+        // TRACK 3
+
+        val TRACK_ID_3 = "1KGjO8rHK7LaJ2QSrpZlPF"
+        val TRACK_NAME_3 = "DKC - Island Swing"
+
+        val trackEntity3 = TrackEntity(TRACK_ID_3, TRACK_NAME_3, PLAYLIST_ID)
+
+        val expectedTrackEntities = listOf(trackEntity1, trackEntity2, trackEntity3)
+
+        trackDAO.insertTracks(expectedTrackEntities)
+
+        // ACT
+
+        val testObserver = trackDAO.getTracks().test()
+
+        // ASSERT
+
+        testObserver
+                .assertNoErrors()
+                .assertComplete()
+                .assertValueCount(EMITTED_VALUE_COUNT)
+                .assertValue { trackEntities ->
+                    trackEntities.toTypedArray() contentEquals expectedTrackEntities.toTypedArray()
                 }
     }
 
