@@ -10,7 +10,6 @@ import com.orogersilva.spotmusicalarm.dashboarddata.factory.TrackDataSourceFacto
 import com.orogersilva.spotmusicalarm.dashboarddata.shared.SingleLiveEvent
 import com.orogersilva.spotmusicalarm.dashboarddomain.enums.NetworkState
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Track
-import com.orogersilva.spotmusicalarm.dashboarddomain.repository.TrackRepository
 import javax.inject.Inject
 
 class TrackListViewModel @Inject constructor(private val trackDataSourceFactory: TrackDataSourceFactory) : ViewModel() {

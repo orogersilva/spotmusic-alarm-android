@@ -6,15 +6,6 @@ import android.arch.persistence.room.ForeignKey
 import android.arch.persistence.room.ForeignKey.CASCADE
 import android.arch.persistence.room.PrimaryKey
 
-@Entity(
-        tableName = "track",
-        foreignKeys = [
-            ForeignKey(entity = PlaylistEntity::class,
-                    parentColumns = ["id"],
-                    childColumns = ["playlist_id"],
-                    onDelete = CASCADE)
-        ]
-)
+@Entity(tableName = "track")
 data class TrackEntity(@PrimaryKey val id: String,
-                       @ColumnInfo(name = "name") val name: String,
-                       @ColumnInfo(name = "playlist_id") val playlistId: String)
+                       @ColumnInfo(name = "name") val name: String)

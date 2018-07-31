@@ -24,16 +24,13 @@ object DataUtils {
 
     fun createPagedTrackAndAllArtistsTestData(jsonStr: String?): Paging<TrackAndAllArtists> {
 
-        val ANY_PLAYLIST_ID = "0"
-
         val type = object : TypeToken<PagingDTO<PlaylistTrackDTO>>(){}.type
 
         val pagedPlaylistTrackDTO = Gson().fromJson<PagingDTO<PlaylistTrackDTO>>(jsonStr, type)
 
         return PlaylistMapper
-                .transformPagedPlaylistTrackDTOsToPagedTrackAndAllArtistsSupportedByPlaylistId(
-                        pagedPlaylistTrackDTO,
-                        ANY_PLAYLIST_ID)
+                .transformPagedPlaylistTrackDTOsToPagedTrackAndAllArtists(
+                        pagedPlaylistTrackDTO)
     }
 
     // endregion

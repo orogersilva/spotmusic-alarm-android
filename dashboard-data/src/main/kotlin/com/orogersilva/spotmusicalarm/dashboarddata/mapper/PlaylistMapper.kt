@@ -43,10 +43,9 @@ object PlaylistMapper {
                 pagedPlaylistDTOs.previous,
                 pagedPlaylistDTOs.total)
 
-    fun transformPagedPlaylistTrackDTOsToPagedTrackAndAllArtistsSupportedByPlaylistId(pagedPlaylistTrackDTOs: PagingDTO<PlaylistTrackDTO>,
-                                                                                      playlistId: String): Paging<TrackAndAllArtists> =
-            Paging(TrackMapper.transformTrackDTOsToTrackAndAllArtistsListSupportedByPlaylistId(
-                transformPlaylistTrackDTOsToTrackDTOs(pagedPlaylistTrackDTOs.items), playlistId),
+    fun transformPagedPlaylistTrackDTOsToPagedTrackAndAllArtists(pagedPlaylistTrackDTOs: PagingDTO<PlaylistTrackDTO>): Paging<TrackAndAllArtists> =
+            Paging(TrackMapper.transformTrackDTOsToTrackAndAllArtistsList(
+                transformPlaylistTrackDTOsToTrackDTOs(pagedPlaylistTrackDTOs.items)),
                 pagedPlaylistTrackDTOs.limit,
                 pagedPlaylistTrackDTOs.next,
                 pagedPlaylistTrackDTOs.offset,

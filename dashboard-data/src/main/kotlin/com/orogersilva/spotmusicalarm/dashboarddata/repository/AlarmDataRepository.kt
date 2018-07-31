@@ -3,8 +3,7 @@ package com.orogersilva.spotmusicalarm.dashboarddata.repository
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.AlarmDataContract
 import javax.inject.Inject
 
-class AlarmDataRepository @Inject constructor(private val alarmLocalDataSource: AlarmDataContract.Local,
-                                              private val ) {
+class AlarmDataRepository @Inject constructor(private val alarmLocalDataSource: AlarmDataContract.Local) {
 }
 
 /*class UserDataRepository @Inject constructor(private val userLocalDataSource: UserDataContract.Local,

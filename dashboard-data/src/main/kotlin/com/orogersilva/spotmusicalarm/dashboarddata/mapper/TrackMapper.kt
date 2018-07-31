@@ -10,8 +10,7 @@ object TrackMapper {
 
     // region PUBLIC METHODS
 
-    fun transformTrackDTOsToTrackAndAllArtistsListSupportedByPlaylistId(trackDTOs: List<TrackDTO>,
-                                                                        playlistId: String): List<TrackAndAllArtists> {
+    fun transformTrackDTOsToTrackAndAllArtistsList(trackDTOs: List<TrackDTO>): List<TrackAndAllArtists> {
 
         val trackAndAllArtistsList = mutableListOf<TrackAndAllArtists>()
 
@@ -27,7 +26,7 @@ object TrackMapper {
 
             val trackAndAllArtists = TrackAndAllArtists()
 
-            trackAndAllArtists.trackEntity = transformTrackDTOToTrackEntitySupportedByPlaylistId(trackDTO, playlistId)
+            trackAndAllArtists.trackEntity = transformTrackDTOToTrackEntity(trackDTO)
             trackAndAllArtists.artistEntities = artistEntities
 
             trackAndAllArtistsList.add(trackAndAllArtists)
@@ -51,9 +50,8 @@ object TrackMapper {
 
     // region UTILITY METHODS
 
-    private fun transformTrackDTOToTrackEntitySupportedByPlaylistId(trackDTO: TrackDTO,
-                                                                    playlistId: String): TrackEntity =
-            TrackEntity(trackDTO.id, trackDTO.name, playlistId)
+    private fun transformTrackDTOToTrackEntity(trackDTO: TrackDTO): TrackEntity =
+            TrackEntity(trackDTO.id, trackDTO.name)
 
     private fun transformTrackAndAllArtistsToTrack(trackAndAllArtists: TrackAndAllArtists): Track =
             Track(trackAndAllArtists.trackEntity?.id!!, trackAndAllArtists.trackEntity?.name!!,

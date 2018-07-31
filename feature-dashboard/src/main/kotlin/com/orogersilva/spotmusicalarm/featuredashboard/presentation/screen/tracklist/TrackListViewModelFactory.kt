@@ -4,7 +4,6 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.orogersilva.spotmusicalarm.base.scheduler.SchedulerProvider
 import com.orogersilva.spotmusicalarm.dashboarddata.factory.TrackDataSourceFactory
-import com.orogersilva.spotmusicalarm.dashboarddomain.repository.TrackRepository
 import javax.inject.Inject
 
 class TrackListViewModelFactory @Inject constructor(private val trackDataSourceFactory: TrackDataSourceFactory)

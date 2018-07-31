@@ -59,17 +59,10 @@ class TrackDAOTest {
         val EXPECTED_INSERTED_PLAYLIST_ROW_ID = 1L
         val EXPECTED_INSERTED_TRACK_ROW_ID = 1L
 
-        val PLAYLIST_ID = "0HM6i5SUouetTNY9dslhtC"
-        val PLAYLIST_NAME = "Donkey Kong Country"
-
-        val playlistEntity = PlaylistEntity(PLAYLIST_ID, PLAYLIST_NAME)
-
-        val insertedPlaylistRowId = playlistDAO.insertPlaylist(playlistEntity)
-
         val TRACK_ID = "325S3FzTRw7jWAWup9n2vF"
         val TRACK_NAME = "DKC - Theme"
 
-        val trackEntity = TrackEntity(TRACK_ID, TRACK_NAME, PLAYLIST_ID)
+        val trackEntity = TrackEntity(TRACK_ID, TRACK_NAME)
 
         // ACT
 
@@ -77,7 +70,6 @@ class TrackDAOTest {
 
         // ASSERT
 
-        assertThat(insertedPlaylistRowId, `is`(EXPECTED_INSERTED_PLAYLIST_ROW_ID))
         assertThat(insertedTrackRowId, `is`(EXPECTED_INSERTED_TRACK_ROW_ID))
     }
 
@@ -91,17 +83,10 @@ class TrackDAOTest {
 
         val EMITTED_VALUE_COUNT = 1
 
-        val PLAYLIST_ID = "0HM6i5SUouetTNY9dslhtC"
-        val PLAYLIST_NAME = "Donkey Kong Country"
-
-        val playlistEntity = PlaylistEntity(PLAYLIST_ID, PLAYLIST_NAME)
-
-        val insertedPlaylistRowId = playlistDAO.insertPlaylist(playlistEntity)
-
         val TRACK_ID = "325S3FzTRw7jWAWup9n2vF"
         val TRACK_NAME = "DKC - Theme"
 
-        val trackEntity = TrackEntity(TRACK_ID, TRACK_NAME, PLAYLIST_ID)
+        val trackEntity = TrackEntity(TRACK_ID, TRACK_NAME)
 
         // ACT / ASSERT
 
@@ -113,7 +98,6 @@ class TrackDAOTest {
 
         // ASSERT
 
-        assertThat(insertedPlaylistRowId, `is`(EXPECTED_INSERTED_PLAYLIST_ROW_ID))
         assertThat(insertedTrackRowId, `is`(EXPECTED_SAME_INSERTED_TRACK_BY_SECOND_TIME_ROW_ID))
 
         val testObserver = trackDAO.getTracks().test()
@@ -129,8 +113,6 @@ class TrackDAOTest {
 
         // ARRANGE
 
-        val EMITTED_VALUE_COUNT = 1
-
         val expectedTrackEntities = listOf<TrackEntity>()
 
         // ACT
@@ -139,7 +121,7 @@ class TrackDAOTest {
 
         // ASSERT
 
-        assertTrue(rowIds.size == 0)
+        assertTrue(rowIds.isEmpty())
     }
 
     @Test fun insertTracksWhenThereAreTracksToBeInsertedThenTheseTracksArePersistedOnDb() {
@@ -152,33 +134,26 @@ class TrackDAOTest {
 
         val expectedRowIds = listOf(TRACK_1_ROW_ID, TRACK_2_ROW_ID, TRACK_3_ROW_ID)
 
-        val PLAYLIST_ID = "0HM6i5SUouetTNY9dslhtC"
-        val PLAYLIST_NAME = "Donkey Kong Country"
-
-        val playlistEntity = PlaylistEntity(PLAYLIST_ID, PLAYLIST_NAME)
-
-        playlistDAO.insertPlaylist(playlistEntity)
-
         // TRACK 1
 
         val TRACK_ID_1 = "325S3FzTRw7jWAWup9n2vF"
         val TRACK_NAME_1 = "DKC - Theme"
 
-        val trackEntity1 = TrackEntity(TRACK_ID_1, TRACK_NAME_1, PLAYLIST_ID)
+        val trackEntity1 = TrackEntity(TRACK_ID_1, TRACK_NAME_1)
 
         // TRACK 2
 
         val TRACK_ID_2 = "0oI62zS46c7zIHMj7BJyBv"
         val TRACK_NAME_2 = "Donkey Kong Country Vol.1"
 
-        val trackEntity2 = TrackEntity(TRACK_ID_2, TRACK_NAME_2, PLAYLIST_ID)
+        val trackEntity2 = TrackEntity(TRACK_ID_2, TRACK_NAME_2)
 
         // TRACK 3
 
         val TRACK_ID_3 = "1KGjO8rHK7LaJ2QSrpZlPF"
         val TRACK_NAME_3 = "DKC - Island Swing"
 
-        val trackEntity3 = TrackEntity(TRACK_ID_3, TRACK_NAME_3, PLAYLIST_ID)
+        val trackEntity3 = TrackEntity(TRACK_ID_3, TRACK_NAME_3)
 
         val expectedTrackEntities = listOf(trackEntity1, trackEntity2, trackEntity3)
 
@@ -215,17 +190,10 @@ class TrackDAOTest {
 
         val EMITTED_VALUE_COUNT = 1
 
-        val PLAYLIST_ID = "0HM6i5SUouetTNY9dslhtC"
-        val PLAYLIST_NAME = "Donkey Kong Country"
-
-        val playlistEntity = PlaylistEntity(PLAYLIST_ID, PLAYLIST_NAME)
-
-        playlistDAO.insertPlaylist(playlistEntity)
-
         val TRACK_ID = "325S3FzTRw7jWAWup9n2vF"
         val TRACK_NAME = "DKC - Theme"
 
-        val expectedTrackEntity = TrackEntity(TRACK_ID, TRACK_NAME, PLAYLIST_ID)
+        val expectedTrackEntity = TrackEntity(TRACK_ID, TRACK_NAME)
 
         trackDAO.insertTrack(expectedTrackEntity)
 
@@ -267,33 +235,26 @@ class TrackDAOTest {
 
         val EMITTED_VALUE_COUNT = 1
 
-        val PLAYLIST_ID = "0HM6i5SUouetTNY9dslhtC"
-        val PLAYLIST_NAME = "Donkey Kong Country"
-
-        val playlistEntity = PlaylistEntity(PLAYLIST_ID, PLAYLIST_NAME)
-
-        playlistDAO.insertPlaylist(playlistEntity)
-
         // TRACK 1
 
         val TRACK_ID_1 = "325S3FzTRw7jWAWup9n2vF"
         val TRACK_NAME_1 = "DKC - Theme"
 
-        val trackEntity1 = TrackEntity(TRACK_ID_1, TRACK_NAME_1, PLAYLIST_ID)
+        val trackEntity1 = TrackEntity(TRACK_ID_1, TRACK_NAME_1)
 
         // TRACK 2
 
         val TRACK_ID_2 = "0oI62zS46c7zIHMj7BJyBv"
         val TRACK_NAME_2 = "Donkey Kong Country Vol.1"
 
-        val trackEntity2 = TrackEntity(TRACK_ID_2, TRACK_NAME_2, PLAYLIST_ID)
+        val trackEntity2 = TrackEntity(TRACK_ID_2, TRACK_NAME_2)
 
         // TRACK 3
 
         val TRACK_ID_3 = "1KGjO8rHK7LaJ2QSrpZlPF"
         val TRACK_NAME_3 = "DKC - Island Swing"
 
-        val trackEntity3 = TrackEntity(TRACK_ID_3, TRACK_NAME_3, PLAYLIST_ID)
+        val trackEntity3 = TrackEntity(TRACK_ID_3, TRACK_NAME_3)
 
         val expectedTrackEntities = listOf(trackEntity1, trackEntity2, trackEntity3)
 

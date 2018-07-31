@@ -113,9 +113,8 @@ class PlaylistRemoteDataSource @Inject constructor(private val playlistApiClient
                             val pagingDTO = Gson().fromJson<PagingDTO<PlaylistTrackDTO>>(content, type)
 
                             Single.just(PlaylistMapper
-                                    .transformPagedPlaylistTrackDTOsToPagedTrackAndAllArtistsSupportedByPlaylistId(
-                                            pagingDTO, playlistId
-                                    )
+                                    .transformPagedPlaylistTrackDTOsToPagedTrackAndAllArtists(
+                                            pagingDTO)
                             )
                         }
 
