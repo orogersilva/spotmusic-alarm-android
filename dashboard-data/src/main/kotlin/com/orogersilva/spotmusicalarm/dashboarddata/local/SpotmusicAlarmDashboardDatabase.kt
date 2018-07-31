@@ -4,12 +4,15 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import com.orogersilva.spotmusicalarm.dashboarddata.BuildConfig
+import com.orogersilva.spotmusicalarm.dashboarddata.local.dao.AlarmDAO
+import com.orogersilva.spotmusicalarm.dashboarddata.local.dao.ArtistDAO
 import com.orogersilva.spotmusicalarm.dashboarddata.local.dao.PlaylistDAO
 import com.orogersilva.spotmusicalarm.dashboarddata.local.dao.TrackDAO
 import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.*
 import com.orogersilva.spotmusicalarm.dashboarddata.local.typeconverter.DateTypeConverter
 
 @Database(entities = [
+    AlarmEntity::class,
     ArtistEntity::class,
     ImageEntity::class,
     PlaylistEntity::class,
@@ -20,6 +23,10 @@ import com.orogersilva.spotmusicalarm.dashboarddata.local.typeconverter.DateType
 abstract class SpotmusicAlarmDashboardDatabase : RoomDatabase() {
 
     // region DAO's
+
+    abstract fun getAlarmDAO(): AlarmDAO
+
+    abstract fun getArtistDAO(): ArtistDAO
 
     abstract fun getPlaylistDAO(): PlaylistDAO
 

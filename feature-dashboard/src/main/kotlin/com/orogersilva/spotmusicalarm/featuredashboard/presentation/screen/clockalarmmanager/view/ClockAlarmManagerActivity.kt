@@ -32,6 +32,15 @@ class ClockAlarmManagerActivity : BaseActivity() {
 
     // endregion
 
+    companion object {
+
+        // region INTENT KEYS
+
+        val ARG_NEW_ALARM_ID = "com.orogersilva.spotmusicalarm.ARG_NEW_ALARM_ID"
+
+        // endregion
+    }
+
     // region ACTIVITY LIFECYCLE METHODS
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -40,24 +40,39 @@ class AlarmDataRepositoryTest {
 
         // ARRANGE
 
+        val EMITTED_VALUE_COUNT = 1
+
         val ALARM_DATE_IN_MILLIS = 1591506000000L
 
         val ALARM_DATE = Date(ALARM_DATE_IN_MILLIS)
         val ALARM_IS_ENABLED = true
 
+        val EXPECTED_ALARM_ID = 1L
+
+        whenever(alarmLocalDataSourceMock.saveAlarm(ALARM_DATE, ALARM_IS_ENABLED, null))
+                .thenReturn(EXPECTED_ALARM_ID)
+
         // ACT
 
-        alarmRepository.saveAlarm(ALARM_DATE, ALARM_IS_ENABLED, null)
+        val testObserver = alarmRepository.saveAlarm(ALARM_DATE, ALARM_IS_ENABLED, null)
+                .test()
 
         // ASSERT
 
         verifyNoMoreInteractions(trackLocalDataSourceMock)
-        verify(alarmLocalDataSourceMock).saveAlarm(ALARM_DATE, ALARM_IS_ENABLED, null)
+
+        testObserver
+                .assertNoErrors()
+                .assertComplete()
+                .assertValueCount(EMITTED_VALUE_COUNT)
+                .assertValue { alarmId -> (alarmId == EXPECTED_ALARM_ID) }
     }
 
     @Test fun `Save alarm, when track is not null, then save alarm with associated track`() {
 
         // ARRANGE
+
+        val EMITTED_VALUE_COUNT = 1
 
         val ALARM_DATE_IN_MILLIS = 1591506000000L
 
@@ -77,15 +92,26 @@ class AlarmDataRepositoryTest {
 
         val track = Track(TRACK_ID, TRACK_NAME, artists)
 
+        val EXPECTED_ALARM_ID = 1L
+
+        whenever(alarmLocalDataSourceMock.saveAlarm(ALARM_DATE, ALARM_IS_ENABLED, TRACK_ID))
+                .thenReturn(EXPECTED_ALARM_ID)
+
         // ACT
 
-        alarmRepository.saveAlarm(ALARM_DATE, ALARM_IS_ENABLED, track)
+        val testObserver = alarmRepository.saveAlarm(ALARM_DATE, ALARM_IS_ENABLED, track)
+                .test()
 
         // ASSERT
 
         verify(trackLocalDataSourceMock).saveTrack(TRACK_ID, TRACK_NAME,
                 ArtistMapper.transformArtistsToArtistEntities(artists))
 
+        testObserver
+                .assertNoErrors()
+                .assertComplete()
+                .assertValueCount(EMITTED_VALUE_COUNT)
+                .assertValue { alarmId -> (alarmId == EXPECTED_ALARM_ID) }
     }
 
     // endregion

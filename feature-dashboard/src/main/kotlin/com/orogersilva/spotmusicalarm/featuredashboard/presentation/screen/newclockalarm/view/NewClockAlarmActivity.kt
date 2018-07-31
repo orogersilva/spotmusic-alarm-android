@@ -14,6 +14,7 @@ import com.orogersilva.spotmusicalarm.featuredashboard.di.component.DaggerDashbo
 import com.orogersilva.spotmusicalarm.featuredashboard.di.component.NewClockAlarmViewComponent
 import com.orogersilva.spotmusicalarm.featuredashboard.di.module.NewClockAlarmViewModelModule
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.BaseActivity
+import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager.view.ClockAlarmManagerActivity
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.newclockalarm.NewClockAlarmViewModel
 import com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.playlist.view.PlaylistActivity
 import com.orogersilva.spotmusicalarm.spotifyapi.SpotifyAdapterHelper
@@ -150,15 +151,15 @@ class NewClockAlarmActivity : BaseActivity() {
 
                 val calendar = Calendar.getInstance()
 
+                val setCurrentTimeStr = timeTextInputEditText.text.toString()
+
                 val TIME_FORMAT = "HH:mm"
 
                 val simpleTimeFormat = SimpleDateFormat(TIME_FORMAT, Locale.getDefault())
 
-                val setCurrentTimeStr = timeTextInputEditText.text.toString()
-
                 if (setCurrentTimeStr.isNotEmpty()) {
 
-                    val setCurrentDate = simpleTimeFormat.parse(timeTextInputEditText.text.toString())
+                    val setCurrentDate = simpleTimeFormat.parse(setCurrentTimeStr)
 
                     calendar.time = setCurrentDate
                 }
@@ -191,9 +192,23 @@ class NewClockAlarmActivity : BaseActivity() {
                         trackTextInputEditText.text.isNotEmpty()
             })
 
-            savedClockAlarmConfigEvent.observe(this@NewClockAlarmActivity, Observer<Void> {
+            preparationClockAlarmConfigEvent.observe(this@NewClockAlarmActivity, Observer<Void> {
 
+                val TIME_FORMAT = "HH:mm"
 
+                val simpleTimeFormat = SimpleDateFormat(TIME_FORMAT, Locale.getDefault())
+
+                val clockAlarmDateTime = simpleTimeFormat.parse(timeTextInputEditText.text.toString())
+                val track = selectedTrack
+
+                newClockAlarmViewModel.saveClockAlarmSettings(clockAlarmDateTime, true, track)
+            })
+
+            alarmIdMutableLiveData.observe(this@NewClockAlarmActivity, Observer<Long> { alarmId ->
+
+                alarmId?.let {
+                    goBackToClockAlarmManagerScreen(it)
+                }
             })
         }
 
@@ -206,6 +221,17 @@ class NewClockAlarmActivity : BaseActivity() {
         val playlistIntent = Intent(this, PlaylistActivity::class.java)
 
         startActivityForResult(playlistIntent, TRACK_REQUEST_CODE)
+    }
+
+    private fun goBackToClockAlarmManagerScreen(alarmId: Long) {
+
+        val clockAlarmManagerIntent = Intent()
+
+        clockAlarmManagerIntent.putExtra(ClockAlarmManagerActivity.ARG_NEW_ALARM_ID, alarmId)
+
+        setResult(RESULT_OK, clockAlarmManagerIntent)
+
+        finish()
     }
 
     // endregion

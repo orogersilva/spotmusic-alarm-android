@@ -56,6 +56,7 @@ dependencies {
     implementation deps.rx.java
 
     testImplementation project(':test-utils')
+    testImplementation deps.android.arch.core.test
     testImplementation deps.kotlin.test.jdk
     testImplementation deps.mockitokotlin.core
 

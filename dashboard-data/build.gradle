@@ -14,6 +14,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         buildConfigField "int", "DASHBOARD_DATABASE_VERSION", '1'
+        buildConfigField "String", "DASHBOARD_DATABASE_NAME", "\"dashboard.db\""
 
         buildConfigField "String", "SPOTIFY_API_URL",
                 "\"https://api.spotify.com/v1/\""
