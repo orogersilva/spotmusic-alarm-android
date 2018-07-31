@@ -30,13 +30,27 @@ object ArtistMapper {
         return artists
     }
 
+    fun transformArtistsToArtistEntities(artists: List<Artist>): List<ArtistEntity> {
+
+        val artistEntities = mutableListOf<ArtistEntity>()
+
+        artists.forEach {
+            artistEntities.add(transformArtistToArtistEntity(it))
+        }
+
+        return artistEntities
+    }
+
     // region UTILITY METHODS
 
     private fun transformArtistDTOToArtistEntitySupportedByTrackId(artistDTO: ArtistDTO, trackId: String): ArtistEntity =
             ArtistEntity(artistDTO.id, artistDTO.name, trackId)
 
     private fun transformArtistEntityToArtist(artistEntity: ArtistEntity): Artist =
-            Artist(artistEntity.id, artistEntity.name)
+            Artist(artistEntity.id, artistEntity.name, artistEntity.trackId)
+
+    private fun transformArtistToArtistEntity(artist: Artist): ArtistEntity =
+            ArtistEntity(artist.id, artist.name, artist.trackId)
 
     // endregion
 

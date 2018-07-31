@@ -1,5 +1,7 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.contract
 
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.ArtistEntity
+
 interface TrackDataContract {
 
     // region INTERFACES
@@ -8,7 +10,7 @@ interface TrackDataContract {
 
         // region METHODS
 
-        fun saveTrack()
+        fun saveTrack(id: String, name: String, artistEntities: List<ArtistEntity>)
 
         // endregion
     }
