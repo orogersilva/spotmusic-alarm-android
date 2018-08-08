@@ -18,6 +18,14 @@ android {
 
         buildConfigField "String", "SPOTIFY_API_URL",
                 "\"https://api.spotify.com/v1/\""
+
+        kapt {
+
+            arguments {
+
+                arg("room.schemaLocation", "$projectDir/schemas".toString())
+            }
+        }
     }
 
     buildTypes {

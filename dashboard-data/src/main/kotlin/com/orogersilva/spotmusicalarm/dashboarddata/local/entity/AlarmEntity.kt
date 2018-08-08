@@ -4,13 +4,15 @@ import android.arch.persistence.room.*
 import com.orogersilva.spotmusicalarm.dashboarddata.local.typeconverter.DateTypeConverter
 import java.util.*
 
-@Entity(
-        tableName = "alarm",
+@Entity(tableName = "alarm",
         foreignKeys = [
             ForeignKey(entity = TrackEntity::class,
                     parentColumns = ["id"],
                     childColumns = ["track_id"],
                     onDelete = ForeignKey.SET_NULL)
+        ],
+        indices = [
+            Index(value = ["track_id"])
         ]
 )
 data class AlarmEntity(@PrimaryKey(autoGenerate = true) val id: Long = 0L,
