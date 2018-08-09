@@ -17,7 +17,7 @@ object FileUtils {
                     "Hint name it as: " + jsonFileName)
         }
 
-        var jsonStr: String? = null
+        var jsonStr: String?
 
         try {
 

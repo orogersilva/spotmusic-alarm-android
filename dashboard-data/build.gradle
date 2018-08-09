@@ -39,6 +39,16 @@ android {
     sourceSets.androidTest.java.srcDirs += 'src/androidTest/kotlin'
     sourceSets.main.java.srcDirs += 'src/main/kotlin'
     sourceSets.test.java.srcDirs += 'src/test/kotlin'
+
+    testOptions {
+
+        unitTests.all {
+
+            testLogging {
+                events 'passed', 'skipped', 'failed'
+            }
+        }
+    }
 }
 
 dependencies {
