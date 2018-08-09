@@ -15,8 +15,10 @@ import android.arch.persistence.room.ForeignKey.CASCADE
             Index(value = ["playlist_id"])
         ]
 )
-data class ImageEntity(@PrimaryKey(autoGenerate = true) val id: Long,
-                       @ColumnInfo(name = "url") val url: String,
-                       @ColumnInfo(name = "width") val width: Int?,
-                       @ColumnInfo(name = "height") val height: Int?,
-                       @ColumnInfo(name = "playlist_id") val playlistId: String)
+data class ImageEntity(
+        @PrimaryKey(autoGenerate = true) val id: Long,
+        @ColumnInfo(name = "url") val url: String,
+        @ColumnInfo(name = "width") val width: Int?,
+        @ColumnInfo(name = "height") val height: Int?,
+        @ColumnInfo(name = "playlist_id") val playlistId: String
+)

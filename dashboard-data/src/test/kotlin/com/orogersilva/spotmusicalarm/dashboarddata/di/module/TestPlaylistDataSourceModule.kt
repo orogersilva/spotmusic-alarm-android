@@ -41,7 +41,6 @@ open class TestPlaylistDataSourceModule(private val mockWebServer: MockWebServer
                             request = chain.request()
                                     .newBuilder()
                                     .build()
-
                         } else {
 
                             request = chain.request()

@@ -35,7 +35,6 @@ class UserDataRepositoryTest {
         userRemoteDataSourceMock = mock()
 
         userRepository = UserDataRepository(userLocalDataSourceMock, userRemoteDataSourceMock)
-
     }
 
     // endregion

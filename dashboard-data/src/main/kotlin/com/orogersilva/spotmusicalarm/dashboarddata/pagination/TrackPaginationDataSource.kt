@@ -12,10 +12,12 @@ import com.orogersilva.spotmusicalarm.dashboarddomain.model.Paging
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Track
 import javax.inject.Inject
 
-class TrackPaginationDataSource @Inject constructor(private val playlistRemoteDataSource: PlaylistDataContract.Remote,
-                                                    private val userRemoteDataSource: UserDataContract.Remote,
-                                                    private val schedulerProvider: SchedulerProvider,
-                                                    private val playlistId: String)
+class TrackPaginationDataSource @Inject constructor(
+        private val playlistRemoteDataSource: PlaylistDataContract.Remote,
+        private val userRemoteDataSource: UserDataContract.Remote,
+        private val schedulerProvider: SchedulerProvider,
+        private val playlistId: String
+)
     : ItemKeyedDataSource<Long, Track>() {
 
     // region PROPERTIES

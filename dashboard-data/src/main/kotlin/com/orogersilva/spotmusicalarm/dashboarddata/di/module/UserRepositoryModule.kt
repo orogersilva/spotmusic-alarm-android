@@ -24,8 +24,10 @@ open class UserRepositoryModule {
 
     // region PROVIDERS
 
-    @Provides @DashboardScope open fun provideUserLocalDataSource(sharedPreferences: SharedPreferences,
-                                                                            sharedPreferencesEditor: SharedPreferences.Editor): UserDataContract.Local =
+    @Provides @DashboardScope open fun provideUserLocalDataSource(
+            sharedPreferences: SharedPreferences,
+            sharedPreferencesEditor: SharedPreferences.Editor
+    ): UserDataContract.Local =
             UserLocalDataSource(sharedPreferences, sharedPreferencesEditor)
 
     @Provides @DashboardScope open fun provideOkHttpClient(userLocalDataSource: UserDataContract.Local): OkHttpClient {
@@ -45,7 +47,6 @@ open class UserRepositoryModule {
                             request = chain.request()
                                     .newBuilder()
                                     .build()
-
                         } else {
 
                             request = chain.request()
@@ -77,8 +78,10 @@ open class UserRepositoryModule {
     @Provides @DashboardScope open fun provideUserRemoteDataSource(userApiClient: UserApiClient): UserDataContract.Remote =
             UserRemoteDataSource(userApiClient)
 
-    @Provides @DashboardScope open fun provideUserRepository(userLocalDataSource: UserDataContract.Local,
-                                                                 userRemoteDataSource: UserDataContract.Remote): UserRepository =
+    @Provides @DashboardScope open fun provideUserRepository(
+            userLocalDataSource: UserDataContract.Local,
+            userRemoteDataSource: UserDataContract.Remote
+    ): UserRepository =
             UserDataRepository(userLocalDataSource, userRemoteDataSource)
 
     // endregion

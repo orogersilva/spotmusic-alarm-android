@@ -94,10 +94,12 @@ class PlaylistRemoteDataSource @Inject constructor(private val playlistApiClient
                 }
     }
 
-    override fun getPagedTrackAndAllArtistsFromPlaylist(userId: String,
-                                                        playlistId: String,
-                                                        limit: Int,
-                                                        offset: Int): Single<Paging<TrackAndAllArtists>> {
+    override fun getPagedTrackAndAllArtistsFromPlaylist(
+            userId: String,
+            playlistId: String,
+            limit: Int,
+            offset: Int
+    ): Single<Paging<TrackAndAllArtists>> {
 
         return playlistApiClient.getPagedTracksFromPlaylist(userId, playlistId, limit, offset)
                 .flatMap { pagedPlaylistTracksDTOsHttpResponse ->

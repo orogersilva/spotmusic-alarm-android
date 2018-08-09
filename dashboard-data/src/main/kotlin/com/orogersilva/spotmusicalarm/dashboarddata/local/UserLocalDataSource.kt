@@ -4,8 +4,10 @@ import android.content.SharedPreferences
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
 import javax.inject.Inject
 
-class UserLocalDataSource @Inject constructor(private val sharedPreferences: SharedPreferences,
-                                              private val sharedPreferencesEditor: SharedPreferences.Editor) : UserDataContract.Local {
+class UserLocalDataSource @Inject constructor(
+        private val sharedPreferences: SharedPreferences,
+        private val sharedPreferencesEditor: SharedPreferences.Editor
+) : UserDataContract.Local {
 
     // region PROPERTIES
 

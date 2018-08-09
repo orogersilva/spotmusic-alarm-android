@@ -29,7 +29,6 @@ class LocalResponseDispatcher : QueueDispatcher() {
 
             mockResponse.setBody(FileUtils.readFile(SPOTIFY_REGULAR_ERROR_FILE_NAME))
             mockResponse.setResponseCode(FORBIDDEN_STATUS_CODE)
-
         } else {
 
             val scenario = getScenario(request)
@@ -89,7 +88,6 @@ class LocalResponseDispatcher : QueueDispatcher() {
                 if (path.isEmpty()) {
 
                     path = pathSegment
-
                 } else {
 
                     if (pathSegment.containsAtLeastOneNotNumericalCharacter() &&

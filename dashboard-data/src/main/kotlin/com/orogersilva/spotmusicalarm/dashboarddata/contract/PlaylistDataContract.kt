@@ -15,9 +15,18 @@ interface PlaylistDataContract {
 
         fun getPagedPlaylists(limit: Int, offset: Int): Single<Paging<PlaylistEntity>>
 
-        fun getPagedPlaylistsByUserId(userId: String, limit: Int, offset: Int): Single<Paging<PlaylistEntity>>
+        fun getPagedPlaylistsByUserId(
+                userId: String,
+                limit: Int,
+                offset: Int
+        ): Single<Paging<PlaylistEntity>>
 
-        fun getPagedTrackAndAllArtistsFromPlaylist(userId: String, playlistId: String, limit: Int, offset: Int): Single<Paging<TrackAndAllArtists>>
+        fun getPagedTrackAndAllArtistsFromPlaylist(
+                userId: String,
+                playlistId: String,
+                limit: Int,
+                offset: Int
+        ): Single<Paging<TrackAndAllArtists>>
 
         // endregion
     }

@@ -22,8 +22,10 @@ open class AlarmRepositoryModule {
     @Provides @DashboardScope open fun provideAlarmLocalDataSource(alarmDAO: AlarmDAO): AlarmDataContract.Local =
             AlarmLocalDataSource(alarmDAO)
 
-    @Provides @DashboardScope open fun provideAlarmRepository(alarmLocalDataSource: AlarmDataContract.Local,
-                                                              trackLocalDataSource: TrackDataContract.Local): AlarmRepository =
+    @Provides @DashboardScope open fun provideAlarmRepository(
+            alarmLocalDataSource: AlarmDataContract.Local,
+            trackLocalDataSource: TrackDataContract.Local
+    ): AlarmRepository =
             AlarmDataRepository(alarmLocalDataSource, trackLocalDataSource)
 
     // endregion

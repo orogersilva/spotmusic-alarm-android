@@ -8,7 +8,11 @@ interface AlarmRepository {
 
     // region METHODS
 
-    fun saveAlarm(dateTime: Date, isEnabled: Boolean, track: Track?): Single<Long>
+    fun saveAlarm(
+            dateTime: Date,
+            isEnabled: Boolean,
+            track: Track?
+    ): Single<Long>
 
     // endregion
 }

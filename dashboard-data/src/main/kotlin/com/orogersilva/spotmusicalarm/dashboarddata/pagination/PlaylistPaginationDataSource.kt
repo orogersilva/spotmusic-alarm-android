@@ -12,9 +12,11 @@ import com.orogersilva.spotmusicalarm.dashboarddomain.model.Paging
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Playlist
 import javax.inject.Inject
 
-class PlaylistPaginationDataSource @Inject constructor(private val playlistRemoteDataSource: PlaylistDataContract.Remote,
-                                                       private val userRemoteDataSource: UserDataContract.Remote,
-                                                       private val schedulerProvider: SchedulerProvider)
+class PlaylistPaginationDataSource @Inject constructor(
+        private val playlistRemoteDataSource: PlaylistDataContract.Remote,
+        private val userRemoteDataSource: UserDataContract.Remote,
+        private val schedulerProvider: SchedulerProvider
+)
     : ItemKeyedDataSource<Long, Playlist>() {
 
     // region PROPERTIES
@@ -64,7 +66,6 @@ class PlaylistPaginationDataSource @Inject constructor(private val playlistRemot
                             { paging -> onMorePlaylistsFetched(paging, callback) },
                             { throwable -> onPaginationError(throwable) }
                     )
-
         } else {
 
             networkStateLiveData.postValue(NetworkState.SUCCESS)

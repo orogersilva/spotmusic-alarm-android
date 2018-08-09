@@ -9,22 +9,25 @@ import io.reactivex.Single
 import java.util.*
 import javax.inject.Inject
 
-class AlarmDataRepository @Inject constructor(private val alarmLocalDataSource: AlarmDataContract.Local,
-                                              private val trackLocalDataSource: TrackDataContract.Local) : AlarmRepository {
+class AlarmDataRepository @Inject constructor(
+        private val alarmLocalDataSource: AlarmDataContract.Local,
+        private val trackLocalDataSource: TrackDataContract.Local
+) : AlarmRepository {
 
     // region OVERRIDED METHODS
 
-    override fun saveAlarm(dateTime: Date, isEnabled: Boolean, track: Track?): Single<Long> {
+    override fun saveAlarm(
+            dateTime: Date,
+            isEnabled: Boolean,
+            track: Track?
+    ): Single<Long> {
 
         val alarmId: Long
 
         if (track == null) {
 
             alarmId = alarmLocalDataSource.saveAlarm(dateTime, isEnabled, null)
-
         } else {
-
-
 
             trackLocalDataSource.saveTrack(track.id, track.name,
                     ArtistMapper.transformArtistsToArtistEntities(track.artists))

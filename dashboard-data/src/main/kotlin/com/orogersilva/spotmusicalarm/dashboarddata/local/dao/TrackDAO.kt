@@ -5,9 +5,7 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.TrackEntity
-import io.reactivex.Flowable
 import io.reactivex.Maybe
-import io.reactivex.Single
 
 @Dao
 interface TrackDAO {

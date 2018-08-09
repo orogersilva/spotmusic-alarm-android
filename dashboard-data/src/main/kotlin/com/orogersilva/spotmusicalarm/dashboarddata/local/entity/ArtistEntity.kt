@@ -15,6 +15,8 @@ import android.arch.persistence.room.ForeignKey.CASCADE
             Index(value = ["track_id"])
         ]
 )
-data class ArtistEntity(@PrimaryKey val id: String,
-                        @ColumnInfo(name = "name") val name: String,
-                        @ColumnInfo(name = "track_id") val trackId: String)
+data class ArtistEntity(
+        @PrimaryKey val id: String,
+        @ColumnInfo(name = "name") val name: String,
+        @ColumnInfo(name = "track_id") val trackId: String
+)

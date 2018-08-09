@@ -7,11 +7,7 @@ import android.support.test.runner.AndroidJUnit4
 import com.orogersilva.spotmusicalarm.dashboarddata.local.SpotmusicAlarmDashboardDatabase
 import com.orogersilva.spotmusicalarm.dashboarddata.local.dao.PlaylistDAO
 import com.orogersilva.spotmusicalarm.dashboarddata.local.dao.TrackDAO
-import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.PlaylistEntity
 import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.TrackEntity
-import io.reactivex.Maybe
-import io.reactivex.observers.TestObserver
-import org.hamcrest.Matchers
 import org.hamcrest.Matchers.`is`
 import org.junit.After
 import org.junit.Assert.*
