@@ -1,7 +1,7 @@
 Spotmusic Alarm
 ========
 
-[![CircleCI](https://circleci.com/gh/orogersilva/spotmusic-alarm-android/tree/master.svg?style=svg)](https://circleci.com/gh/orogersilva/spotmusic-alarm-android/tree/master)
+[![CircleCI](https://circleci.com/gh/orogersilva/spotmusic-alarm-android/tree/master.svg?style=svg)](https://circleci.com/gh/orogersilva/spotmusic-alarm-android/tree/master) [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
 License
 ========

@@ -2,6 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
+apply from: rootProject.file('quality/ktlint.gradle')
+
 android {
 
     compileSdkVersion buildConfig.compileSdk
@@ -49,32 +51,6 @@ android {
             }
         }
     }
-}
-
-configurations {
-    ktlint
-}
-
-task ktlint(type: JavaExec, group: "verification") {
-
-    description = "Check Kotlin code style."
-    main = "com.github.shyiko.ktlint.Main"
-    classpath = configurations.ktlint
-    args "src/**/*.kt"
-
-    // to generate report in checkstyle format prepend following args:
-    // "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/ktlint.xml"
-    // see https://github.com/shyiko/ktlint#usage for more
-}
-
-check.dependsOn ktlint
-
-task ktlintFormat(type: JavaExec, group: "formatting") {
-
-    description = "Fix Kotlin code style deviations."
-    main = "com.github.shyiko.ktlint.Main"
-    classpath = configurations.ktlint
-    args "-F", "src/**/*.kt"
 }
 
 dependencies {
