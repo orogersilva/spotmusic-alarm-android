@@ -10,7 +10,8 @@ import com.orogersilva.spotmusicalarm.dashboarddata.local.dao.TrackDAO
 import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.TrackEntity
 import org.hamcrest.Matchers.`is`
 import org.junit.After
-import org.junit.Assert.*
+import org.junit.Assert.assertThat
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

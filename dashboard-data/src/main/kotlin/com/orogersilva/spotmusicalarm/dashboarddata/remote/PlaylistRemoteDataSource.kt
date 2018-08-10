@@ -31,7 +31,7 @@ class PlaylistRemoteDataSource @Inject constructor(private val playlistApiClient
 
                             val content = pagedPlaylistDTOsHttpResponse.body()?.string()
 
-                            val type = object : TypeToken<PagingDTO<PlaylistDTO>>(){}.type
+                            val type = object : TypeToken<PagingDTO<PlaylistDTO>>() {}.type
 
                             val pagingDTO = Gson().fromJson<PagingDTO<PlaylistDTO>>(content, type)
 
@@ -42,7 +42,7 @@ class PlaylistRemoteDataSource @Inject constructor(private val playlistApiClient
 
                             val content = pagedPlaylistDTOsHttpResponse.errorBody()?.string()
 
-                            val type = object : TypeToken<SpotifyRegularErrorDTO>(){}.type
+                            val type = object : TypeToken<SpotifyRegularErrorDTO>() {}.type
 
                             val spotifyRegularErrorDTO = Gson().fromJson<SpotifyRegularErrorDTO>(content, type)
 
@@ -68,7 +68,7 @@ class PlaylistRemoteDataSource @Inject constructor(private val playlistApiClient
 
                             val content = pagedPlaylistDTOsHttpResponse.body()?.string()
 
-                            val type = object : TypeToken<PagingDTO<PlaylistDTO>>(){}.type
+                            val type = object : TypeToken<PagingDTO<PlaylistDTO>>() {}.type
 
                             val pagingDTO = Gson().fromJson<PagingDTO<PlaylistDTO>>(content, type)
 
@@ -79,7 +79,7 @@ class PlaylistRemoteDataSource @Inject constructor(private val playlistApiClient
 
                             val content = pagedPlaylistDTOsHttpResponse.errorBody()?.string()
 
-                            val type = object : TypeToken<SpotifyRegularErrorDTO>(){}.type
+                            val type = object : TypeToken<SpotifyRegularErrorDTO>() {}.type
 
                             val spotifyRegularErrorDTO = Gson().fromJson<SpotifyRegularErrorDTO>(content, type)
 
@@ -95,10 +95,10 @@ class PlaylistRemoteDataSource @Inject constructor(private val playlistApiClient
     }
 
     override fun getPagedTrackAndAllArtistsFromPlaylist(
-            userId: String,
-            playlistId: String,
-            limit: Int,
-            offset: Int
+        userId: String,
+        playlistId: String,
+        limit: Int,
+        offset: Int
     ): Single<Paging<TrackAndAllArtists>> {
 
         return playlistApiClient.getPagedTracksFromPlaylist(userId, playlistId, limit, offset)
@@ -110,7 +110,7 @@ class PlaylistRemoteDataSource @Inject constructor(private val playlistApiClient
 
                             val content = pagedPlaylistTracksDTOsHttpResponse.body()?.string()
 
-                            val type = object : TypeToken<PagingDTO<PlaylistTrackDTO>>(){}.type
+                            val type = object : TypeToken<PagingDTO<PlaylistTrackDTO>>() {}.type
 
                             val pagingDTO = Gson().fromJson<PagingDTO<PlaylistTrackDTO>>(content, type)
 
@@ -124,7 +124,7 @@ class PlaylistRemoteDataSource @Inject constructor(private val playlistApiClient
 
                             val content = pagedPlaylistTracksDTOsHttpResponse.errorBody()?.string()
 
-                            val type = object : TypeToken<SpotifyRegularErrorDTO>(){}.type
+                            val type = object : TypeToken<SpotifyRegularErrorDTO>() {}.type
 
                             val spotifyRegularErrorDTO = Gson().fromJson<SpotifyRegularErrorDTO>(content, type)
 

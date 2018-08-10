@@ -9,7 +9,7 @@ import com.orogersilva.spotmusicalarm.testutils.shared.FileUtils
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.QueueDispatcher
 import okhttp3.mockwebserver.RecordedRequest
-import java.util.*
+import java.util.* // ktlint-disable no-wildcard-imports
 
 class LocalResponseDispatcher : QueueDispatcher() {
 

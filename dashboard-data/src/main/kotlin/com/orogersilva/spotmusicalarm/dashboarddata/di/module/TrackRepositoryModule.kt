@@ -21,8 +21,8 @@ open class TrackRepositoryModule {
             dashboardDatabase.getArtistDAO()
 
     @Provides @DashboardScope open fun provideTrackLocalDataSource(
-            trackDAO: TrackDAO,
-            artistDAO: ArtistDAO
+        trackDAO: TrackDAO,
+        artistDAO: ArtistDAO
     ): TrackDataContract.Local =
             TrackLocalDataSource(trackDAO, artistDAO)
 

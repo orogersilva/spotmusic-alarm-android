@@ -8,8 +8,8 @@ import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.TrackEntity
 import javax.inject.Inject
 
 class TrackLocalDataSource @Inject constructor(
-        private val trackDAO: TrackDAO,
-        private val artistDAO: ArtistDAO
+    private val trackDAO: TrackDAO,
+    private val artistDAO: ArtistDAO
 ) : TrackDataContract.Local {
 
     // region OVERRIDED METHODS

@@ -1,6 +1,6 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.repository
 
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.* // ktlint-disable no-wildcard-imports
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.AlarmDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.TrackDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.mapper.ArtistMapper
@@ -9,7 +9,7 @@ import com.orogersilva.spotmusicalarm.dashboarddomain.model.Track
 import com.orogersilva.spotmusicalarm.dashboarddomain.repository.AlarmRepository
 import org.junit.Before
 import org.junit.Test
-import java.util.*
+import java.util.* // ktlint-disable no-wildcard-imports
 
 class AlarmDataRepositoryTest {
 
@@ -24,7 +24,8 @@ class AlarmDataRepositoryTest {
 
     // region SETUP METHOD
 
-    @Before fun setUp() {
+    @Before
+    fun setUp() {
 
         alarmLocalDataSourceMock = mock()
         trackLocalDataSourceMock = mock()

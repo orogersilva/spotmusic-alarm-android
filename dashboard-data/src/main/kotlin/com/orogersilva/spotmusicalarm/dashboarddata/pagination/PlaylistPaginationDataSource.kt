@@ -13,9 +13,9 @@ import com.orogersilva.spotmusicalarm.dashboarddomain.model.Playlist
 import javax.inject.Inject
 
 class PlaylistPaginationDataSource @Inject constructor(
-        private val playlistRemoteDataSource: PlaylistDataContract.Remote,
-        private val userRemoteDataSource: UserDataContract.Remote,
-        private val schedulerProvider: SchedulerProvider
+    private val playlistRemoteDataSource: PlaylistDataContract.Remote,
+    private val userRemoteDataSource: UserDataContract.Remote,
+    private val schedulerProvider: SchedulerProvider
 )
     : ItemKeyedDataSource<Long, Playlist>() {
 

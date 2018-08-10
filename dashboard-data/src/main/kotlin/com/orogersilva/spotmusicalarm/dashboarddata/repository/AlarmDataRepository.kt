@@ -6,20 +6,20 @@ import com.orogersilva.spotmusicalarm.dashboarddata.mapper.ArtistMapper
 import com.orogersilva.spotmusicalarm.dashboarddomain.model.Track
 import com.orogersilva.spotmusicalarm.dashboarddomain.repository.AlarmRepository
 import io.reactivex.Single
-import java.util.*
+import java.util.* // ktlint-disable no-wildcard-imports
 import javax.inject.Inject
 
 class AlarmDataRepository @Inject constructor(
-        private val alarmLocalDataSource: AlarmDataContract.Local,
-        private val trackLocalDataSource: TrackDataContract.Local
+    private val alarmLocalDataSource: AlarmDataContract.Local,
+    private val trackLocalDataSource: TrackDataContract.Local
 ) : AlarmRepository {
 
     // region OVERRIDED METHODS
 
     override fun saveAlarm(
-            dateTime: Date,
-            isEnabled: Boolean,
-            track: Track?
+        dateTime: Date,
+        isEnabled: Boolean,
+        track: Track?
     ): Single<Long> {
 
         val alarmId: Long

@@ -37,9 +37,9 @@ open class PlaylistDataSourceModule {
             PlaylistRemoteDataSource(playlistApiClient)
 
     @Provides @DashboardScope open fun providePlaylistPaginationDataSource(
-            playlistRemoteDataSource: PlaylistDataContract.Remote,
-            userRemoteDataSource: UserDataContract.Remote,
-            schedulerProvider: SchedulerProvider
+        playlistRemoteDataSource: PlaylistDataContract.Remote,
+        userRemoteDataSource: UserDataContract.Remote,
+        schedulerProvider: SchedulerProvider
     ): PlaylistPaginationDataSource =
             PlaylistPaginationDataSource(playlistRemoteDataSource, userRemoteDataSource, schedulerProvider)
 

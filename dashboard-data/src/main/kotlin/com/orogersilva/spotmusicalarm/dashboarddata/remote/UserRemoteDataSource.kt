@@ -26,7 +26,7 @@ class UserRemoteDataSource @Inject constructor(private val userApiClient: UserAp
 
                             val content = userHttpResponse.body()?.string()
 
-                            val type = object : TypeToken<UserDTO>(){}.type
+                            val type = object : TypeToken<UserDTO>() {}.type
 
                             val userDTO = Gson().fromJson<UserDTO>(content, type)
 
@@ -37,7 +37,7 @@ class UserRemoteDataSource @Inject constructor(private val userApiClient: UserAp
 
                             val content = userHttpResponse.errorBody()?.string()
 
-                            val type = object : TypeToken<SpotifyRegularErrorDTO>(){}.type
+                            val type = object : TypeToken<SpotifyRegularErrorDTO>() {}.type
 
                             val spotifyRegularErrorDTO = Gson().fromJson<SpotifyRegularErrorDTO>(content, type)
 

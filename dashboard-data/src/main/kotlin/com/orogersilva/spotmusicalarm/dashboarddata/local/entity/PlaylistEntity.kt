@@ -6,6 +6,6 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity(tableName = "playlist")
 data class PlaylistEntity(
-        @PrimaryKey val id: String,
-        @ColumnInfo(name = "name") val name: String
+    @PrimaryKey val id: String,
+    @ColumnInfo(name = "name") val name: String
 )

@@ -15,7 +15,7 @@ object DataUtils {
 
     fun createPagedPlaylistEntitiesTestData(jsonStr: String?): Paging<PlaylistEntity> {
 
-        val type = object : TypeToken<Paging<PlaylistEntity>>(){}.type
+        val type = object : TypeToken<Paging<PlaylistEntity>>() {}.type
 
         val pagedPlaylistEntities = Gson().fromJson<Paging<PlaylistEntity>>(jsonStr, type)
 
@@ -24,7 +24,7 @@ object DataUtils {
 
     fun createPagedTrackAndAllArtistsTestData(jsonStr: String?): Paging<TrackAndAllArtists> {
 
-        val type = object : TypeToken<PagingDTO<PlaylistTrackDTO>>(){}.type
+        val type = object : TypeToken<PagingDTO<PlaylistTrackDTO>>() {}.type
 
         val pagedPlaylistTrackDTO = Gson().fromJson<PagingDTO<PlaylistTrackDTO>>(jsonStr, type)
 

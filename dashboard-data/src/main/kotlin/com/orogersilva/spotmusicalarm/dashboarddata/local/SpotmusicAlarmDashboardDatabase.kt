@@ -8,7 +8,7 @@ import com.orogersilva.spotmusicalarm.dashboarddata.local.dao.AlarmDAO
 import com.orogersilva.spotmusicalarm.dashboarddata.local.dao.ArtistDAO
 import com.orogersilva.spotmusicalarm.dashboarddata.local.dao.PlaylistDAO
 import com.orogersilva.spotmusicalarm.dashboarddata.local.dao.TrackDAO
-import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.*
+import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.* // ktlint-disable no-wildcard-imports
 import com.orogersilva.spotmusicalarm.dashboarddata.local.typeconverter.DateTypeConverter
 
 @Database(entities = [

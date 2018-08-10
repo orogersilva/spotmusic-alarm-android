@@ -6,6 +6,6 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity(tableName = "user")
 data class UserEntity(
-        @PrimaryKey val id: String,
-        @ColumnInfo(name = "display_name") val displayName: String?
+    @PrimaryKey val id: String,
+    @ColumnInfo(name = "display_name") val displayName: String?
 )

@@ -25,8 +25,8 @@ open class UserRepositoryModule {
     // region PROVIDERS
 
     @Provides @DashboardScope open fun provideUserLocalDataSource(
-            sharedPreferences: SharedPreferences,
-            sharedPreferencesEditor: SharedPreferences.Editor
+        sharedPreferences: SharedPreferences,
+        sharedPreferencesEditor: SharedPreferences.Editor
     ): UserDataContract.Local =
             UserLocalDataSource(sharedPreferences, sharedPreferencesEditor)
 
@@ -79,8 +79,8 @@ open class UserRepositoryModule {
             UserRemoteDataSource(userApiClient)
 
     @Provides @DashboardScope open fun provideUserRepository(
-            userLocalDataSource: UserDataContract.Local,
-            userRemoteDataSource: UserDataContract.Remote
+        userLocalDataSource: UserDataContract.Local,
+        userRemoteDataSource: UserDataContract.Remote
     ): UserRepository =
             UserDataRepository(userLocalDataSource, userRemoteDataSource)
 

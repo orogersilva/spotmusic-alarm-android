@@ -7,8 +7,8 @@ class SpotifyRegularErrorDTO(@SerializedName("error") val error: Error) {
     // region INNER CLASSES
 
     inner class Error(
-            @SerializedName("status") val status: Int,
-            @SerializedName("message") val message: String
+        @SerializedName("status") val status: Int,
+        @SerializedName("message") val message: String
     )
 
     // endregion

@@ -7,7 +7,7 @@ import com.orogersilva.spotmusicalarm.dashboarddata.local.dao.AlarmDAO
 import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.AlarmEntity
 import org.junit.Before
 import org.junit.Test
-import java.util.*
+import java.util.Date
 
 class AlarmLocalDataSourceTest {
 

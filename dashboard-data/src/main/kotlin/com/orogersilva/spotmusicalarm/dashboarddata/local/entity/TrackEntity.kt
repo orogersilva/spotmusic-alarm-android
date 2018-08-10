@@ -6,6 +6,6 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity(tableName = "track")
 data class TrackEntity(
-        @PrimaryKey val id: String,
-        @ColumnInfo(name = "name") val name: String
+    @PrimaryKey val id: String,
+    @ColumnInfo(name = "name") val name: String
 )

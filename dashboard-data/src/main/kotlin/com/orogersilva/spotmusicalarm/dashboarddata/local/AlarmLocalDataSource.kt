@@ -3,7 +3,7 @@ package com.orogersilva.spotmusicalarm.dashboarddata.local
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.AlarmDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.local.dao.AlarmDAO
 import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.AlarmEntity
-import java.util.*
+import java.util.* // ktlint-disable no-wildcard-imports
 import javax.inject.Inject
 
 class AlarmLocalDataSource @Inject constructor(private val alarmDAO: AlarmDAO) : AlarmDataContract.Local {

@@ -8,8 +8,8 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class UserDataRepository @Inject constructor(
-        private val userLocalDataSource: UserDataContract.Local,
-        private val userRemoteDataSource: UserDataContract.Remote
+    private val userLocalDataSource: UserDataContract.Local,
+    private val userRemoteDataSource: UserDataContract.Remote
 ) : UserRepository {
 
     // region OVERRIDED METHODS

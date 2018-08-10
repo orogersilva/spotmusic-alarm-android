@@ -1,7 +1,7 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.local.typeconverter
 
 import android.arch.persistence.room.TypeConverter
-import java.util.*
+import java.util.Date
 
 object DateTypeConverter {
 

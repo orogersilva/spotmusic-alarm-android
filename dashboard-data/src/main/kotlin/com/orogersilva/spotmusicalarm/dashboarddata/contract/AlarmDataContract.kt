@@ -1,6 +1,6 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.contract
 
-import java.util.*
+import java.util.* // ktlint-disable no-wildcard-imports
 
 interface AlarmDataContract {
 
@@ -10,7 +10,11 @@ interface AlarmDataContract {
 
         // region METHODS
 
-        fun saveAlarm(dateTime: Date, isEnabled: Boolean, trackId: String?): Long
+        fun saveAlarm(
+            dateTime: Date,
+            isEnabled: Boolean,
+            trackId: String?
+        ): Long
 
         // endregion
     }

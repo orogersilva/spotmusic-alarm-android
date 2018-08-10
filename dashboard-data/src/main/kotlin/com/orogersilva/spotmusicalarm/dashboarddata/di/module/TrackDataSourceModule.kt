@@ -15,9 +15,9 @@ open class TrackDataSourceModule(private val playlistId: String) {
     // region PROVIDERS
 
     @Provides @ActivityScope open fun provideTrackPaginationDataSource(
-            playlistRemoteDataSource: PlaylistDataContract.Remote,
-            userRemoteDataSource: UserDataContract.Remote,
-            schedulerProvider: SchedulerProvider
+        playlistRemoteDataSource: PlaylistDataContract.Remote,
+        userRemoteDataSource: UserDataContract.Remote,
+        schedulerProvider: SchedulerProvider
     ): TrackPaginationDataSource =
             TrackPaginationDataSource(playlistRemoteDataSource, userRemoteDataSource, schedulerProvider, playlistId)
 
