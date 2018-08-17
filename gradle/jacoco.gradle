@@ -45,7 +45,7 @@ task jacocoFullTestReport(type: JacocoReport) {
     //Make sure that tests from all modules are run before coverage report
     dependsOn ":dashboard-data:testDebugUnitTest"
     dependsOn ":feature-dashboard:testDebugUnitTest"
-    dependsOn ":dashboard-data:createDebugCoverageReport"
+    // dependsOn ":dashboard-data:createDebugCoverageReport"
     // dependsOn ":feature-dashboard:createDebugCoverageReport"
 
     classDirectories = files([
@@ -77,13 +77,13 @@ task jacocoFullTestReport(type: JacocoReport) {
 
     executionData = fileTree(dir: project.rootDir, includes: [
             'dashboard-data/build/jacoco/testDebugUnitTest.exec',
-            'dashboard-data/build/outputs/code-coverage/connected/*coverage.ec',
+            // 'dashboard-data/build/outputs/code-coverage/connected/*coverage.ec',
             'feature-dashboard/build/jacoco/testDebugUnitTest.exec',
             // 'feature-dashboard/build/outputs/code-coverage/connected/*coverage.ec'
     ])
 
     reports {
         xml.enabled = true
-        html.enabled = true
+        html.enabled = false
     }
 }
