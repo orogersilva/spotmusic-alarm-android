@@ -1,0 +1,89 @@
+def fileFilter = [
+        '**/R.class',
+        '**/R$*.class',
+        '**/BuildConfig.*',
+        '**/Manifest*.*',
+        '**/*Test*.*',
+        'android/**/*.*',
+
+        // Dagger 2
+        '**/*Dagger*.*',
+        '**/*Dagger*Component*.*',
+        '**/*Module.*',
+        '**/*Module$*.*',
+        '**/*MembersInjector*.*',
+        '**/*_Factory*.*',
+        '**/*Provide*Factory*.*',
+        '**/*$ViewInjector*.*',
+        '**/*$*$*.*',
+
+        // Classes I intentionally don't want to test...
+        '**/*Activity.*',
+        '**/*Binding.*',
+        '**/BR.*',
+        '**/adapter/**/*.*',
+        '**/dao/**/*.*',
+        '**/dto/**/*.*',
+        '**/entity/**/*.*',
+        '**/factory/**/*.*',
+        '**/pagination/**/*.*',
+        '**/relation/**/*.*',
+        '**/shared/**/*.*',
+        '**/typeconverter/**/*.*',
+        '**/view/**/*.*',
+        '**/*Activity.*',
+        '**/*Database*.*',
+        '**/*_Factory*.*',
+        '**/*Fragment.*'
+]
+
+task jacocoFullTestReport(type: JacocoReport) {
+
+    group = 'Reporting'
+    description = "Generate Jacoco coverage reports for the debug build."
+
+    //Make sure that tests from all modules are run before coverage report
+    dependsOn ":dashboard-data:testDebugUnitTest"
+    dependsOn ":feature-dashboard:testDebugUnitTest"
+    dependsOn ":dashboard-data:createDebugCoverageReport"
+    // dependsOn ":feature-dashboard:createDebugCoverageReport"
+
+    classDirectories = files([
+            fileTree(
+                    dir: "$project.rootDir/dashboard-data/build/intermediates/classes/debug",
+                    excludes: fileFilter
+            ) + fileTree(
+                    dir: "$project.rootDir/dashboard-data/build/tmp/kotlin-classes/debug",
+                    excludes: fileFilter
+            ),
+            fileTree(
+                    dir: "$project.rootDir/feature-dashboard/build/intermediates/classes/debug",
+                    excludes: fileFilter
+            ) + fileTree(
+                    dir: "$project.rootDir/feature-dashboard/build/tmp/kotlin-classes/debug",
+                    excludes: fileFilter
+            )
+    ])
+
+    def coverageSourceDirs = [
+            "$project.rootDir/dashboard-data/android.sourceSets.main.java.srcDirs",
+            "$project.rootDir/dashboard-data/src/main/kotlin",
+            "$project.rootDir/feature-dashboard/android.sourceSets.main.java.srcDirs",
+            "$project.rootDir/feature-dashboard/src/main/kotlin"
+    ]
+
+    additionalSourceDirs = files(coverageSourceDirs)
+    sourceDirectories = files(coverageSourceDirs)
+
+    executionData = fileTree(dir: project.rootDir, includes: [
+            'dashboard-data/build/jacoco/testDebugUnitTest.exec',
+            'dashboard-data/build/outputs/code-coverage/connected/*coverage.ec',
+            'feature-dashboard/build/jacoco/testDebugUnitTest.exec',
+            // 'feature-dashboard/build/outputs/code-coverage/connected/*coverage.ec'
+    ])
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}

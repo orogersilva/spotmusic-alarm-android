@@ -15,20 +15,6 @@ class TrackLocalDataSourceTest {
 
     // region PROPERTIES
 
-    /*class TrackLocalDataSource @Inject constructor(private val trackDAO: TrackDAO,
-                                               private val artistDAO: ArtistDAO) : TrackDataContract.Local {
-
-    // region OVERRIDED METHODS
-
-    override fun saveTrack(id: String, name: String, artistEntities: List<ArtistEntity>) {
-
-        artistDAO.insertArtists(artistEntities)
-        trackDAO.insertTrack(TrackEntity(id, name))
-    }
-
-    // endregion
-}*/
-
     private lateinit var trackDAOMock: TrackDAO
     private lateinit var artistDAOMock: ArtistDAO
 

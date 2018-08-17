@@ -59,11 +59,9 @@ class UserDataRepositoryTest {
 
         // ASSERT
 
-        testObserver.awaitTerminalEvent()
-
         testObserver
                 .assertNotComplete()
-                .assertError(expectedSpotifyException)
+                .assertError(SpotifyRegularErrorException::class.java)
     }
 
     @Test fun `Get me, when user is authenticated, then return User`() {
@@ -89,8 +87,6 @@ class UserDataRepositoryTest {
                 .subscribe(testObserver)
 
         // ASSERT
-
-        testObserver.awaitTerminalEvent()
 
         testObserver
                 .assertComplete()

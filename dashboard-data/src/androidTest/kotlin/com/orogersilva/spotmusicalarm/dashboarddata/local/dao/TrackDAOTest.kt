@@ -1,12 +1,10 @@
-package com.orogersilva.spotmusicalarm.dashboarddata.dao
+package com.orogersilva.spotmusicalarm.dashboarddata.local.dao
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.arch.persistence.room.Room
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.orogersilva.spotmusicalarm.dashboarddata.local.SpotmusicAlarmDashboardDatabase
-import com.orogersilva.spotmusicalarm.dashboarddata.local.dao.PlaylistDAO
-import com.orogersilva.spotmusicalarm.dashboarddata.local.dao.TrackDAO
 import com.orogersilva.spotmusicalarm.dashboarddata.local.entity.TrackEntity
 import org.hamcrest.Matchers.`is`
 import org.junit.After
@@ -53,7 +51,6 @@ class TrackDAOTest {
 
         // ARRANGE
 
-        val EXPECTED_INSERTED_PLAYLIST_ROW_ID = 1L
         val EXPECTED_INSERTED_TRACK_ROW_ID = 1L
 
         val TRACK_ID = "325S3FzTRw7jWAWup9n2vF"
@@ -74,7 +71,6 @@ class TrackDAOTest {
 
         // ARRANGE
 
-        val EXPECTED_INSERTED_PLAYLIST_ROW_ID = 1L
         val EXPECTED_INSERTED_TRACK_ROW_ID = 1L
         val EXPECTED_SAME_INSERTED_TRACK_BY_SECOND_TIME_ROW_ID = 2L
 

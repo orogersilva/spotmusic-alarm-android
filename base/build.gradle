@@ -1,6 +1,7 @@
 apply plugin: 'com.android.feature'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'jacoco'
 
 android {
 
@@ -17,6 +18,11 @@ android {
     }
 
     buildTypes {
+
+        debug {
+
+            testCoverageEnabled true
+        }
 
         release {
 
@@ -46,4 +52,8 @@ dependencies {
     api deps.dagger.core
     implementation deps.rx.android
     implementation deps.rx.java
+
+    testImplementation deps.kotlin.test.jdk
+
+    androidTestImplementation deps.android.test.runner
 }
