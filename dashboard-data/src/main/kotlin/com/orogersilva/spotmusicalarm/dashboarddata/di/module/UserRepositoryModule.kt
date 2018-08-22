@@ -1,6 +1,6 @@
 package com.orogersilva.spotmusicalarm.dashboarddata.di.module
 
-import android.content.SharedPreferences
+import com.orogersilva.spotmusicalarm.base.wrapper.SharedPreferencesWrapperContract
 import com.orogersilva.spotmusicalarm.dashboarddata.BuildConfig
 import com.orogersilva.spotmusicalarm.dashboarddata.contract.UserDataContract
 import com.orogersilva.spotmusicalarm.dashboarddata.local.UserLocalDataSource
@@ -24,11 +24,8 @@ open class UserRepositoryModule {
 
     // region PROVIDERS
 
-    @Provides @DashboardScope open fun provideUserLocalDataSource(
-        sharedPreferences: SharedPreferences,
-        sharedPreferencesEditor: SharedPreferences.Editor
-    ): UserDataContract.Local =
-            UserLocalDataSource(sharedPreferences, sharedPreferencesEditor)
+    @Provides @DashboardScope open fun provideUserLocalDataSource(sharedPreferencesWrapper: SharedPreferencesWrapperContract): UserDataContract.Local =
+            UserLocalDataSource(sharedPreferencesWrapper)
 
     @Provides @DashboardScope open fun provideOkHttpClient(userLocalDataSource: UserDataContract.Local): OkHttpClient {
 

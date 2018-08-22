@@ -1,7 +1,10 @@
 package com.orogersilva.spotmusicalarm.base.di.module
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import com.orogersilva.spotmusicalarm.base.wrapper.SharedPreferencesWrapperContract
+import com.orogersilva.spotmusicalarm.base.wrapper.impl.SharedPreferencesWrapper
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -17,11 +20,14 @@ open class PreferencesModule {
 
     // region PROVIDERS
 
-    @Provides @Singleton open fun provideSharedPreferences(context: Context): SharedPreferences =
-            context.getSharedPreferences(PREF_FILE_KEY, Context.MODE_PRIVATE)
+    @SuppressLint("CommitPrefEdits")
+    @Provides @Singleton open fun provideSharedPreferencesWrapper(context: Context) : SharedPreferencesWrapperContract {
 
-    @Provides @Singleton open fun provideSharedPreferencesEditor(sharedPreferences: SharedPreferences): SharedPreferences.Editor =
-            sharedPreferences.edit()
+        val sharedPreferences = context.getSharedPreferences(PREF_FILE_KEY, Context.MODE_PRIVATE)
+        val sharedPreferencesEditor = sharedPreferences.edit()
+
+        return SharedPreferencesWrapper(sharedPreferences, sharedPreferencesEditor)
+    }
 
     // endregion
 }

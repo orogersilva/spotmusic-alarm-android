@@ -6,6 +6,8 @@ import com.orogersilva.spotmusicalarm.base.di.module.ApplicationModule
 import com.orogersilva.spotmusicalarm.base.di.module.PreferencesModule
 import com.orogersilva.spotmusicalarm.base.di.module.SchedulerProviderModule
 import com.orogersilva.spotmusicalarm.base.scheduler.SchedulerProvider
+import com.orogersilva.spotmusicalarm.base.wrapper.SharedPreferencesWrapperContract
+import com.orogersilva.spotmusicalarm.base.wrapper.impl.SharedPreferencesWrapper
 import dagger.Component
 import javax.inject.Singleton
 
@@ -25,9 +27,7 @@ interface ApplicationComponent {
 
     fun schedulerProvider(): SchedulerProvider
 
-    fun sharedPreferences(): SharedPreferences
-
-    fun sharedPreferencesEditor(): SharedPreferences.Editor
+    fun sharedPreferencesWrapper(): SharedPreferencesWrapperContract
 
     // endregion
 }
