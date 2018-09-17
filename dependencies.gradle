@@ -22,9 +22,13 @@ ext.versions = [
         'androidGradlePluginVersion': '3.1.3',
         'androidSDKVersion': '27.1.1',
         'constraintLayoutVersion': '1.1.0',
+        'crashlyticsVersion': '2.9.5',
         'daggerVersion': '2.16',
         'databindingVersion': '3.1.3',
         'espressoVersion': '3.0.2',
+        'fabricVersion': '1.25.4',
+        'firebaseVersion': '16.0.3',
+        'googleServicesVersion': '4.0.1',
         'gsonVersion': '2.8.5',
         'hamcrestVersion': '1.3',
         'junitVersion': '4.12',
@@ -72,9 +76,15 @@ ext.deps = [
                         'runner': "com.android.support.test:runner:${versions.testRunnerVersion}"
                 ]
         ],
+        'crashlytics': [
+                'core': "com.crashlytics.sdk.android:crashlytics:${versions.crashlyticsVersion}"
+        ],
         'dagger': [
                 'compiler': "com.google.dagger:dagger-compiler:${versions.daggerVersion}",
                 'core': "com.google.dagger:dagger:${versions.daggerVersion}"
+        ],
+        'firebase': [
+                'core': "com.google.firebase:firebase-core:${versions.firebaseVersion}"
         ],
         'gson': [
                 'core': "com.google.code.gson:gson:${versions.gsonVersion}"

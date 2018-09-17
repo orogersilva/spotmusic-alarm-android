@@ -48,8 +48,10 @@ dependencies {
 
     api deps.kotlin.stdlib.jdk
 
+    api deps.crashlytics.core
     kapt deps.dagger.compiler
     api deps.dagger.core
+    api deps.firebase.core
     implementation deps.rx.android
     implementation deps.rx.java
 

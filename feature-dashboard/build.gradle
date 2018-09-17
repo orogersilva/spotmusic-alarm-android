@@ -14,8 +14,9 @@ android {
         targetSdkVersion buildConfig.targetSdk
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
+
+    flavorDimensions "environment"
 
     buildTypes {
 
