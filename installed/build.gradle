@@ -18,8 +18,8 @@ android {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
 
-        versionCode buildConfig.version.code
-        versionName buildConfig.version.name
+        versionCode 1
+        versionName "0.1.0.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -79,6 +79,21 @@ android {
         }
     }
 
+    splits {
+
+        abi {
+
+            enable true
+
+            universalApk true
+        }
+
+        density {
+
+            enable false
+        }
+    }
+
     dataBinding {
         enabled = true
     }
@@ -86,6 +101,24 @@ android {
     sourceSets.androidTest.java.srcDirs += 'src/androidTest/kotlin'
     sourceSets.main.java.srcDirs += 'src/main/kotlin'
     sourceSets.test.java.srcDirs += 'src/test/kotlin'
+}
+
+ext.abiCodes = ['armeabi-v7a': 1, 'arm64-v8a': 2, 'x86': 3, 'x86_64': 4].withDefault {0}
+
+import com.android.build.OutputFile
+
+android.applicationVariants.all { variant ->
+
+    variant.outputs.each { output ->
+
+        def baseAbiVersionCode =
+                project.ext.abiCodes.get(output.getFilter(OutputFile.ABI))
+
+        if (baseAbiVersionCode != null) {
+            output.versionCodeOverride =
+                    baseAbiVersionCode * 420000000 + variant.versionCode
+        }
+    }
 }
 
 dependencies {
