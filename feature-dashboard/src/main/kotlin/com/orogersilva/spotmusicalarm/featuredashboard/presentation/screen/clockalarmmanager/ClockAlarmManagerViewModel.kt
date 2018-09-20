@@ -1,7 +1,6 @@
 package com.orogersilva.spotmusicalarm.featuredashboard.presentation.screen.clockalarmmanager
 
 import android.arch.lifecycle.ViewModel
-import com.crashlytics.android.Crashlytics
 import com.orogersilva.spotmusicalarm.dashboarddata.shared.SingleLiveEvent
 
 class ClockAlarmManagerViewModel : ViewModel() {

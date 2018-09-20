@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "133667459860",
+    "firebase_url": "https://spotmusic-alarm.firebaseio.com",
+    "project_id": "spotmusic-alarm",
+    "storage_bucket": "spotmusic-alarm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133667459860:android:206df4f7f5875aa3",
+        "android_client_info": {
+          "package_name": "com.orogersilva.spotmusicalarm.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "133667459860-4ao5vf85cu35to58ccdt5v4of8tumnct.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.orogersilva.spotmusicalarm.dev",
+            "certificate_hash": "b7dd6c031251e37c9e83fd048b0d90bc14f72d04"
+          }
+        },
+        {
+          "client_id": "133667459860-6q8a7o6ksijke46gsnpr2ic1fudqb4du.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzrM6zCdowcwF443MNhZFNKXvuk9QbqGg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "133667459860-6q8a7o6ksijke46gsnpr2ic1fudqb4du.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
