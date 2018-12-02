@@ -4,7 +4,7 @@ interface SharedPreferencesWrapperContract {
 
     // region METHODS
 
-    fun getString(key: String, defaultValue: String?): String
+    fun getString(key: String, defaultValue: String?): String?
 
     fun putString(key: String, value: String?)
 

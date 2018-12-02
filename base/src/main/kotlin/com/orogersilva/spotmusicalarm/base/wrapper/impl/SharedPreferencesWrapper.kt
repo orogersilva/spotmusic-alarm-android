@@ -9,7 +9,7 @@ class SharedPreferencesWrapper @Inject constructor(
     private val sharedPreferencesEditor: SharedPreferences.Editor
 ) : SharedPreferencesWrapperContract {
 
-    override fun getString(key: String, defaultValue: String?): String =
+    override fun getString(key: String, defaultValue: String?): String? =
         sharedPreferences.getString(key, defaultValue)
 
     override fun putString(key: String, value: String?) {

@@ -18,6 +18,8 @@ android {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
 
+        multiDexEnabled true
+
         versionCode 1
         versionName "0.1.0.0"
 
@@ -138,7 +140,6 @@ dependencies {
 
     implementation project(':feature-dashboard')
 
-    kapt deps.android.databinding.compiler
     implementation deps.android.support.appCompat
     implementation deps.android.support.constraintLayout
     implementation deps.android.support.design

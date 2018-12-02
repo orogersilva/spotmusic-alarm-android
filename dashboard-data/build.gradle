@@ -71,7 +71,7 @@ dependencies {
 
     implementation deps.android.arch.paging
     kapt deps.android.arch.room.compiler
-    implementation deps.android.arch.room.runtime
+    api deps.android.arch.room.runtime
     implementation deps.android.arch.room.rxjava
     kapt deps.dagger.compiler
     implementation deps.dagger.core

@@ -27,7 +27,7 @@ android {
 
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -61,7 +61,6 @@ dependencies {
     api deps.android.arch.extensions
     implementation deps.android.arch.paging
     implementation deps.android.arch.viewmodel
-    kapt deps.android.databinding.compiler
     implementation deps.android.support.appCompat
     implementation deps.android.support.constraintLayout
     implementation deps.android.support.design

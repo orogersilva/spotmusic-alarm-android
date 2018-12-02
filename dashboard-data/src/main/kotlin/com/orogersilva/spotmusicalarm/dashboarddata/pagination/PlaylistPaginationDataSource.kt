@@ -45,7 +45,7 @@ class PlaylistPaginationDataSource @Inject constructor(
                 .observeOn(schedulerProvider.ui())
                 .subscribe(
                         { paging -> onPlaylistsFetched(paging, callback) },
-                        { throwable -> onError(throwable) }
+                        { _ -> onError() }
                 )
     }
 
@@ -64,7 +64,7 @@ class PlaylistPaginationDataSource @Inject constructor(
                     .observeOn(schedulerProvider.ui())
                     .subscribe(
                             { paging -> onMorePlaylistsFetched(paging, callback) },
-                            { throwable -> onPaginationError(throwable) }
+                            { _ -> onPaginationError() }
                     )
         } else {
 
@@ -100,12 +100,12 @@ class PlaylistPaginationDataSource @Inject constructor(
         callback.onResult(PlaylistMapper.transformPlaylistEntitiesToPlaylists(paging.items))
     }
 
-    private fun onError(throwable: Throwable) {
+    private fun onError() {
 
         initialLoadingLiveData.postValue(NetworkState.FAILED)
     }
 
-    private fun onPaginationError(throwable: Throwable) {
+    private fun onPaginationError() {
 
         networkStateLiveData.postValue(NetworkState.FAILED)
     }

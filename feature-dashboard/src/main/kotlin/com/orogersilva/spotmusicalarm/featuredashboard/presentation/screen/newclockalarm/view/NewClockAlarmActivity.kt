@@ -188,8 +188,8 @@ class NewClockAlarmActivity : BaseActivity() {
             changedClockAlarmConfigEvent.observe(this@NewClockAlarmActivity, Observer<Void> {
 
                 saveClockAlarmSettingsButton.isEnabled =
-                        timeTextInputEditText.text.isNotEmpty() &&
-                        trackTextInputEditText.text.isNotEmpty()
+                        timeTextInputEditText.text!!.isNotEmpty() &&
+                        trackTextInputEditText.text!!.isNotEmpty()
             })
 
             preparationClockAlarmConfigEvent.observe(this@NewClockAlarmActivity, Observer<Void> {

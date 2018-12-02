@@ -46,7 +46,7 @@ class TrackPaginationDataSource @Inject constructor(
                 .observeOn(schedulerProvider.ui())
                 .subscribe(
                         { paging -> onTrackAndAllArtistsFetched(paging, callback) },
-                        { throwable -> onError(throwable) }
+                        { _ -> onError() }
                 )
     }
 
@@ -65,7 +65,7 @@ class TrackPaginationDataSource @Inject constructor(
                     .observeOn(schedulerProvider.ui())
                     .subscribe(
                             { paging -> onMoreTrackAndAllArtistsFetched(paging, callback) },
-                            { throwable -> onPaginationError(throwable) }
+                            { _ -> onPaginationError() }
                     )
         } else {
 
@@ -101,12 +101,12 @@ class TrackPaginationDataSource @Inject constructor(
         callback.onResult(TrackMapper.transformTrackAndAllArtistsListToTracks(paging.items))
     }
 
-    private fun onError(throwable: Throwable) {
+    private fun onError() {
 
         initialLoadingLiveData.postValue(NetworkState.FAILED)
     }
 
-    private fun onPaginationError(throwable: Throwable) {
+    private fun onPaginationError() {
 
         networkStateLiveData.postValue(NetworkState.FAILED)
     }
