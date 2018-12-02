@@ -22,8 +22,11 @@ def fileFilter = [
         '**/*Binding.*',
         '**/BR.*',
         '**/adapter/**/*.*',
+        '**/adapters/**/*.*',
         '**/dao/**/*.*',
+        '**/databinding/**/*.*',
         '**/dto/**/*.*',
+        '**/enums/**/*.*',
         '**/entity/**/*.*',
         '**/factory/**/*.*',
         '**/pagination/**/*.*',
@@ -33,6 +36,7 @@ def fileFilter = [
         '**/view/**/*.*',
         '**/*Activity.*',
         '**/*Database*.*',
+        '**/*DataBinderMapperImpl.*',
         '**/*_Factory*.*',
         '**/*Fragment.*'
 ]
@@ -84,6 +88,6 @@ task jacocoFullTestReport(type: JacocoReport) {
 
     reports {
         xml.enabled = true
-        html.enabled = false
+        html.enabled = true
     }
 }
